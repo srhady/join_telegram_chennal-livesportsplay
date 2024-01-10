@@ -1,10 +1,18 @@
 [
+
+  {
+    "name": "RMA 🆚 ATM",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F43%2Findex.m3u8&token=db729754d94c1a24f80ff60edfe60b83e719a5fd&is_vip=false&verify=1704909600-543Rq6XNhQhhtsfkzohJfwGDT0SRg2dK273CRZExrD0%3D",
+    "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
+    "referer": "https://live-streamfootball.com/",
+    "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
+  },
   {
     "name": "RMA 🆚 ATM",
     "link": "https://webudit.webhd.ru/lb/premium137/index.m3u8",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "referer": "https://olalivehdplay.ru/",
-		"origin": "https://olalivehdplay.ru/",
+    "origin": "https://olalivehdplay.ru/",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
   },
   {
