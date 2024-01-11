@@ -1,5 +1,12 @@
 [
-
+ {
+    "name": "Super Smash Woman",
+    "link": "https://webudit.webhd.ru/lb/premium368/index.m3u8",
+    "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-lmK8Z03oXdUKbC8KgeUIn_IYK1G1Fko02g&usqp=CAU",
+    "origin": "https://olalivehdplay.ru/",
+    "referer": "https://olalivehdplay.ru/",
+    "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
+  },
   {
     "name": "Live",
     "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F18%2Findex.m3u8&token=db729754d94c1a24f80ff60edfe60b83e719a5fd&is_vip=false&verify=1704952800-rxA5%2FEJptdV6h8XRCWvglp3SxUIYtdjIKHzMwCCK6og%3D",
