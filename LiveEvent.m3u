@@ -1,15 +1,15 @@
 [
  {
     "name": "Live",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F47%2Findex.m3u8&token=7c71da8489c31f4682ebff43453c89e13105a647&is_vip=false&verify=1705060800-1raauDGKV%2FaPum8Lzls0osK00qwlkWjPpmVzClEJyD8%3D",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F24%2Findex.m3u8&token=7c71da8489c31f4682ebff43453c89e13105a647&is_vip=false&verify=1705082400-apt9hjjpgFY5606mPOlux%2BTTyDTuNlliptisxJ4%2Ftno%3D",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
   },
   {
-    "name": "ASIAN CUP",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F44%2Findex.m3u8&token=7c71da8489c31f4682ebff43453c89e13105a647&is_vip=false&verify=1705060800-1raauDGKV%2FaPum8Lzls0osK00qwlkWjPpmVzClEJyD8%3D",
+    "name": "Live",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F42%2Findex.m3u8&token=7c71da8489c31f4682ebff43453c89e13105a647&is_vip=false&verify=1705082400-apt9hjjpgFY5606mPOlux%2BTTyDTuNlliptisxJ4%2Ftno%3D",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "referer": "https://live-streamfootball.com/",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
@@ -30,7 +30,7 @@
   },
  {
     "name": "Live",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F37%2Findex.m3u8&token=782c6e1a5f7e478cdc3046800af893d23d7d0f73&is_vip=false&verify=1705039200-TO8yaJGKXPlXGF5rup0hQVdt5Dd%2BMPoVPvEso8NDTp8%3D",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F12%2Findex.m3u8&token=7c71da8489c31f4682ebff43453c89e13105a647&is_vip=false&verify=1705082400-apt9hjjpgFY5606mPOlux%2BTTyDTuNlliptisxJ4%2Ftno%3D",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "referer": "https://live-streamfootball.com/",
     "origin": "",
