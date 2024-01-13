@@ -71,7 +71,7 @@
   },
   {
     "name": "ASIAN CUP",
-    "link": "https://live-cdn.tsports.com/live-02/index.m3u8",
+    "link": "https://prod-ent-live-gm.jiocinema.com/hls/live/2099128/hd_akamai_merged_avc_eng_afc_m1_130124/mobile_master.m3u8",
     "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY8SVA080ms117m_CdqHUfNo6u0c9Cz_tHcw&usqp=CAU",
     "referer": "",
     "origin" : "",
