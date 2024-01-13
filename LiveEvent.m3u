@@ -55,5 +55,16 @@
     "cookie": "",
     "drmScheme": "",
     "drmLicense": ""
+  },
+ {
+    "name": "Premier League",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F42%2Findex.m3u8&token=db729754d94c1a24f80ff60edfe60b83e719a5fd&is_vip=false&verify=1705147200-%2BxCVH6HjQxfkUEXKReiapPlqrdmwqMxP6c9uXqYmngw%3D",
+    "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRHKAzbxtuIg9qzvDdfD8UXqHIwvCQ3yUPxQ&usqp=CAU",
+    "origin": "",
+    "referer": "https://live-streamfootball.com/",
+    "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
+    "cookie": "",
+    "drmScheme": "",
+    "drmLicense": ""
   }
 ]
