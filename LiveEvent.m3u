@@ -1,20 +1,21 @@
 [
  {
-    "name": "PAK 🆚 NZ",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F14%2Findex.m3u8&token=782c6e1a5f7e478cdc3046800af893d23d7d0f73&is_vip=false&verify=1705212000-WlWJroH%2BdYU1Gqs7O35W0yPiIHcoEol%2BRuGZAjw8uOg%3D",
-    "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNO2q59ksuVw-5Ks61-fj_PWsvcR0nWKQ6zw&usqp=CAU",
+    "name": "SL 🆚 ZIM",
+    "link": "https://dai.google.com/linear/hls/event/23bJc4DCSE2-dhd2cG1Jjw/master.m3u8",
+    "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPvLgrJwArV7PeLsZvwzZae4e1DEBlqrJRRA&usqp=CAU",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
   },
   {
-    "name": "PAK 🆚 NZ",
-    "link": "https://webudit.webhd.ru/lb/premium368/index.m3u8",
-    "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNO2q59ksuVw-5Ks61-fj_PWsvcR0nWKQ6zw&usqp=CAU",
+    "name": "SL 🆚 ZIM",
+    "link": "https://bldcmprod-cdn.toffeelive.com/cdn/live/sony_ten1_hd/playlist.m3u8",
+    "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPvLgrJwArV7PeLsZvwzZae4e1DEBlqrJRRA&usqp=CAU",
     "referer": "https://olalivehdplay.ru/",
     "origin": "https://olalivehdplay.ru/",
-    "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
-  },
+    "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
+    "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9ibGRjbXByb2QtY2RuLnRvZmZlZWxpdmUuY29tLw:Expires=1705411524:KeyName=prod_linear:Signature=EwLUANCLUFoGcHcJEWwsqrWj-efGAOumS8-5-IoyvIgVuoCLYtiezWwvQNz5mJaSXgdZ1bygt9jRae3Ep0W8Ag"
+ },
  {
     "name": "Live",
     "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F46%2Findex.m3u8&token=db729754d94c1a24f80ff60edfe60b83e719a5fd&is_vip=false&verify=1705212000-HLjJX550A38pzpr0%2BRlRJSJ1lGK1QVZvMFZCqtQ9%2BaU%3D",
