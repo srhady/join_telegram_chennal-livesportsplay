@@ -82,7 +82,7 @@
   },
   {
     "name": "SA20",
-    "link": "https://prod-ent-live-gm.jiocinema.com/hls/live/2099110/hd_akamai_merged_avc_eng_sa20_m1_140124/mobile_master.m3u8",
+    "link": "https://prod-ent-live-gm.jiocinema.com/hls/live/2099110/hd_akamai_merged_avc_eng_sa20_m1_150124/mobile_master.m3u8",
     "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSxhuPtYddDKjcDHwc4X3dbYq1CjDmB3xfGw&usqp=CAU",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
   },
