@@ -1,18 +1,18 @@
 [
  {
-    "name": "SL 🆚 ZIM",
-    "link": "https://dai.google.com/ssai/event/jirIBSMoQDWBeTr-f6WNpA/master.m3u8",
+    "name": "PAK 🆚 NZ",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F41%2Findex.m3u8&token=7c71da8489c31f4682ebff43453c89e13105a647&is_vip=false&verify=1705449600-OWRSM68vcVgbRIbrusHfa7414iT%2BqtB09rbOxY9UVtU%3D",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
   },
   {
-    "name": "Live",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F35%2Findex.m3u8&token=7c71da8489c31f4682ebff43453c89e13105a647&is_vip=false&verify=1705406400-awIc%2F0GqXoGfjCn77miNmTnpTjDS1SlNPZSuienV9ec%3D",
+    "name": "PAK 🆚 NZ",
+    "link": "https://webudit.webhd.ru/lb/premium417/index.m3u8",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
-    "referer": "https://live-streamfootball.com/",
-    "origin": "",
+    "referer": "https://olalivehdplay.ru/",
+    "origin": "https://olalivehdplay.ru/",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
     "cookie": ""
  },
