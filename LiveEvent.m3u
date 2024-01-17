@@ -1,20 +1,20 @@
 [
  {
-    "name": "PAK 🆚 NZ",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F41%2Findex.m3u8&token=7c71da8489c31f4682ebff43453c89e13105a647&is_vip=false&verify=1705449600-OWRSM68vcVgbRIbrusHfa7414iT%2BqtB09rbOxY9UVtU%3D",
+    "name": "AUS 🆚 WI",
+    "link": "https://webudit.webhd.ru/lb/premium368/index.m3u8",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
-    "origin": "",
-    "referer": "https://live-streamfootball.com/",
+    "origin": "https://olalivehdplay.ru/",
+    "referer": "https://olalivehdplay.ru/",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
   },
   {
-    "name": "PAK 🆚 NZ",
-    "link": "https://webudit.webhd.ru/lb/premium417/index.m3u8",
+    "name": "AUS 🆚 WI",
+    "link": "https://live-cdn.tsports.com/live-01/index.m3u8",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
-    "referer": "https://olalivehdplay.ru/",
-    "origin": "https://olalivehdplay.ru/",
+    "referer": "",
+    "origin": "",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
-    "cookie": ""
+    "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9saXZlLWNkbi50c3BvcnRzLmNvbS8:Expires=1705525982:KeyName=tsports-ed25519-01:Signature=qNWlt7VQ5KkhOfijNd2Dvf6C5oecbT8_qAjLg1lS2-LX8TyOpD8K_hGZiDKPKY5m47FIr9z8Zf2aHvxnU_LhBA"
  },
  { 
     "name": "Live",
