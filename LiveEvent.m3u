@@ -1,15 +1,15 @@
 [
  {
-    "name": "PAK 🆚 NZ",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F17%2Findex.m3u8&token=04e57462f8b036aa91f7285fc3af89ff730d25e5&is_vip=false&verify=1705644000-0IUFtyZOYyQus5BjVyteepwVH43nig3Jn1cmBMWgmFY%3D",
+    "name": "Live",
+    "link": "https://webudit.webhd.ru/lb/premium741/index.m3u8",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
-    "origin": "",
-    "referer": "https://live-streamfootball.com/",
+    "origin": "https://olalivehdplay.ru/",
+    "referer": "https://olalivehdplay.ru/",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
   },
   {
-    "name": "PAK 🆚 NZ",
-    "link": "https://webudit.webhd.ru/lb/premium450/index.m3u8",
+    "name": "Live",
+    "link": "https://webudit.webhd.ru/lb/premium418/index.m3u8",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "referer": "https://olalivehdplay.ru/",
     "origin": "https://olalivehdplay.ru/",
