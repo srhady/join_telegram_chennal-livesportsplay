@@ -50,9 +50,9 @@
     "drmLicense": ""
   },
  {
-    "name": "BPL Fancode",
+    "name": "Live",
     "link": "https://jio.kingkhan.website/fcode/index.m3u8?ig=https://dai.google.com/linear/hls/event/dMnAWxt4RA6D0R1vGbdFPg/master.m3u8",
-    "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuX2JjsP-6WlFpCq1IthHpGCbLLmgVHIiGKw&usqp=CAU",
+    "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
@@ -97,8 +97,8 @@
  },
  {
     "name": "BPL",
-    "link": "http://103.141.2.37:25461/web/web/592",
-    "logo": "https://image.tsports.com/images/test/mobile_logo/1705486440-Live-2.jpg",
+    "link": "https://jio.kingkhan.website/fcode/index.m3u8?ig=https://dai.google.com/linear/hls/event/dMnAWxt4RA6D0R1vGbdFPg/master.m3u8",
+    "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuX2JjsP-6WlFpCq1IthHpGCbLLmgVHIiGKw&usqp=CAU",
     "referer": "",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
   },
