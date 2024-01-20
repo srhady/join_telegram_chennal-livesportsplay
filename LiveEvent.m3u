@@ -50,13 +50,13 @@
     "drmLicense": ""
   },
  {
-    "name": "BBL",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F8%2Findex.m3u8&token=7c71da8489c31f4682ebff43453c89e13105a647&is_vip=false&verify=1705730400-HS4KGOubtSjzSK7y9A2lKgSUaKb3oYZ19LqAE8D0I%2FQ%3D",
+    "name": "ILT20",
+    "link": "https://live-cdn.tsports.com/live-01/index.m3u8",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
-    "cookie": "",
+    "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9saXZlLWNkbi50c3BvcnRzLmNvbS8:Expires=1705822094:KeyName=tsports-ed25519-01:Signature=D2N5ezjQdZKbKccBH1BAEatcmh3TJ_LuaP_oEs1zPiPe6gtY-J1sda5GJxxNWZ0J5CnP93DnVfnoDwzIVf6BCA;",
     "drmScheme": "",
     "drmLicense": ""
   },
