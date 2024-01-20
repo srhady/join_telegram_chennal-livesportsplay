@@ -73,7 +73,7 @@
   },
   {
     "name": "ASIAN CUP",
-    "link": "https://prod-ent-live-gm.jiocinema.com/hls/live/2099128/hd_akamai_merged_avc_eng_afc_m1_190124/mobile_master.m3u8",
+    "link": "https://prod-ent-live-gm.jiocinema.com/hls/live/2099128/hd_akamai_merged_avc_eng_afc_m1_200124/mobile_master.m3u8",
     "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY8SVA080ms117m_CdqHUfNo6u0c9Cz_tHcw&usqp=CAU",
     "referer": "",
     "origin" : "",
@@ -82,7 +82,7 @@
   },
   {
     "name": "SA20",
-    "link": "https://prod-ent-live-gm.jiocinema.com/hls/live/2099110/hd_akamai_merged_avc_eng_sa20_m1_190124/mobile_master.m3u8",
+    "link": "https://prod-ent-live-gm.jiocinema.com/hls/live/2099110/hd_akamai_merged_avc_eng_sa20_m1_200124/mobile_master.m3u8",
     "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSxhuPtYddDKjcDHwc4X3dbYq1CjDmB3xfGw&usqp=CAU",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
   },
@@ -109,7 +109,7 @@
     "origin": "",
     "referer": "",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
-    "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9saXZlLWNkbi50c3BvcnRzLmNvbS8:Expires=1705698792:KeyName=tsports-ed25519-01:Signature=x1SNcukFXfJb36Zw3bbpUdJEABLsHPnmJwXmmqpDWMnQaAOBwp-yNu3rHMtRK6q-wqC6IfEcUztqUnUwM0WpCw",
+    "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9saXZlLWNkbi50c3BvcnRzLmNvbS8:Expires=1705757402:KeyName=tsports-ed25519-01:Signature=4NckRcRGrbShb7HsxuniEQrP6Y2P9SjpXz6WI2B4PWxhVojbs1uRLe_4W4sjD43xNPi5VIF4X8cpD-9LnHmODA",
     "drmScheme": "",
     "drmLicense": ""
   },
