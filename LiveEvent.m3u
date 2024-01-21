@@ -1,10 +1,10 @@
 [
  {
     "name": "Live",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F41%2Findex.m3u8&token=7c71da8489c31f4682ebff43453c89e13105a647&is_vip=false&verify=1705795200-pvxajgEFVPM6CSaAkGyoYwItchFjc5p3BuLV7j1%2BHBI%3D",
+    "link": "https://reels2watch.com/hls/m1.m3u8",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "origin": "",
-    "referer": "https://live-streamfootball.com/",
+    "referer": "https://techclips.net/",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
   },
   {
@@ -39,7 +39,7 @@
     "drmLicense": ""
   },
  {
-    "name": "PAK 🆚 NZ",
+    "name": "Live",
     "link": "https://webudit.webhd.ru/lb/premium450/index.m3u8",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "origin": "https://olalivehdplay.ru/",
@@ -50,7 +50,7 @@
     "drmLicense": ""
   },
  {
-    "name": "PAK 🆚 NZ",
+    "name": "Live",
     "link": "https://webudit.webhd.ru/lb/premium417/index.m3u8",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "origin": "https://olalivehdplay.ru/",
