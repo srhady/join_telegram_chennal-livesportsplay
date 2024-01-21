@@ -1,7 +1,7 @@
 [
  {
-    "name": "U19 CWC",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F8%2Findex.m3u8&token=09b5b2e6bc83eb35aaa0bbc485d5aa80ddcd94ea&is_vip=false&verify=1705838400-y9Jhl%2FFaAnwkdSJhp49DkGONXP0alWARqUx6DXl1Ba0%3D",
+    "name": "Live",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F23%2Findex.m3u8&token=09b5b2e6bc83eb35aaa0bbc485d5aa80ddcd94ea&is_vip=false&verify=1705838400-y9Jhl%2FFaAnwkdSJhp49DkGONXP0alWARqUx6DXl1Ba0%3D",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
@@ -126,7 +126,7 @@
   },
  {
     "name": "Laliga",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F3%2Findex.m3u8&token=20985eeee16c7494e96b7a9c375346a9162c19fe&is_vip=false&verify=1705752000-dzqOp1JXD65xjnvGAF8zhPDa3CYL5003dOxXudMZCec%3D",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F3%2Findex.m3u8&token=09b5b2e6bc83eb35aaa0bbc485d5aa80ddcd94ea&is_vip=false&verify=1705838400-y9Jhl%2FFaAnwkdSJhp49DkGONXP0alWARqUx6DXl1Ba0%3D",
     "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrb-y9CPwyKmqX5wnfAXWTZad3Z3pgxfJcHQ&usqp=CAU",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
