@@ -39,8 +39,8 @@
     "drmLicense": ""
   },
  {
-    "name": "ILT20",
-    "link": "https://live-cdn.tsports.com/live-01/index.m3u8",
+    "name": "Live",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F44%2Findex.m3u8&token=782c6e1a5f7e478cdc3046800af893d23d7d0f73&is_vip=false&verify=1705946400-zj2vtF09EESgYYOIs6N0O8BU4%2F5Yo8mE4KBrYyzM9Ss%3D",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "origin": "https://olalivehdplay.ru/",
     "referer": "https://live-streamfootball.com/",
@@ -62,10 +62,10 @@
   },
  {
     "name": "African Cup",
-    "link": "https://skwwwing-cf.ddi2ank3.cc/auth%3Df456254b5d29c3b19e3eb0ee4a39b85ff982c7ba547eedf67443f237bb758161b5316566e718a215ab6ed609a5e9c17e136c81ffb691efd3f3ec97cd1e666d57b72b4c56111e73fd41f5ac4f6e14c31738a4ec4f6f248944572e2e83204a50819631ebcb4d95c6aea357b442d39f27d96fa4fc3d6c4f62574a9e69b9aa6395983ce490fc97552d8ad0e7797146f7979700092bb4afb453d0e66fe6fc92b40edc883addc64c164b65ef5858cee9aa82932ea557863ef23c70129fc9bfc4cc1acf45f1f057c09391186f8b8a3f4d88fcd2%26cid%3DQ4257DxYRC1Iq12j44fDB231109%26_v%3D2%26_r%3DvRsYrb%26_vis%3Dbafb2107beb2b02625e8ce2b9bb6cd13b669b721682ea27bbd57bfd0b7db0134%26_vvs%3Daabae230972361c5567afb5019919c76f767fc8dc1d3c93485e72e7ea3052749/app/c227988.m3u8",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F25%2Findex.m3u8&token=782c6e1a5f7e478cdc3046800af893d23d7d0f73&is_vip=false&verify=1705946400-zj2vtF09EESgYYOIs6N0O8BU4%2F5Yo8mE4KBrYyzM9Ss%3D",
     "logo": "https://upload.wikimedia.org/wikipedia/en/c/cf/Africa_Cup_of_Nation_official_logo.png",
     "origin": "",
-    "referer": "https://play17.score808pro.com/",
+    "referer": "https://live-streamfootball.com/",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
     "cookie": "",
     "drmScheme": "",
@@ -126,7 +126,7 @@
   },
  {
     "name": "Laliga",
-    "link": "https://prod-ent-live-gm.jiocinema.com/hls/live/2099845/hd_akamai_merged_avc_eng_laliga_m1_230124/master.m3u8",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F3%2Findex.m3u8&token=782c6e1a5f7e478cdc3046800af893d23d7d0f73&is_vip=false&verify=1705946400-zj2vtF09EESgYYOIs6N0O8BU4%2F5Yo8mE4KBrYyzM9Ss%3D",
     "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrb-y9CPwyKmqX5wnfAXWTZad3Z3pgxfJcHQ&usqp=CAU",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
