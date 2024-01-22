@@ -50,11 +50,11 @@
     "drmLicense": ""
   },
  {
-    "name": "ILT20",
-    "link": "https://live-cdn.tsports.com/live-01/index.m3u8",
+    "name": "Super Smash",
+    "link": "https://webudit.webhd.ru/lb/premium31/index.m3u8",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
-    "origin": "",
-    "referer": "",
+    "origin": "https://olalivehdplay.ru/",
+    "referer": "https://olalivehdplay.ru/",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
     "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9saXZlLWNkbi50c3BvcnRzLmNvbS8:Expires=1705912131:KeyName=tsports-ed25519-01:Signature=tRGmfnNPJ8ouBg6rUsKJjrbLcxRK5LbXgLkOttqObq_8GtUE_j3s-oyHfVIpH3rn2NONOViKMCyhTGwBmGc2BQ",
     "drmScheme": "",
