@@ -9,7 +9,7 @@
   },
   {
     "name": "Live",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F2%2Findex.m3u8&token=09b5b2e6bc83eb35aaa0bbc485d5aa80ddcd94ea&is_vip=false&verify=1705903200-HplaKa%2FK%2FxliWFIuiwlrylvYJor12ro2qMLIr6gIfUw%3D",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F36%2Findex.m3u8&token=782c6e1a5f7e478cdc3046800af893d23d7d0f73&is_vip=false&verify=1705903200-ef3Ve2Wcj4JfkpSTvoZz786qi5iHi2fy48fPt53Lhno%3D",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "referer": "https://live-streamfootball.com/",
     "origin": "",
@@ -18,7 +18,7 @@
  },
  { 
     "name": "Live",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F31%2Findex.m3u8&token=09b5b2e6bc83eb35aaa0bbc485d5aa80ddcd94ea&is_vip=false&verify=1705881600-gNah2UDk5j4kIpwS0GocHJ2tsBP%2BarpFikRg0vRC4YQ%3D",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F35%2Findex.m3u8&token=782c6e1a5f7e478cdc3046800af893d23d7d0f73&is_vip=false&verify=1705903200-ef3Ve2Wcj4JfkpSTvoZz786qi5iHi2fy48fPt53Lhno%3D",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
@@ -29,7 +29,7 @@
   },
  {
     "name": "Live",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F32%2Findex.m3u8&token=09b5b2e6bc83eb35aaa0bbc485d5aa80ddcd94ea&is_vip=false&verify=1705881600-gNah2UDk5j4kIpwS0GocHJ2tsBP%2BarpFikRg0vRC4YQ%3D",
+    "link": "https://prod-ent-live-gm.jiocinema.com/hls/live/2099902/hd_akamai_merged_avc_eng_ranji_m3_220124/master.m3u8",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
@@ -126,7 +126,7 @@
   },
  {
     "name": "Laliga",
-    "link": "https://prod-ent-live-gm.jiocinema.com/hls/live/2099845/hd_akamai_merged_avc_eng_laliga_m4_210124/master.m3u8",
+    "link": "https://prod-ent-live-gm.jiocinema.com/hls/live/2099845/hd_akamai_merged_avc_eng_laliga_m1_230124/master.m3u8",
     "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrb-y9CPwyKmqX5wnfAXWTZad3Z3pgxfJcHQ&usqp=CAU",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
