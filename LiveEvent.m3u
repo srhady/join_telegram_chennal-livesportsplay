@@ -39,13 +39,13 @@
     "drmLicense": ""
   },
  {
-    "name": "Live",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F45%2Findex.m3u8&token=09b5b2e6bc83eb35aaa0bbc485d5aa80ddcd94ea&is_vip=false&verify=1705881600-gNah2UDk5j4kIpwS0GocHJ2tsBP%2BarpFikRg0vRC4YQ%3D",
+    "name": "ILT20",
+    "link": "https://live-cdn.tsports.com/live-01/index.m3u8",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "origin": "https://olalivehdplay.ru/",
     "referer": "https://live-streamfootball.com/",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
-    "cookie": "",
+    "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9saXZlLWNkbi50c3BvcnRzLmNvbS8:Expires=1705998751:KeyName=tsports-ed25519-01:Signature=K6QX4EcUTmBRaMB05VHkWSddWyyK0LxVA_GN5LTKV0D-PP7-MS-guJYvlX4MbMTFzBv7TK3GWy7KlSjfXMFHAg",
     "drmScheme": "",
     "drmLicense": ""
   },
@@ -78,22 +78,22 @@
     "referer": "",
     "origin" : "",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
-    "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9saXZlLWNkbi50c3BvcnRzLmNvbS8:Expires=1705180307:KeyName=tsports-ed25519-01:Signature=zHUxf5R1AWujVWVOpfDlnc91Bnieo7Z8ZZ0B0PIp0TIMQnBFv63PLeIe8dFVmMNElPxgLB6WsiIx4YOvvytNCA"
+    "cookie": ""
   },
   {
-    "name": "SA20",
-    "link": "https://prod-ent-live-gm.jiocinema.com/hls/live/2099110/hd_akamai_merged_avc_eng_sa20_m1_220124/master.m3u8",
-    "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSxhuPtYddDKjcDHwc4X3dbYq1CjDmB3xfGw&usqp=CAU",
+    "name": "ASIAN CUP",
+    "link": "https://prod-ent-live-gm.jiocinema.com/hls/live/2099128/hd_akamai_merged_avc_eng_afc_m2_220124/master.m3u8",
+    "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY8SVA080ms117m_CdqHUfNo6u0c9Cz_tHcw&usqp=CAU",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
   },
  {
     "name": "SA20",
-    "link": "https://prod-ent-live-gm.jiocinema.com/hls/live/2099110/hd_akamai_merged_avc_eng_sa20_m2_130124/master.m3u8",
+    "link": "https://prod-ent-live-gm.jiocinema.com/hls/live/2099110/hd_akamai_merged_avc_eng_sa20_m1_220124/master.m3u8",
     "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSxhuPtYddDKjcDHwc4X3dbYq1CjDmB3xfGw&usqp=CAU",
     "referer": "",
     "origin": "",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
-  		"cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9saXZlLWNkbi50c3BvcnRzLmNvbS8:Expires=1705180307:KeyName=tsports-ed25519-01:Signature=zHUxf5R1AWujVWVOpfDlnc91Bnieo7Z8ZZ0B0PIp0TIMQnBFv63PLeIe8dFVmMNElPxgLB6WsiIx4YOvvytNCA"
+  		"cookie": ""
  },
  {
     "name": "BPL",
