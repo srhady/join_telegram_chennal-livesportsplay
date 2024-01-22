@@ -1,7 +1,7 @@
 [
  {
     "name": "Live",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F46%2Findex.m3u8&token=09b5b2e6bc83eb35aaa0bbc485d5aa80ddcd94ea&is_vip=false&verify=1705881600-gNah2UDk5j4kIpwS0GocHJ2tsBP%2BarpFikRg0vRC4YQ%3D",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F6%2Findex.m3u8&token=09b5b2e6bc83eb35aaa0bbc485d5aa80ddcd94ea&is_vip=false&verify=1705903200-HplaKa%2FK%2FxliWFIuiwlrylvYJor12ro2qMLIr6gIfUw%3D",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
@@ -9,7 +9,7 @@
   },
   {
     "name": "Live",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F44%2Findex.m3u8&token=09b5b2e6bc83eb35aaa0bbc485d5aa80ddcd94ea&is_vip=false&verify=1705881600-gNah2UDk5j4kIpwS0GocHJ2tsBP%2BarpFikRg0vRC4YQ%3D",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F2%2Findex.m3u8&token=09b5b2e6bc83eb35aaa0bbc485d5aa80ddcd94ea&is_vip=false&verify=1705903200-HplaKa%2FK%2FxliWFIuiwlrylvYJor12ro2qMLIr6gIfUw%3D",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "referer": "https://live-streamfootball.com/",
     "origin": "",
@@ -109,8 +109,8 @@
     "origin": "",
     "referer": "",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
-    "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9saXZlLWNkbi50c3BvcnRzLmNvbS8:Expires=1705893755:KeyName=tsports-ed25519-01:Signature=nVRnqByBtOSe2ODC1UcMJkr0NeRsS86_GkfPR9PCC84F_gUdWW_elGL-O_aN-CGw0skmSldiK5Xcesdh5QUfDA",
-				"drmScheme": "",
+    "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9saXZlLWNkbi50c3BvcnRzLmNvbS8:Expires=1705970672:KeyName=tsports-ed25519-01:Signature=F37zlk4OdMHdf1lVgDdfVQve1K8FzhCgBzgKO2_aRR7ldhdu9wYhWtbE9sGS3xKJQAxSiXFHQifz0FD7hkI_AA;",
+    "drmScheme": "",
     "drmLicense": ""
   },
  {
