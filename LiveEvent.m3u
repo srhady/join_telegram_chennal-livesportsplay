@@ -50,11 +50,11 @@
     "drmLicense": ""
   },
  {
-    "name": "Super Smash",
-    "link": "https://kingkhan.website/fcode1/index.m3u8?ig=https://dai.google.com/linear/hls/event/CZDE0OVISsWMofLAhDbP8g/master.m3u8",
+    "name": "African Cup",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F3%2Findex.m3u8&token=782c6e1a5f7e478cdc3046800af893d23d7d0f73&is_vip=false&verify=1706011200-SNJVI1okxoAXCjyKdJjI%2BnIkS4gyPYhzn2js58woXBw%3D",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
-    "origin": "https://olalivehdplay.ru/",
-    "referer": "https://olalivehdplay.ru/",
+    "origin": "",
+    "referer": "https://live-streamfootball.com/",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
     "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9saXZlLWNkbi50c3BvcnRzLmNvbS8:Expires=1705912131:KeyName=tsports-ed25519-01:Signature=tRGmfnNPJ8ouBg6rUsKJjrbLcxRK5LbXgLkOttqObq_8GtUE_j3s-oyHfVIpH3rn2NONOViKMCyhTGwBmGc2BQ",
     "drmScheme": "",
@@ -62,7 +62,7 @@
   },
  {
     "name": "African Cup",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F25%2Findex.m3u8&token=782c6e1a5f7e478cdc3046800af893d23d7d0f73&is_vip=false&verify=1705946400-zj2vtF09EESgYYOIs6N0O8BU4%2F5Yo8mE4KBrYyzM9Ss%3D",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F25%2Findex.m3u8&token=782c6e1a5f7e478cdc3046800af893d23d7d0f73&is_vip=false&verify=1706011200-SNJVI1okxoAXCjyKdJjI%2BnIkS4gyPYhzn2js58woXBw%3D",
     "logo": "https://upload.wikimedia.org/wikipedia/en/c/cf/Africa_Cup_of_Nation_official_logo.png",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
