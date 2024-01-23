@@ -8,8 +8,8 @@
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
   },
   {
-    "name": "Live",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F44%2Findex.m3u8&token=782c6e1a5f7e478cdc3046800af893d23d7d0f73&is_vip=false&verify=1706011200-SNJVI1okxoAXCjyKdJjI%2BnIkS4gyPYhzn2js58woXBw%3D",
+    "name": "PKL",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F11%2Findex.m3u8&token=4329047fc4faa6022d5cc5c91c5ae535a42d53cb&is_vip=false&verify=1706011200-zsW8nTMnhUzeRxxp%2BLOHsbzqOtRmZE4aSSSKReIKDYo%3D",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "referer": "https://futebolplayhd.com/",
     "origin": "",
@@ -29,7 +29,7 @@
   },
  {
     "name": "Live",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F47%2Findex.m3u8&token=4329047fc4faa6022d5cc5c91c5ae535a42d53cb&is_vip=false&verify=1705968000-4TETqvPBija9pdwhsurUrO48H0xQDu1ShbV4%2Fk3wjsc%3D",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F1%2Findex.m3u8&token=4329047fc4faa6022d5cc5c91c5ae535a42d53cb&is_vip=false&verify=1706011200-zsW8nTMnhUzeRxxp%2BLOHsbzqOtRmZE4aSSSKReIKDYo%3D",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
