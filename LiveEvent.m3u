@@ -126,14 +126,14 @@
   },
  {
     "name": "Laliga",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F3%2Findex.m3u8&token=782c6e1a5f7e478cdc3046800af893d23d7d0f73&is_vip=false&verify=1705946400-zj2vtF09EESgYYOIs6N0O8BU4%2F5Yo8mE4KBrYyzM9Ss%3D",
+    "link": "https://ais-s.ais-vidnt.com/ais/play/origin/live/eds/S0001/DASH/S0001.mpd",
     "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrb-y9CPwyKmqX5wnfAXWTZad3Z3pgxfJcHQ&usqp=CAU",
     "origin": "",
-    "referer": "https://live-streamfootball.com/",
+    "referer": "",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
     "cookie": "",
-    "drmScheme": "",
-    "drmLicense": ""
+    "drmScheme": "clearkey",
+    "drmLicense": "3fd52d1e9ba4b180aec12c9295b62c0f:bb274e33da0c709e62c55d0cba911889"
   },
  {
     "name": "Serie A",
