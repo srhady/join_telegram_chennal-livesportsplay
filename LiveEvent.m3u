@@ -29,10 +29,10 @@
   },
  {
     "name": "Live",
-    "link": "",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F47%2Findex.m3u8&token=4329047fc4faa6022d5cc5c91c5ae535a42d53cb&is_vip=false&verify=1705968000-4TETqvPBija9pdwhsurUrO48H0xQDu1ShbV4%2Fk3wjsc%3D",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "origin": "",
-    "referer": "https://play17.score808pro.com/",
+    "referer": "https://live-streamfootball.com/",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
     "cookie": "",
     "drmScheme": "",
@@ -40,7 +40,7 @@
   },
  {
     "name": "Live",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F44%2Findex.m3u8&token=782c6e1a5f7e478cdc3046800af893d23d7d0f73&is_vip=false&verify=1705946400-zj2vtF09EESgYYOIs6N0O8BU4%2F5Yo8mE4KBrYyzM9Ss%3D",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F23%2Findex.m3u8&token=4329047fc4faa6022d5cc5c91c5ae535a42d53cb&is_vip=false&verify=1705968000-4TETqvPBija9pdwhsurUrO48H0xQDu1ShbV4%2Fk3wjsc%3D",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "origin": "https://olalivehdplay.ru/",
     "referer": "https://live-streamfootball.com/",
@@ -50,8 +50,8 @@
     "drmLicense": ""
   },
  {
-    "name": "BBL",
-    "link": "https://kingkhan.website/fcode1/index.m3u8?ig=https://dai.google.com/linear/hls/event/4MO6CJxfTIi11hpY1luuJQ/master.m3u8",
+    "name": "Super Smash",
+    "link": "https://kingkhan.website/fcode1/index.m3u8?ig=https://dai.google.com/linear/hls/event/CZDE0OVISsWMofLAhDbP8g/master.m3u8",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "origin": "https://olalivehdplay.ru/",
     "referer": "https://olalivehdplay.ru/",
@@ -109,7 +109,7 @@
     "origin": "",
     "referer": "",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
-    "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9saXZlLWNkbi50c3BvcnRzLmNvbS8:Expires=1705970672:KeyName=tsports-ed25519-01:Signature=F37zlk4OdMHdf1lVgDdfVQve1K8FzhCgBzgKO2_aRR7ldhdu9wYhWtbE9sGS3xKJQAxSiXFHQifz0FD7hkI_AA;",
+    "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9saXZlLWNkbi50c3BvcnRzLmNvbS8:Expires=1706023349:KeyName=tsports-ed25519-01:Signature=xXaKge6LbsPxGn2wPBd9mzIAJkwclnBxRBdVCqQpb7PXTgLfas9EfWzYDvTL-mOK8BvgvoOKSu6oclCEkLm1DQ",
     "drmScheme": "",
     "drmLicense": ""
   },
