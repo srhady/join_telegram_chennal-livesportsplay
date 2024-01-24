@@ -39,9 +39,9 @@
     "drmLicense": ""
   },
  {
-    "name": "BBL Final",
+    "name": "Carabao Cup",
     "link": "https://kingkhan.website/fcode1/index.m3u8?ig=https://dai.google.com/linear/hls/event/e_XH4Y4ARZChX6yRIFzekw/master.m3u8",
-    "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoTHU2RbGApQ12yocsSAqWbSFf-ZoFKKMAzQ&usqp=CAU",
+    "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-hRo0-OlVkR3qLLWC5VZNasSD-42EUgSIAg&usqp=CAU",
     "origin": "https://olalivehdplay.ru/",
     "referer": "https://live-streamfootball.com/",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
@@ -50,13 +50,13 @@
     "drmLicense": ""
   },
  {
-    "name": " BBL Final",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F46%2Findex.m3u8&token=782c6e1a5f7e478cdc3046800af893d23d7d0f73&is_vip=false&verify=1706097600-AxfsdSY9ugSzDRTccznVt7q%2BBM5bHyvzM6YRITan684%3D",
-    "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoTHU2RbGApQ12yocsSAqWbSFf-ZoFKKMAzQ&usqp=CAU",
+    "name": "ILT20",
+    "link": "https://live-cdn.tsports.com/live-01/index.m3u8",
+    "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ703zwmad4_ZvgdF0E4_EXj0Ts_Q-yfAnw6w&usqp=CAU",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
-    "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9saXZlLWNkbi50c3BvcnRzLmNvbS8:Expires=1705912131:KeyName=tsports-ed25519-01:Signature=tRGmfnNPJ8ouBg6rUsKJjrbLcxRK5LbXgLkOttqObq_8GtUE_j3s-oyHfVIpH3rn2NONOViKMCyhTGwBmGc2BQ",
+    "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9saXZlLWNkbi50c3BvcnRzLmNvbS8:Expires=1706171524:KeyName=tsports-ed25519-01:Signature=1DfJforNyqWVIxqaEGJpIyd0QWTk0VpVsxNyS2CDjOXQrqzGFM2D1Wn7tGbTOMb20viCyDBxn6ySZGGs5c_1Cg",
     "drmScheme": "",
     "drmLicense": ""
   },
