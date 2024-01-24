@@ -8,18 +8,18 @@
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
   },
   {
-    "name": "Live",
+    "name": "MAL 🆚 GIR",
     "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F39%2Findex.m3u8&token=782c6e1a5f7e478cdc3046800af893d23d7d0f73&is_vip=false&verify=1706097600-AxfsdSY9ugSzDRTccznVt7q%2BBM5bHyvzM6YRITan684%3D",
-    "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
+    "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWcDar9AqvxZNy9Vf3xrBU-n1_bBbocMliFw&usqp=CAU",
     "referer": "https://live-streamfootball.com/",
     "origin": "",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
     "cookie": ""
  },
  { 
-    "name": "Live",
+    "name": "ATH 🆚 FCB",
     "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F36%2Findex.m3u8&token=782c6e1a5f7e478cdc3046800af893d23d7d0f73&is_vip=false&verify=1706097600-AxfsdSY9ugSzDRTccznVt7q%2BBM5bHyvzM6YRITan684%3D",
-    "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
+    "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWcDar9AqvxZNy9Vf3xrBU-n1_bBbocMliFw&usqp=CAU",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
@@ -39,9 +39,9 @@
     "drmLicense": ""
   },
  {
-    "name": "Live",
+    "name": "BAY 🆚 FCU",
     "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F27%2Findex.m3u8&token=782c6e1a5f7e478cdc3046800af893d23d7d0f73&is_vip=false&verify=1706097600-AxfsdSY9ugSzDRTccznVt7q%2BBM5bHyvzM6YRITan684%3D",
-    "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/d/df/Bundesliga_logo_(2017).svg/1200px-Bundesliga_logo_(2017).svg.png",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
