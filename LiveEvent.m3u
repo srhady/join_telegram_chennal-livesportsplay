@@ -49,6 +49,28 @@
     "drmScheme": "",
     "drmLicense": ""
   },
+  {
+    "name": "Live",
+    "link": "",
+    "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
+    "origin": "",
+    "referer": "",
+    "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
+    "cookie": "",
+    "drmScheme": "",
+    "drmLicense": ""
+  },
+ {
+    "name": "PKL",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F18%2Findex.m3u8&token=4329047fc4faa6022d5cc5c91c5ae535a42d53cb&is_vip=false&verify=1706097600-NxUKDKcbZ3g%2FAgw30UXebks9JyxriopH09SEzCQwFwQ%3D",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/2/2b/919-9198627_the-league-will-continue-its-existing-format-and.png",
+    "origin": "",
+    "referer": "",
+    "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
+    "cookie": "",
+    "drmScheme": "",
+    "drmLicense": ""
+  },
  {
     "name": "Carabao Cup",
     "link": "https://kingkhan.website/fcode1/index.m3u8?ig=https://dai.google.com/linear/hls/event/e_XH4Y4ARZChX6yRIFzekw/master.m3u8",
@@ -121,17 +143,6 @@
     "referer": "",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
     "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9saXZlLWNkbi50c3BvcnRzLmNvbS8:Expires=1706085091:KeyName=tsports-ed25519-01:Signature=ECBPjTpA1KoY2PWAD4MHyNaL_Hro-JTF1GxutnYba53wcec3KMT3IP0oSo5woww4tA_OYbAxTx7dDdalbqRJAw",
-    "drmScheme": "",
-    "drmLicense": ""
-  },
- {
-    "name": "PKL",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F18%2Findex.m3u8&token=4329047fc4faa6022d5cc5c91c5ae535a42d53cb&is_vip=false&verify=1706097600-NxUKDKcbZ3g%2FAgw30UXebks9JyxriopH09SEzCQwFwQ%3D",
-    "logo": "https://upload.wikimedia.org/wikipedia/commons/2/2b/919-9198627_the-league-will-continue-its-existing-format-and.png",
-    "origin": "",
-    "referer": "https://live-streamfootball.com/",
-    "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
-    "cookie": "",
     "drmScheme": "",
     "drmLicense": ""
   },
