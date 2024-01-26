@@ -61,9 +61,9 @@
     "drmLicense": ""
   },
  {
-    "name": "ILT20",
-    "link": "https://live-cdn.tsports.com/live-01/index.m3u8",
-    "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdYSPuVv4grPb5kM7oaBtijdF4tm3p0XWLGA&usqp=CAU",
+    "name": "PKL",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F13%2Findex.m3u8&token=c498fcab98b1459fa3a21667b9721efe8a84dce6&is_vip=false&verify=1706270400-zY7D9jRN1sagxIgxJLOOU3wb8GaDYoRkjJLkiYVwAI4%3D",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/919-9198627_the-league-will-continue-its-existing-format-and.png/800px-919-9198627_the-league-will-continue-its-existing-format-and.png",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
