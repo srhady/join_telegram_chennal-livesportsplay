@@ -1,7 +1,7 @@
 [
  {
     "name": "Live",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F11%2Findex.m3u8&token=f1939fc567164abcf53dfc531c5de39e4ea7a1bb&is_vip=false&verify=1706270400-ObBv%2FhDINfxyS4r12F34ZNepUHWA9loUwoKKlI4LN6o%3D",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F3_fhd%2Findex.m3u8&token=f1939fc567164abcf53dfc531c5de39e4ea7a1bb&is_vip=false&verify=1706270400-ObBv%2FhDINfxyS4r12F34ZNepUHWA9loUwoKKlI4LN6o%3D",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
@@ -39,8 +39,8 @@
     "drmLicense": ""
   },
  {
-    "name": "U19 CWC",
-    "link": "https://tv.durbinlive.com/api/chd/crichd.php?v=skysmixx",
+    "name": "Live",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F27%2Findex.m3u8&token=f1939fc567164abcf53dfc531c5de39e4ea7a1bb&is_vip=false&verify=1706270400-ObBv%2FhDINfxyS4r12F34ZNepUHWA9loUwoKKlI4LN6o%3D",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
@@ -50,8 +50,8 @@
     "drmLicense": ""
   },
   {
-    "name": "U19 CWC",
-    "link": "https://tv.durbinlive.com/api/chd/crichd.php?v=superspv2",
+    "name": " Live",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F8%2Findex.m3u8&token=f1939fc567164abcf53dfc531c5de39e4ea7a1bb&is_vip=false&verify=1706270400-ObBv%2FhDINfxyS4r12F34ZNepUHWA9loUwoKKlI4LN6o%3D",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
@@ -62,7 +62,7 @@
   },
  {
     "name": "PKL",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F37%2Findex.m3u8&token=f1939fc567164abcf53dfc531c5de39e4ea7a1bb&is_vip=false&verify=1706270400-ObBv%2FhDINfxyS4r12F34ZNepUHWA9loUwoKKlI4LN6o%3D",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F12%2Findex.m3u8&token=f1939fc567164abcf53dfc531c5de39e4ea7a1bb&is_vip=false&verify=1706270400-ObBv%2FhDINfxyS4r12F34ZNepUHWA9loUwoKKlI4LN6o%3D",
     "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/919-9198627_the-league-will-continue-its-existing-format-and.png/800px-919-9198627_the-league-will-continue-its-existing-format-and.png",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
