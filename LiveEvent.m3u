@@ -1,15 +1,15 @@
 [
  {
     "name": "Live",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F41%2Findex.m3u8&token=f1939fc567164abcf53dfc531c5de39e4ea7a1bb&is_vip=false&verify=1706378400-4zw%2BTvbb9luJILcrhK6JKT2ISGgWFRUl1RSJjwKO3CQ%3D",
+    "link": "https://dai.google.com/ssai/event/nYSuS-LZSbapsC12DoZBmw/master.m3u8",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
   },
   {
-    "name": "Live",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F43%2Findex.m3u8&token=f1939fc567164abcf53dfc531c5de39e4ea7a1bb&is_vip=false&verify=1706378400-4zw%2BTvbb9luJILcrhK6JKT2ISGgWFRUl1RSJjwKO3CQ%3D",
+    "name": "SuperSmash Final",
+    "link": "https://prod-fastly-us-east-1.video.pscp.tv/Transcoding/v1/hls/nTOZZFuV4oTDAli9iqVozfe8lFdviol6BaNQeDjw28qll72IKHRGN6yB43xq1pu5h23B6_PElQaq91UlRpXdow/non_transcode/us-east-1/periscope-replay-direct-prod-us-east-1-public/tw_master_dynamic_highlatency.m3u8?type=live",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "referer": "https://live-streamfootball.com/",
     "origin": "https://olalivehdplay.ru/",
@@ -18,7 +18,7 @@
  },
  { 
     "name": "Live",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F25%2Findex.m3u8&token=f1939fc567164abcf53dfc531c5de39e4ea7a1bb&is_vip=false&verify=1706378400-4zw%2BTvbb9luJILcrhK6JKT2ISGgWFRUl1RSJjwKO3CQ%3D",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F47%2Findex.m3u8&token=c498fcab98b1459fa3a21667b9721efe8a84dce6&is_vip=false&verify=1706400000-5viTT53uJS8CDx3qx9YL1p8%2BHEhuAeYoEN%2BJ6shIJW4%3D",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "origin": "https://olalivehdplay.ru/",
     "referer": "https://live-streamfootball.com/",
@@ -29,7 +29,7 @@
   },
  {
     "name": "Live",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F42%2Findex.m3u8&token=f1939fc567164abcf53dfc531c5de39e4ea7a1bb&is_vip=false&verify=1706378400-4zw%2BTvbb9luJILcrhK6JKT2ISGgWFRUl1RSJjwKO3CQ%3D",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F33%2Findex.m3u8&token=c498fcab98b1459fa3a21667b9721efe8a84dce6&is_vip=false&verify=1706400000-5viTT53uJS8CDx3qx9YL1p8%2BHEhuAeYoEN%2BJ6shIJW4%3D",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
@@ -40,7 +40,7 @@
   },
  {
     "name": "Live",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F24%2Findex.m3u8&token=f1939fc567164abcf53dfc531c5de39e4ea7a1bb&is_vip=false&verify=1706378400-4zw%2BTvbb9luJILcrhK6JKT2ISGgWFRUl1RSJjwKO3CQ%3D",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F41%2Findex.m3u8&token=c498fcab98b1459fa3a21667b9721efe8a84dce6&is_vip=false&verify=1706400000-5viTT53uJS8CDx3qx9YL1p8%2BHEhuAeYoEN%2BJ6shIJW4%3D",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
@@ -51,7 +51,7 @@
   },
   {
     "name": " Live",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F3_fhd%2Findex.m3u8&token=f1939fc567164abcf53dfc531c5de39e4ea7a1bb&is_vip=false&verify=1706378400-4zw%2BTvbb9luJILcrhK6JKT2ISGgWFRUl1RSJjwKO3CQ%3D",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F43%2Findex.m3u8&token=c498fcab98b1459fa3a21667b9721efe8a84dce6&is_vip=false&verify=1706400000-5viTT53uJS8CDx3qx9YL1p8%2BHEhuAeYoEN%2BJ6shIJW4%3D",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
@@ -73,7 +73,7 @@
   },
  {
     "name": "IND 🆚 ENG",
-    "link": "https://prod-ent-live-gm.jiocinema.com/hls/live/2100299/hd_akamai_androidmob_avc_eng_indvseng_test01day03270124/master.m3u8",
+    "link": "https://prod-ent-live-gm.jiocinema.com/hls/live/2100299/hd_akamai_androidmob_avc_eng_indvseng_test01day04280124/master.m3u8",
     "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLVhDwZYcpsV5D6z-AN-77P-NSOSnD8BPerw&usqp=CAU",
     "origin": "https://olalivehdplay.ru/",
     "referer": "https://live-streamfootball.com/",
@@ -106,7 +106,7 @@
   },
   {
     "name": "ASIAN CUP",
-    "link": "https://prod-ent-live-gm.jiocinema.com/hls/live/2099128/hd_akamai_merged_avc_eng_afc_m1_260124/master.m3u8",
+    "link": "https://prod-ent-live-gm.jiocinema.com/hls/live/2099128/hd_akamai_merged_avc_eng_afc_m1_280124/master.m3u8",
     "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY8SVA080ms117m_CdqHUfNo6u0c9Cz_tHcw&usqp=CAU",
     "referer": "https://live-streamfootball.com/",
     "origin" : "",
@@ -115,13 +115,13 @@
   },
   {
     "name": "ASIAN CUP",
-    "link": "https://prod-ent-live-gm.jiocinema.com/hls/live/2099128/hd_akamai_merged_avc_eng_afc_m2_260124/master.m3u8",
+    "link": "https://prod-ent-live-gm.jiocinema.com/hls/live/2099128/hd_akamai_merged_avc_eng_afc_m2_280124/master.m3u8",
     "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY8SVA080ms117m_CdqHUfNo6u0c9Cz_tHcw&usqp=CAU",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
   },
  {
     "name": "SA20",
-    "link": "https://prod-ent-live-gm.jiocinema.com/hls/live/2099110/hd_akamai_merged_avc_eng_sa20_m1_270124/master.m3u8",
+    "link": "https://prod-ent-live-gm.jiocinema.com/hls/live/2099110/hd_akamai_merged_avc_eng_sa20_m1_280124/master.m3u8",
     "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSxhuPtYddDKjcDHwc4X3dbYq1CjDmB3xfGw&usqp=CAU",
     "referer": "",
     "origin": "",
