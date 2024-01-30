@@ -8,17 +8,17 @@
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
   },
   {
-    "name": "HIL 🆚 MIA",
-    "link": "https://newedge.eu-central-1.edge.mycdn.live/live/esportes4/playlist.m3u8",
+    "name": "Live",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn-bp.rumsport.com%2Fstream%2F20%2Findex.fmp4.m3u8&token=c498fcab98b1459fa3a21667b9721efe8a84dce6&is_vip=false&verify=1706637600-%2BTe7nyIFb4dpLE1e4%2F3a4Mm3pmUQQi9G6Wwn5ehg36U%3D",
     "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6cJkztEQFsucyf3P1dteJY5Zd0-bvcMZxPA&usqp=CAU",
-    "referer": "https://futebolplayhd.com/",
+    "referer": "https://live-streamfootball.com/",
     "origin": "https://olalivehdplay.ru/",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
     "cookie": ""
  },
  { 
     "name": "Live",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F43%2Findex.m3u8&token=766916551555cd22c520823659376fd4cf6f610f&is_vip=false&verify=1706529600-MePJbMmI3D33m9MbiGD9ax%2FrJTCWtABNtbTFsRz2AK0%3D",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn-001.rumsport.com%2Fstream%2F9%2Findex.fmp4.m3u8&token=c498fcab98b1459fa3a21667b9721efe8a84dce6&is_vip=false&verify=1706637600-%2BTe7nyIFb4dpLE1e4%2F3a4Mm3pmUQQi9G6Wwn5ehg36U%3D",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "origin": "https://olalivehdplay.ru/",
     "referer": "https://live-streamfootball.com/",
