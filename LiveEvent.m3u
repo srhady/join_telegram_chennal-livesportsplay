@@ -8,13 +8,15 @@
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
   },
   {
-    "name": "Live",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn-bp.rumsport.com%2Fstream%2F20%2Findex.fmp4.m3u8&token=c498fcab98b1459fa3a21667b9721efe8a84dce6&is_vip=false&verify=1706637600-%2BTe7nyIFb4dpLE1e4%2F3a4Mm3pmUQQi9G6Wwn5ehg36U%3D",
-    "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6cJkztEQFsucyf3P1dteJY5Zd0-bvcMZxPA&usqp=CAU",
+    "name": "NAS 🆚 MIA",
+    "link": "https://ais-s.ais-vidnt.com/ais/play/origin/live/eds/S0001/DASH/S0001.mpd",
+    "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOeCp3XJhBV-iiFQLQW-BoNOiRZMylxOw6NA&usqp=CAU",
     "referer": "https://live-streamfootball.com/",
     "origin": "https://olalivehdplay.ru/",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
-    "cookie": ""
+    "cookie": "",
+    "drmScheme": "clearkey",
+    "drmLicense": "3fd52d1e9ba4b180aec12c9295b62c0f:bb274e33da0c709e62c55d0cba911889"
  },
  { 
     "name": "Live",
