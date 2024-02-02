@@ -97,7 +97,7 @@
   },
  {
     "name": "African Cup",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F25%2Findex.m3u8&token=db2496ef4aacb3c8fe771a2bae00acd41fabf83d&is_vip=false&verify=1706529600-RLCwXZIfrcNHOQorcOa8hQomkbjQMjQ70vUR6SFrPkw%3D",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F25%2Findex.m3u8&token=f1939fc567164abcf53dfc531c5de39e4ea7a1bb&is_vip=false&verify=1706875200-JcNadlaKN1QRqYHXLzd5NToBS97Sh6UuljHYF%2F1PO6k%3D",
     "logo": "https://upload.wikimedia.org/wikipedia/en/c/cf/Africa_Cup_of_Nation_official_logo.png",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
@@ -117,7 +117,7 @@
   },
   {
     "name": "ASIAN CUP",
-    "link": "https://prod-ent-live-gm.jiocinema.com/hls/live/2099128/hd_akamai_merged_avc_eng_afc_m2_290124/master.m3u8",
+    "link": "https://prod-ent-live-gm.jiocinema.com/hls/live/2099128/hd_akamai_merged_avc_eng_afc_m2_020224/master.m3u8",
     "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY8SVA080ms117m_CdqHUfNo6u0c9Cz_tHcw&usqp=CAU",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
   },
