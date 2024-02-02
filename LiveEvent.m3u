@@ -42,7 +42,7 @@
   },
  {
     "name": "Live",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F6%2Findex.m3u8&token=f1939fc567164abcf53dfc531c5de39e4ea7a1bb&is_vip=false&verify=1706810400-pmLR5OpaboMnL7ENjcf4gR1sHvdwvFKUqDdUuRJ98K4%3D",
+    "link": "https://prod-ent-live-gm.jiocinema.com/hls/live/2099115/hd_akamai_merged_avc_eng_ranji_m1_020224/master.m3u8",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
