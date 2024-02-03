@@ -150,7 +150,7 @@
   },
  {
     "name": "Premier League",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F15%2Findex.m3u8&token=55b5f5f106edb283e656fd39f32b08a60849a9ab&is_vip=false&verify=1706961600-ukkoM5c4emKASl%2BWxvFS%2FGNcz4DjAbt0d1VfXhYyTtg%3D",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn-001.rumsport.com%2Fstream%2F20%2Findex.fmp4.m3u8&token=f1939fc567164abcf53dfc531c5de39e4ea7a1bb&is_vip=false&verify=1706983200-xUW0kqTF%2BVWBLkxkq185b7%2FqoNp0a%2BuibKoU4uy3UOQ%3D",
     "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRHKAzbxtuIg9qzvDdfD8UXqHIwvCQ3yUPxQ&usqp=CAU",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
@@ -161,7 +161,7 @@
   },
  {
     "name": "Laliga",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F3%2Findex.m3u8&token=55b5f5f106edb283e656fd39f32b08a60849a9ab&is_vip=false&verify=1706961600-ukkoM5c4emKASl%2BWxvFS%2FGNcz4DjAbt0d1VfXhYyTtg%3D",
+    "link": "https://prod-ent-live-gm.jiocinema.com/hls/live/2099845/hd_akamai_merged_avc_eng_laliga_m4_030224/master.m3u8",
     "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrb-y9CPwyKmqX5wnfAXWTZad3Z3pgxfJcHQ&usqp=CAU",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
