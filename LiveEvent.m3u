@@ -1,7 +1,7 @@
 [
  {
     "name": "Live",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F43%2Findex.m3u8&token=f1939fc567164abcf53dfc531c5de39e4ea7a1bb&is_vip=false&verify=1707156000-n%2F9DdkVY39COvqdHlPS2E3Qp5Zh3slWo7jVmuc%2FjAEA%3D",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F45%2Findex.m3u8&token=c498fcab98b1459fa3a21667b9721efe8a84dce6&is_vip=false&verify=1707199200-e1cWIW1Wl4CA5e8FUR66CrYtMj1VFFIF%2BHQRpBmkW9c%3D",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
@@ -86,7 +86,7 @@
   },
  {
     "name": "AUS 🆚 WI",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F46%2Findex.m3u8&token=f1939fc567164abcf53dfc531c5de39e4ea7a1bb&is_vip=false&verify=1707026400-yrgKyZQwQ77kQ7LehYxTYMH%2FvzzKB1Cn%2BOlFHjWqCKk%3D",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F14%2Findex.m3u8&token=c498fcab98b1459fa3a21667b9721efe8a84dce6&is_vip=false&verify=1707199200-e1cWIW1Wl4CA5e8FUR66CrYtMj1VFFIF%2BHQRpBmkW9c%3D",
     "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSh8wsAWRqpldCSlVSoD1FAavD89ByEHGEbDQ&usqp=CAU",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
@@ -144,7 +144,7 @@
     "origin": "",
     "referer": "",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
-    "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9saXZlLWNkbi50c3BvcnRzLmNvbS8:Expires=1707167345:KeyName=tsports-ed25519-01:Signature=uXYYbceTmv7h6fSEIS1hyf9XkIy1tqd7T4_fZsmRvIhhT0ulF44ZmvlULqvoXLnOcHMnS-3-KgNqVUezKkSZAA",
+    "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9saXZlLWNkbi50c3BvcnRzLmNvbS8:Expires=1707253619:KeyName=tsports-ed25519-01:Signature=tiQ4vZVyyHo1t7ooRJZMcbuj0rCcnV7boyRKWwTDKRkYHSInLVFuQEVNe-MRm1yDA4vFZsRnwMwNPrDxcYpwBA",
     "drmScheme": "",
     "drmLicense": ""
   },
