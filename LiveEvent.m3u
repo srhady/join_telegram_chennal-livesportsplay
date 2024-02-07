@@ -9,7 +9,7 @@
   },
   {
     "name": "Live",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F36%2Findex.m3u8&token=f1939fc567164abcf53dfc531c5de39e4ea7a1bb&is_vip=false&verify=1707307200-wNv85DoPciTaQhRJTcxk3LY2ghjHZyh%2B9ap5gqfs2Xo%3D",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F17%2Findex.m3u8&token=c86f9984e32430e1b96063f1dc33a6f7528b06ff&is_vip=false&verify=1707307200-kC9t5Kr38NVMQtJSxTf0ftpHhR2XPzyg7F2X%2BT6Ipmo%3D",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "referer": "https://live-streamfootball.com/",
     "origin": "https://olalivehdplay.ru/",
@@ -131,9 +131,9 @@
   		"cookie": ""
  },
  {
-    "name": "BPL",
+    "name": "Saudi League",
     "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F46%2Findex.m3u8&token=f1939fc567164abcf53dfc531c5de39e4ea7a1bb&is_vip=false&verify=1707307200-wNv85DoPciTaQhRJTcxk3LY2ghjHZyh%2B9ap5gqfs2Xo%3D",
-    "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuX2JjsP-6WlFpCq1IthHpGCbLLmgVHIiGKw&usqp=CAU",
+    "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4zrYS_IwMwZzAhf4asvP2rL7rZldDKggBfQ&usqp=CAU",
     "referer": "https://live-streamfootball.com/",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
   },
