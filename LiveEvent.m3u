@@ -97,7 +97,7 @@
   },
  {
     "name": "African Cup",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F25%2Findex.m3u8&token=f1939fc567164abcf53dfc531c5de39e4ea7a1bb&is_vip=false&verify=1706875200-JcNadlaKN1QRqYHXLzd5NToBS97Sh6UuljHYF%2F1PO6k%3D",
+    "link": "https://prod-ec-eu-central-1.video.pscp.tv/Transcoding/v1/hls/JmzFnNoMM4lBxPeo3b6mswI4WcpB2QfWVkwqzLjfdQ_oWr9zdGkBNr2nA5bbeZyt_o_HldBHuEXL8NAlvqcozA/non_transcode/eu-central-1/periscope-replay-direct-prod-eu-central-1-public/tw_master_dynamic_highlatency.m3u8?type=live",
     "logo": "https://upload.wikimedia.org/wikipedia/en/c/cf/Africa_Cup_of_Nation_official_logo.png",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
