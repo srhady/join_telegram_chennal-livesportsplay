@@ -132,11 +132,12 @@
  },
  {
     "name": "Saudi League",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F46%2Findex.m3u8&token=f1939fc567164abcf53dfc531c5de39e4ea7a1bb&is_vip=false&verify=1707307200-wNv85DoPciTaQhRJTcxk3LY2ghjHZyh%2B9ap5gqfs2Xo%3D",
+    "link": "https://live-cdn.tsports.com/live-01/index.m3u8",
     "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4zrYS_IwMwZzAhf4asvP2rL7rZldDKggBfQ&usqp=CAU",
     "referer": "https://live-streamfootball.com/",
-    "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
-  },
+    "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
+    "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9saXZlLWNkbi50c3BvcnRzLmNvbS8:Expires=1707380840:KeyName=tsports-ed25519-01:Signature=V2a4YnDhZl0PrtF1aBDF4MdZZV1jkxyBbDc_WrPTMkN3vqt73QR2va7fpPf9wkQiBBpKQNUs9DhICam3a8ZBAw"
+ },
  {
     "name": "BPL",
     "link": "https://live-cdn.tsports.com/live-02/index.m3u8",
