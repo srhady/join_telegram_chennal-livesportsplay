@@ -1,16 +1,16 @@
 [
  {
-    "name": "Live",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F44%2Findex.m3u8&token=c498fcab98b1459fa3a21667b9721efe8a84dce6&is_vip=false&verify=1707372000-w6VbTGBAs%2FtiQKOpgStw3N9gNrbuBpif12g9ToHgvYU%3D",
-    "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
+    "name": "NAS 🆚 HIL",
+    "link": "https://manifest.googlevideo.com/api/manifest/hls_variant/expire/1707435706/ei/WhLFZYioNpiJ8gON6a7AAQ/ip/212.224.93.169/id/03h1swc5EFo.1/source/yt_live_broadcast/requiressl/yes/xpc/EgVo2aDSNQ%3D%3D/hfr/1/playlist_duration/30/manifest_duration/30/maudio/1/spc/UWF9f7hRmw9JykuuuZKzDdqkdlHuzbH65QK11e1cx7YA6kc/vprv/1/go/1/pacing/0/nvgoi/1/keepalive/yes/fexp/24007246/dover/11/itag/0/playlist_type/DVR/sparams/expire%2Cei%2Cip%2Cid%2Csource%2Crequiressl%2Cxpc%2Chfr%2Cplaylist_duration%2Cmanifest_duration%2Cmaudio%2Cspc%2Cvprv%2Cgo%2Citag%2Cplaylist_type/sig/AJfQdSswRgIhAIlMllT4PnenJZw0cNcFnH0FZvU9sawajsj_sRy661pqAiEA6mrzmxKdOye5BCR35wlVQtHEhy4qYKg8CQjzcUPZR30%3D/file/index.m3u8",
+    "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS784tieubDIZzpzqOfe8QtOiLFqa0WwlqnCA&usqp=CAU",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
   },
   {
-    "name": "Live",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F43%2Findex.m3u8&token=c498fcab98b1459fa3a21667b9721efe8a84dce6&is_vip=false&verify=1707372000-w6VbTGBAs%2FtiQKOpgStw3N9gNrbuBpif12g9ToHgvYU%3D",
-    "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
+    "name": "NAS 🆚 HIL",
+    "link": "",
+    "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS784tieubDIZzpzqOfe8QtOiLFqa0WwlqnCA&usqp=CAU",
     "referer": "https://live-streamfootball.com/",
     "origin": "https://olalivehdplay.ru/",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
