@@ -117,15 +117,16 @@
   },
   {
     "name": "ASIAN CUP",
-    "link": "https://prod-ent-live-gm.jiocinema.com/hls/live/2099128/hd_akamai_merged_avc_eng_afc_m1_090224/master.m3u8",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F45%2Findex.m3u8&token=c498fcab98b1459fa3a21667b9721efe8a84dce6&is_vip=false&verify=1707566400-X8cPL3uM5NADzPQ66BCN%2FBPxBCe64VVAkdmaQBILSCw%3D",
     "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY8SVA080ms117m_CdqHUfNo6u0c9Cz_tHcw&usqp=CAU",
+    "referer": "https://live-streamfootball.com/",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
   },
  {
     "name": "SA20",
-    "link": "https://prod-ent-live-gm.jiocinema.com/hls/live/2099110/hd_akamai_merged_avc_eng_sa20_m1_100224/master.m3u8",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F26%2Findex.m3u8&token=c498fcab98b1459fa3a21667b9721efe8a84dce6&is_vip=false&verify=1707566400-X8cPL3uM5NADzPQ66BCN%2FBPxBCe64VVAkdmaQBILSCw%3D",
     "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSxhuPtYddDKjcDHwc4X3dbYq1CjDmB3xfGw&usqp=CAU",
-    "referer": "",
+    "referer": "https://live-streamfootball.com/",
     "origin": "",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
   		"cookie": ""
