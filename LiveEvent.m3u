@@ -75,12 +75,12 @@
   },
  {
     "name": "IND 🆚 ENG",
-    "link": "https://prod-ent-live-gm.jiocinema.com/hls/live/2100297/hd_akamai_iosmob_avc_eng_indvseng_test02day04050224/master.m3u8",
+    "link": "https://webhdrus.webhd.ru/lb/premium370/index.m3u8",
     "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLVhDwZYcpsV5D6z-AN-77P-NSOSnD8BPerw&usqp=CAU",
     "origin": "https://olalivehdplay.ru/",
-    "referer": "https://live-streamfootball.com/",
+    "referer": "https://olalivehdplay.ru/",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
-    "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9saXZlLWNkbi50c3BvcnRzLmNvbS8:Expires=1706085091:KeyName=tsports-ed25519-01:Signature=ECBPjTpA1KoY2PWAD4MHyNaL_Hro-JTF1GxutnYba53wcec3KMT3IP0oSo5woww4tA_OYbAxTx7dDdalbqRJAw",
+    "cookie": "",
     "drmScheme": "",
     "drmLicense": ""
   },
@@ -101,7 +101,7 @@
     "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4zrYS_IwMwZzAhf4asvP2rL7rZldDKggBfQ&usqp=CAU",
     "referer": "https://live-streamfootball.com/",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
-    "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9saXZlLWNkbi50c3BvcnRzLmNvbS8:Expires=1707380840:KeyName=tsports-ed25519-01:Signature=V2a4YnDhZl0PrtF1aBDF4MdZZV1jkxyBbDc_WrPTMkN3vqt73QR2va7fpPf9wkQiBBpKQNUs9DhICam3a8ZBAw"
+    "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9saXZlLWNkbi50c3BvcnRzLmNvbS8:Expires=1707726362:KeyName=tsports-ed25519-01:Signature=8e9MaI0P9qjTr-8M9LCOZ-7zKS6PoPGFRkpSt_X0FJ3o8OlKe3egX4DF2doH2P28-hZTmm3DpE82r4-Rq8RGAg"
  },
  {
     "name": "BPL",
@@ -110,7 +110,7 @@
     "origin": "",
     "referer": "",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
-    "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9saXZlLWNkbi50c3BvcnRzLmNvbS8:Expires=1707599096:KeyName=tsports-ed25519-01:Signature=XW7r2wP-s3h7pUbQj6dJieoLHms7c7_Xybthks9TzYGnJhiBbf8FdGWVCYXcDXDypfElCoImuHffLR_z1_aNAg",
+    "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9saXZlLWNkbi50c3BvcnRzLmNvbS8:Expires=1707726362:KeyName=tsports-ed25519-01:Signature=8e9MaI0P9qjTr-8M9LCOZ-7zKS6PoPGFRkpSt_X0FJ3o8OlKe3egX4DF2doH2P28-hZTmm3DpE82r4-Rq8RGAg",
     "drmScheme": "",
     "drmLicense": ""
   },
