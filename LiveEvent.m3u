@@ -127,10 +127,10 @@
   },
  {
     "name": "Laliga",
-    "link": "https://newedge.eu-central-1.edge.mycdn.live/live/vintequatrohrs5/playlist.m3u8",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F18%2Findex.m3u8&token=c498fcab98b1459fa3a21667b9721efe8a84dce6&is_vip=false&verify=1707652800-JRfM02gg7zUSIN5BNUeci05SdjvDWJ5UVEF%2BrgpRyME%3D",
     "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrb-y9CPwyKmqX5wnfAXWTZad3Z3pgxfJcHQ&usqp=CAU",
     "origin": "",
-    "referer": "https://futebolplayhd.com/",
+    "referer": "https://live-streamfootball.com/",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
     "cookie": "",
     "drmScheme": "clearkey",
@@ -138,7 +138,7 @@
   },
  {
     "name": "Serie A",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F25%2Findex.m3u8&token=c498fcab98b1459fa3a21667b9721efe8a84dce6&is_vip=false&verify=1707588000-XSsrPPEmN7b%2Bbl5xt0eERpsFw73IQ5EIljlWRwszOIQ%3D",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F25%2Findex.m3u8&token=c498fcab98b1459fa3a21667b9721efe8a84dce6&is_vip=false&verify=1707652800-JRfM02gg7zUSIN5BNUeci05SdjvDWJ5UVEF%2BrgpRyME%3D",
     "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6DhbesCKjdUeOwFHBewRVbjDIV5-ATyASfQ&usqp=CAU",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
@@ -149,7 +149,7 @@
   },
  {
     "name": "Bundesliga",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F3%2Findex.m3u8&token=c498fcab98b1459fa3a21667b9721efe8a84dce6&is_vip=false&verify=1707588000-XSsrPPEmN7b%2Bbl5xt0eERpsFw73IQ5EIljlWRwszOIQ%3D",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F15%2Findex.m3u8&token=c498fcab98b1459fa3a21667b9721efe8a84dce6&is_vip=false&verify=1707652800-JRfM02gg7zUSIN5BNUeci05SdjvDWJ5UVEF%2BrgpRyME%3D",
     "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/d/df/Bundesliga_logo_(2017).svg/1200px-Bundesliga_logo_(2017).svg.png",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
