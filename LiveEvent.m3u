@@ -52,13 +52,46 @@
     "drmLicense": ""
   },
   {
-    "name": "ACL",
+    "name": "Live",
     "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F20%2Findex.m3u8&token=db2496ef4aacb3c8fe771a2bae00acd41fabf83d&is_vip=false&verify=1707804000-vBF2CykwAUHnWtSmC%2BmiE37T9pe1mrstShcISRJqbQ0%3D",
-    "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIQ_xedlg-hjSids4EWBmTm5lyS88xWZDtEQ&usqp=CAU",
+    "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
     "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9saXZlLWNkbi50c3BvcnRzLmNvbS8:Expires=1706994351:KeyName=tsports-ed25519-01:Signature=0iRJF4D7igOe4vHjlma9oYy-CFVLoE79OaV6zS6e5vDbnAgrsSv7BLoNtjR3bkUyoCPzpHwLQwMgZ2Uc8B94Dw",
+    "drmScheme": "",
+    "drmLicense": ""
+  },
+ {
+    "name": "ACL",
+    "link": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIQ_xedlg-hjSids4EWBmTm5lyS88xWZDtEQ&usqp=CAU",
+    "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
+    "origin": "",
+    "referer": "",
+    "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
+    "cookie": "",
+    "drmScheme": "",
+    "drmLicense": ""
+  },
+ {
+    "name": "UCL",
+    "link": "https://bongohub.pw/Sony.php?id=1000009276&e=.m3u8",
+    "logo": "https://images.toffeelive.com/images/program/603/logo/720x404/player_poster_web_844598001707708813.png",
+    "origin": "",
+    "referer": "",
+    "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
+    "cookie": "",
+    "drmScheme": "",
+    "drmLicense": ""
+  },
+ {
+    "name": "UCL",
+    "link": "https://bongohub.pw/Sony.php?id=1000009277&e=.m3u8",
+    "logo": "https://images.toffeelive.com/images/program/604/logo/720x404/player_poster_web_891029001707802517.png",
+    "origin": "",
+    "referer": "",
+    "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
+    "cookie": "",
     "drmScheme": "",
     "drmLicense": ""
   },
@@ -81,17 +114,6 @@
     "referer": "https://olalivehdplay.ru/",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
     "cookie": "",
-    "drmScheme": "",
-    "drmLicense": ""
-  },
- {
-    "name": "AUS 🆚 WI",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F46%2Findex.m3u8&token=db2496ef4aacb3c8fe771a2bae00acd41fabf83d&is_vip=false&verify=1707804000-vBF2CykwAUHnWtSmC%2BmiE37T9pe1mrstShcISRJqbQ0%3D",
-    "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSh8wsAWRqpldCSlVSoD1FAavD89ByEHGEbDQ&usqp=CAU",
-    "origin": "",
-    "referer": "https://live-streamfootball.com/",
-    "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
-    "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9saXZlLWNkbi50c3BvcnRzLmNvbS8:Expires=1706171524:KeyName=tsports-ed25519-01:Signature=1DfJforNyqWVIxqaEGJpIyd0QWTk0VpVsxNyS2CDjOXQrqzGFM2D1Wn7tGbTOMb20viCyDBxn6ySZGGs5c_1Cg",
     "drmScheme": "",
     "drmLicense": ""
   },
