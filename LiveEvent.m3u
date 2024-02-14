@@ -1,7 +1,7 @@
 [
  {
     "name": "Live",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F20%2Findex.m3u8&token=db2496ef4aacb3c8fe771a2bae00acd41fabf83d&is_vip=false&verify=1707868800-SiIA2ymFHe8cf%2BzNrt145zViP1%2F5tICO4AEyV7MlWXo%3D",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F24%2Findex.m3u8&token=db2496ef4aacb3c8fe771a2bae00acd41fabf83d&is_vip=false&verify=1707890400-yzUX662x1qFMjIov11xvD%2FA%2BHU%2FtVygTZqh%2FeEZxgTE%3D",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
@@ -9,7 +9,7 @@
   },
   {
     "name": "Live",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F2%2Findex.m3u8&token=db2496ef4aacb3c8fe771a2bae00acd41fabf83d&is_vip=false&verify=1707868800-SiIA2ymFHe8cf%2BzNrt145zViP1%2F5tICO4AEyV7MlWXo%3D",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F8%2Findex.m3u8&token=db2496ef4aacb3c8fe771a2bae00acd41fabf83d&is_vip=false&verify=1707890400-yzUX662x1qFMjIov11xvD%2FA%2BHU%2FtVygTZqh%2FeEZxgTE%3D",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "referer": "https://live-streamfootball.com/",
     "origin": "https://olalivehdplay.ru/",
@@ -64,8 +64,8 @@
   },
  {
     "name": "ACL",
-    "link": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIQ_xedlg-hjSids4EWBmTm5lyS88xWZDtEQ&usqp=CAU",
-    "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
+    "link": "",
+    "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4GvhEkKTGgYnfjvR5LRn0lAC8qZwHip4dVQ&usqp=CAU",
     "origin": "",
     "referer": "",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
@@ -143,7 +143,7 @@
     "origin": "",
     "referer": "",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
-    "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9saXZlLWNkbi50c3BvcnRzLmNvbS8:Expires=1707858438:KeyName=tsports-ed25519-01:Signature=1gFGOhZerJMgs9jUtiDkRdnUNXQxMDBgAyw78tZjRdezl9gFRVocCwolIrVxKpRdSz0Hn7uma--5dXOpXHFPDg",
+    "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9saXZlLWNkbi50c3BvcnRzLmNvbS8:Expires=1707944851:KeyName=tsports-ed25519-01:Signature=esGwEU7vhtFPb6qpANrK0F2Mz5RD-EoJ3a06udZZQiqVt_WO8Dn1gpPVMBTzGDmt2H6m5redMCPWDJW2Pgo0Dg",
     "drmScheme": "",
     "drmLicense": ""
   },
