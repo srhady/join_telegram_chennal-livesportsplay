@@ -64,8 +64,8 @@
   },
  {
     "name": "Live",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F48%2Findex.m3u8&token=766916551555cd22c520823659376fd4cf6f610f&is_vip=false&verify=1708020000-rdd01k3OxkfHpVpunq1I7hWhmkv%2BjsRAdM2BAKiV5po%3D",
-    "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
+    "link": "https://cdn2.luisr.shop/live5/live5.m3u8",
+    "logo": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiQyJ1a2IBa27BqFg_IGtel7Dkq02kGNktRnTo1Vt_AdGyfryZ_Dk5Vxd_qv4j3y9r0zqSUm9AuGLzfal8Z8wNIwlw7dM3UPf6mvLp9O4uQEVuKti0qjdNI-MneUUd8eDaYO1_Vy3VKjbkPiQK4o1Q1JZ2pGNLeN8eEC-aVMpXQW0CuZossEVeYrQZnHIA/s1600/Inter Miami X Newell's (1).jpg",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
@@ -130,7 +130,7 @@
   },
  {
     "name": "IND 🆚 ENG",
-    "link": "http://prod-ent-live-gm.jiocinema.com/hls/live/2100299/hd_akamai_androidmob_avc_eng_indvseng_test03day01150224/master.m3u8",
+    "link": "http://prod-ent-live-gm.jiocinema.com/hls/live/2100299/hd_akamai_androidmob_avc_eng_indvseng_test03day02160224/master.m3u8",
     "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLVhDwZYcpsV5D6z-AN-77P-NSOSnD8BPerw&usqp=CAU",
     "origin": "https://olalivehdplay.ru/",
     "referer": "https://olalivehdplay.ru/",
@@ -141,7 +141,7 @@
   },
   {
     "name": "SA 🆚 NZ",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F8%2Findex.m3u8&token=766916551555cd22c520823659376fd4cf6f610f&is_vip=false&verify=1707955200-oAtY3VSFpugtbTokEd%2BGRD%2Fq5f7JFO2xwXoj4eUfsss%3D",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F25%2Findex.m3u8&token=db2496ef4aacb3c8fe771a2bae00acd41fabf83d&is_vip=false&verify=1708041600-YOgIo1nxIWdeqq2x6ot4Yx%2BKYVn2BnsJ72q4odBX3kw%3D",
     "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRweWH6OzLizOar6ruWPq41hpKRAAXIYalWWQ&usqp=CAU",
     "origin": "https://olalivehdplay.ru/",
     "referer": "https://live-streamfootball.com/",
