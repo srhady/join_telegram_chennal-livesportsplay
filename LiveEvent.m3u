@@ -64,7 +64,7 @@
   },
  {
     "name": "Premier League",
-    "link": "",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F15%2Findex.m3u8&token=888c3044dcbf1310bd36b994662395306b2b14df&is_vip=false&verify=1708171200-LC8XMBfb3%2Bf%2Fed1ArXo45qu38o2HuL2OIl2xtKBRjp0%3D",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
@@ -75,7 +75,7 @@
   },
  {
     "name": "Premier League",
-    "link": "",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F2%2Findex.m3u8&token=888c3044dcbf1310bd36b994662395306b2b14df&is_vip=false&verify=1708171200-LC8XMBfb3%2Bf%2Fed1ArXo45qu38o2HuL2OIl2xtKBRjp0%3D",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
@@ -86,7 +86,7 @@
   },
  {
     "name": "Premier League",
-    "link": "",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F3%2Findex.m3u8&token=888c3044dcbf1310bd36b994662395306b2b14df&is_vip=false&verify=1708171200-LC8XMBfb3%2Bf%2Fed1ArXo45qu38o2HuL2OIl2xtKBRjp0%3D",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
@@ -97,7 +97,7 @@
   },
  {
     "name": "Premier League",
-    "link": "",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F24%2Findex.m3u8&token=888c3044dcbf1310bd36b994662395306b2b14df&is_vip=false&verify=1708171200-LC8XMBfb3%2Bf%2Fed1ArXo45qu38o2HuL2OIl2xtKBRjp0%3D",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
@@ -151,22 +151,22 @@
     "drmLicense": ""
   },
  {
-    "name": "",
-    "link": "",
+    "name": "Live",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F14%2Findex.m3u8&token=888c3044dcbf1310bd36b994662395306b2b14df&is_vip=false&verify=1708171200-LC8XMBfb3%2Bf%2Fed1ArXo45qu38o2HuL2OIl2xtKBRjp0%3D",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "origin": "",
-    "referer": "",
+    "referer": "https://live-streamfootball.com/",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
     "cookie": "",
     "drmScheme": "",
     "drmLicense": ""
   },
  {
-    "name": "",
-    "link": "",
+    "name": "Live",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F8%2Findex.m3u8&token=888c3044dcbf1310bd36b994662395306b2b14df&is_vip=false&verify=1708171200-LC8XMBfb3%2Bf%2Fed1ArXo45qu38o2HuL2OIl2xtKBRjp0%3D",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "origin": "",
-    "referer": "",
+    "referer": "https://live-streamfootball.com/",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
     "cookie": "",
     "drmScheme": "",
