@@ -63,13 +63,13 @@
     "drmLicense": ""
   },
  {
-    "name": "ACL",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F5%2Findex.m3u8&token=db2496ef4aacb3c8fe771a2bae00acd41fabf83d&is_vip=false&verify=1707998400-E28ybvz2TheoguH0UwUAc7v1hWMgGl3ZnrLTSeSlS1k%3D",
-    "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4GvhEkKTGgYnfjvR5LRn0lAC8qZwHip4dVQ&usqp=CAU",
+    "name": "Saudi League",
+    "link": "https://live-cdn.tsports.com/live-01/index.m3u8",
+    "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4zrYS_IwMwZzAhf4asvP2rL7rZldDKggBfQ&usqp=CAU",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
-    "cookie": "",
+    "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9saXZlLWNkbi50c3BvcnRzLmNvbS8:Expires=1708331181:KeyName=tsports-ed25519-01:Signature=rFpBMR1Tt9uBznGXfGFn9m5v-gUaMz0xsfX1zub4jD_L5liOYQIpw-FnzGhxsb5xw9kDVrFrmv6UMasFy9qtCA",
     "drmScheme": "",
     "drmLicense": ""
   },
