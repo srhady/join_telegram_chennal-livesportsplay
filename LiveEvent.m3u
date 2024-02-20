@@ -42,7 +42,7 @@
   },
  {
     "name": "Live",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F48%2Findex.m3u8&token=766916551555cd22c520823659376fd4cf6f610f&is_vip=false&verify=1708365600-DGgeCfVgAlfKlV7lRztvjH0kzrJ5KSSm%2B8lmE1jZ%2B%2BA%3D",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F26%2Findex.m3u8&token=766916551555cd22c520823659376fd4cf6f610f&is_vip=false&verify=1708408800-hP7KtojYuBZrnCpFJn88D0l1fvKW%2BAQHRbWMKHelpkM%3D",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
@@ -53,7 +53,7 @@
   },
   {
     "name": "Live",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F13%2Findex.m3u8&token=766916551555cd22c520823659376fd4cf6f610f&is_vip=false&verify=1708365600-DGgeCfVgAlfKlV7lRztvjH0kzrJ5KSSm%2B8lmE1jZ%2B%2BA%3D",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F3%2Findex.m3u8&token=766916551555cd22c520823659376fd4cf6f610f&is_vip=false&verify=1708408800-hP7KtojYuBZrnCpFJn88D0l1fvKW%2BAQHRbWMKHelpkM%3D",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
@@ -63,9 +63,9 @@
     "drmLicense": ""
   },
  {
-    "name": "Saudi League",
-    "link": "https://live-cdn.tsports.com/live-01/index.m3u8",
-    "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4zrYS_IwMwZzAhf4asvP2rL7rZldDKggBfQ&usqp=CAU",
+    "name": "ACL",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F2%2Findex.m3u8&token=766916551555cd22c520823659376fd4cf6f610f&is_vip=false&verify=1708408800-hP7KtojYuBZrnCpFJn88D0l1fvKW%2BAQHRbWMKHelpkM%3D",
+    "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4GvhEkKTGgYnfjvR5LRn0lAC8qZwHip4dVQ&usqp=CAU",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
