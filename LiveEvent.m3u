@@ -119,12 +119,12 @@
   },
   {
     "name": "AUS 🆚 NZ",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F1%2Findex.m3u8&token=db2496ef4aacb3c8fe771a2bae00acd41fabf83d&is_vip=false&verify=1708495200-bfKVSpq1iKH6ptjLUzLShVU11OGPhT00i00aHfUoCLI%3D",
+    "link": "https://mprod-cdn.toffeelive.com/live/match-1/index.m3u8",
     "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT43QJGsYEyexLatQt3Up7c2BwPHtdlwWWddg&usqp=CAU",
     "origin": "https://olalivehdplay.ru/",
     "referer": "https://live-streamfootball.com/",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
-    "cookie": "",
+    "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9tcHJvZC1jZG4udG9mZmVlbGl2ZS5jb20v:Expires=1708699419:KeyName=prod_live_events:Signature=S6K3Pgiimq1n_WDpJbsp5PQj5GMVYsAh5ItBXj7TsRwkCVAKtIYZWiC1M3YzS8U-hk4KaHgvBOjV4EybHTcsCA",
     "drmScheme": "",
     "drmLicense": ""
   },
