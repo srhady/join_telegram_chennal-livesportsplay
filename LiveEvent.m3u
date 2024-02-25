@@ -41,8 +41,8 @@
     "drmLicense": ""
   },
  {
-    "name": "Live",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F20%2Findex.m3u8&token=e50ed58dd3f20d0060e2dc2d7788ac22494ead8c&is_vip=false&verify=1708862400-yRRejZTqEBOvF36Aw4nR0GOaXreJgA3TlPOCzdZMcdQ%3D",
+    "name": "Saudi League",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F24%2Findex.m3u8&token=e50ed58dd3f20d0060e2dc2d7788ac22494ead8c&is_vip=false&verify=1708862400-yRRejZTqEBOvF36Aw4nR0GOaXreJgA3TlPOCzdZMcdQ%3D",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
