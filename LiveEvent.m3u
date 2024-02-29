@@ -63,13 +63,13 @@
     "drmLicense": ""
   },
  {
-    "name": "ACL",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F17%2Findex.m3u8&token=db2496ef4aacb3c8fe771a2bae00acd41fabf83d&is_vip=false&verify=1708538400-zHb%2BxKFvqO4TWSp6AlSoQ6gkJjtuEGyt2qpU7WgJk9k%3D",
-    "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4GvhEkKTGgYnfjvR5LRn0lAC8qZwHip4dVQ&usqp=CAU",
+    "name": "Saudi League",
+    "link": "https://bldcmprod-cdn.toffeelive.com/cdn/live/sony_ten2_hd/playlist.m3u8",
+    "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyMIxar0am-cH4LCcELXUwGDct12vhuIzDpw&usqp=CAU",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
-    "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9saXZlLWNkbi50c3BvcnRzLmNvbS8:Expires=1708590491:KeyName=tsports-ed25519-01:Signature=hzeVLDZkQVyyA22OhhpNQmP3SNCi0XGZzj-edvqMCPITtHWiqW_Ds_0Fraq2i0fa7rFH__kyZ1ZYMQIKruG0Ag",
+    "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9ibGRjbXByb2QtY2RuLnRvZmZlZWxpdmUuY29tLw:Expires=1709340180:KeyName=prod_linear:Signature=fHkEH29XZtVNbJ84MLISKjG6lmUcbjVvsc4dTWR7O34FzI9bvqB7fxAKlK64FzlvyM9e29WgTa8cgaDCa9afCw",
     "drmScheme": "",
     "drmLicense": ""
   },
@@ -124,7 +124,7 @@
     "origin": "https://olalivehdplay.ru/",
     "referer": "https://live-streamfootball.com/",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
-    "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9tcHJvZC1jZG4udG9mZmVlbGl2ZS5jb20v:Expires=1709225803:KeyName=prod_live_events:Signature=LQZUoMZQA-VIPDcJFfghyhc6x1pUzmf8iHcMWs5Q_q2fGvqqyG-nWH6e8g530q5VvpuLnE9UxtPja2FYXlZTDw",
+    "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9tcHJvZC1jZG4udG9mZmVlbGl2ZS5jb20v:Expires=1709217912:KeyName=prod_live_events:Signature=qBJ91z1dSGy5yAp68B6TmqSw5YqCwqW_0NaCRrpkjMs-p9Vhkr1f6J5foZkWm5KdiBtZK84Pn9H1rKPOu7dyCA",
     "drmScheme": "",
     "drmLicense": ""
   },
