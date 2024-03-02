@@ -1,7 +1,7 @@
 [
  {
     "name": "MIA 🆚 OCI",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F25%2Findex.m3u8&token=ae1fe1c2c0a8e695a126a61555165d7c19104759&is_vip=false&verify=1709380800-oT4mjYJgrxpvHXhUweUn3SkyE7XasghBGbXsn5jtYs4%3D",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F47%2Findex.m3u8&token=fd1d724523ebafbb2769e3e6c5a099036719e345&is_vip=false&verify=1709402400-mUjkOiXrxt%2BaclHLCq9QW0JD%2BVxOKNqABDg1Yx%2F%2F%2Bz4%3D",
     "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDUXkCmdgqp8CdubSB6Rb3AMKrBqRyiWfj7Q&usqp=CAU",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
@@ -124,7 +124,7 @@
     "origin": "https://olalivehdplay.ru/",
     "referer": "https://live-streamfootball.com/",
     "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
-    "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9tcHJvZC1jZG4udG9mZmVlbGl2ZS5jb20v:Expires=1709389522:KeyName=prod_live_events:Signature=AXSGU1bgMi4fXJ6birKGayMz4Pm24SssXlLLFzzUxHxBpoo8fbJK7opn21QPLC7aXdzzoFd4hyxD2LDt-k5gAw",
+    "cookie": "Edge-Cache-Cookie=URLPrefix=aHR0cHM6Ly9tcHJvZC1jZG4udG9mZmVlbGl2ZS5jb20v:Expires=1709452827:KeyName=prod_live_events:Signature=AU2RVCG1tRzSThwGrprXng0jjO8LgiFj-4fQKB3Z0hD1wxjFhhOxIzgj1qYemGXGdKqeX8_8PTkcw6JVYcenCg",
     "drmScheme": "",
     "drmLicense": ""
   },
