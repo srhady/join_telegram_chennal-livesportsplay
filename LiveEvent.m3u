@@ -1,7 +1,7 @@
 [
  {
     "name": "Live",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F27%2Findex.m3u8&token=750e9fd2d5ba73106ad7508904d22b92b61c70d2&is_vip=false&verify=1718409600-lPbrOP0%2BIEmbwdnbUqiR%2BuljnHVUjtHL%2BPXYtJg%2BeBU%3D",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F46%2Findex.m3u8&token=d78c22336b9e45ae4f7b515060429f2ee7ed5700&is_vip=false&verify=1718452800-AySFttHqcZmit9T6lwQgJJ4qJrL4KEthdY7cJahkxmM%3D",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "origin": "",
     "referer": "https://live-streamfootball.com/",
@@ -9,7 +9,7 @@
   },
   {
     "name": "Live",
-    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F46%2Findex.m3u8&token=750e9fd2d5ba73106ad7508904d22b92b61c70d2&is_vip=false&verify=1718409600-lPbrOP0%2BIEmbwdnbUqiR%2BuljnHVUjtHL%2BPXYtJg%2BeBU%3D",
+    "link": "https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn-bp2-001.rumsport.com%2Fstream%2F9%2Findex.fmp4.m3u8&token=d78c22336b9e45ae4f7b515060429f2ee7ed5700&is_vip=false&verify=1718452800-AySFttHqcZmit9T6lwQgJJ4qJrL4KEthdY7cJahkxmM%3D",
     "logo": "https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png",
     "referer": "https://live-streamfootball.com/",
     "origin": "https://olalivehdplay.ru/",
