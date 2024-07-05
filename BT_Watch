@@ -3,7 +3,7 @@
 #EXTINF:-1 tvg-logo="https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png" group-title="LIVE EVENT", LIVE
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36
 #EXTVLCOPT:http-referrer=https://live-streamfootball.com/
-https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F33%2Findex.m3u8&token=750e9fd2d5ba73106ad7508904d22b92b61c70d2&is_vip=false&verify=1720116000-sMPnHocbuk7vkESD5144ZPCipONR9rDFQjiNpphtofY%3D
+https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F41%2Findex.m3u8&token=750e9fd2d5ba73106ad7508904d22b92b61c70d2&is_vip=false&verify=1720137600-wdAwCy6LU7IvfF5uJDj82M%2FmBjAeFi5IlnO51%2FyvM8w%3D
 
 #EXTINF:-1 tvg-logo="https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png" group-title="LIVE EVENT", LIVE
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36
@@ -29,3 +29,12 @@ https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36
 #EXTVLCOPT:http-referrer=https://live-streamfootball.com/
 https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F35%2Findex.m3u8&token=750e9fd2d5ba73106ad7508904d22b92b61c70d2&is_vip=false&verify=1720137600-wdAwCy6LU7IvfF5uJDj82M%2FmBjAeFi5IlnO51%2FyvM8w%3D
+
+#EXTINF:-1 tvg-logo="https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png" group-title="LIVE EVENT", LIVE
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36
+#EXTVLCOPT:http-referrer=https://play17.score808pro.com/
+https://tta00022-cf.cool6bcd6.cc/auth%3D550e47b381c86347bbf6793bc264d7fa45c2793ae2f379 12c74fb97560ed2be162bad0418a50eddd3f8ec5863166b3e2c8e2af68984fd1c3130896e9b6c002
+b2576d03b7001bbbd5185bf5a948774b693ddb1d69701f16c7fae158eb0e8f43b96800fecae4253e2
+beed6593d8a36831d03e9bed1ae313896054bae94e79e0ae4ac01eb94f7940e95a661a04492b6f8b
+dc5f111d5c7caff0f4e15e9c3698be354%26cid%3DcJKaOODFLO-nWsgTQNB28240705%26_v%3D 2%26_r%3D9RSiv0%26_vis%3Dd42ff5750f1231a1b2f03150e924db858727018b41ff7468f563a68f1 b143d9c%26_vvs%3D2f35ef69619971fc632511e2c3d075af2507ddaed07e4b3a1d8f2846dc12174
+e/transcode/c260829_720p.m3u8
