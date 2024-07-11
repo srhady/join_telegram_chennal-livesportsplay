@@ -44,3 +44,13 @@ https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36
 #EXTVLCOPT:http-referrer=https://live-streamfootball.com/
 https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn-bp2.rumsport.com%2Fstream%2F39%2Findex.fmp4.m3u8&token=d78c22336b9e45ae4f7b515060429f2ee7ed5700&is_vip=false&verify=1720720800-oRg0fJm2bbdIoM1PrIWHZ5GHmNzpezQSoduAsB7jJ1M%3D
+
+#EXTINF:-1 tvg-logo="https://upload.wikimedia.org/wikipedia/commons/a/a3/PicsartAstro.png" group-title="SPORTS", Astro Cricket 
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36
+#EXTVLCOPT:http-referrer=https://olalivehdplay.ru/
+https://webhdrunns.mizhls.ru/lb/premium370/index.m3u8
+
+#EXTINF:-1 tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRf3lkwZezEWN9QXhQik568QzSfDyoqZqMfurr7po0eGTVThyB25J6mMho&s=10" group-title="SPORTS", T Sports 
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36
+#EXTVLCOPT:http-referrer=https://olalivehdplay.ru/
+https://webhdrunns.mizhls.ru/lb/premium270/index.m3u8
