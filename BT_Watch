@@ -2,18 +2,18 @@
 
 #EXTINF:-1 tvg-logo="https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png" group-title="LIVE EVENT", LIVE
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36
-#EXTVLCOPT:http-referrer=
-https://allinonereborn.fun/fcw/stream_proxy.php?url=https://in-mc-fdlive.fancode.com/mumbai/130480_english_hls_94270adfreeta-di_h264/1080p.m3u8
+#EXTVLCOPT:http-referrer=https://xiaolin.live/
+https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F46%2Findex.m3u8&token=87d4e600eee21f9b18c62b888640a4e4a203085b&is_vip=false&verify=1752408000-dcKkNjf9MQ7nj0ci5YJcjN2zYAfFjdz5vY8pAd81tD8%3D
 
 #EXTINF:-1 tvg-logo="https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png" group-title="LIVE EVENT", LIVE
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36
 #EXTVLCOPT:http-referrer=https://xiaolin.live/
-https://livecdn.rumsport.com/stream/45/chunks.m3u8?token=3a918d987e7e6deb78c19060fe6c11472fccda6e&is_vip=false&verify=1752156300-bcugph7HTzk%2FzUjfFDWj37ph4hHyRRZ%2FuHWC%2B6VxPJ0%3D
+https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F48%2Findex.m3u8&token=87d4e600eee21f9b18c62b888640a4e4a203085b&is_vip=false&verify=1752408000-dcKkNjf9MQ7nj0ci5YJcjN2zYAfFjdz5vY8pAd81tD8%3D
 
 #EXTINF:-1 tvg-logo="https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png" group-title="LIVE EVENT", LIVE
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36
 #EXTVLCOPT:http-referrer=https://xiaolin.live/
-https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F46%2Findex.m3u8&token=3a918d987e7e6deb78c19060fe6c11472fccda6e&is_vip=false&verify=1752148800-0AY7kQLjl6nAgJzRd%2FPy1SspRKYQTE29BkzTNBXoH%2BM%3D
+https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F44%2Findex.m3u8&token=87d4e600eee21f9b18c62b888640a4e4a203085b&is_vip=false&verify=1752408000-dcKkNjf9MQ7nj0ci5YJcjN2zYAfFjdz5vY8pAd81tD8%3D
 
 #EXTINF:-1 tvg-logo="https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png" group-title="LIVE EVENT", LIVE
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36
