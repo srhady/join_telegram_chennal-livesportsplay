@@ -3,7 +3,7 @@ name: Auto Update TV Links
 on:
   schedule:
     - cron: '*/15 * * * *'  # প্রতি ১৫ মিনিটে আপডেট
-  workflow_dispatch:  # ম্যানুয়াল রান অপশন
+  workflow_dispatch:  # ম্যানুয়ালি রান করার অপশন
 
 permissions:
   contents: write  # রিপোতে লেখার পারমিশন
@@ -16,6 +16,7 @@ jobs:
     - uses: actions/checkout@v4
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0  # সম্পূর্ণ গিট হিস্ট্রি ফেচ করে
 
     - name: Set up Python
       uses: actions/setup-python@v4
@@ -31,54 +32,61 @@ jobs:
         import requests
         from bs4 import BeautifulSoup
         from datetime import datetime
+        import os
 
         url = "https://www.bdixtv24.xyz"
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
         }
-        
+
         try:
-            print("Fetching data from:", url)
-            response = requests.get(url, headers=headers, timeout=15)
+            print("🔍 Fetching data from:", url)
+            response = requests.get(url, headers=headers, timeout=20)
             response.raise_for_status()
             
             soup = BeautifulSoup(response.text, "html.parser")
             links = []
             
-            print("Finding links...")
+            print("🔗 Finding streaming links...")
+            # Adjust this selector based on actual website structure
             for a in soup.find_all("a", href=True):
-                if "stream" in a["href"].lower():
-                    link = a["href"] if a["href"].startswith("http") else f"{url}{a['href']}"
+                href = a["href"].lower()
+                if "stream" in href or "live" in href:
+                    full_url = a["href"] if a["href"].startswith("http") else f"{url}{a['href']}"
                     title = a.text.strip() or f"Channel {len(links)+1}"
-                    links.append(f"- [{title}]({link})")
-                    print(f"Found: {title} - {link}")
+                    links.append(f"- [{title}]({full_url})")
+                    print(f"✅ Found: {title} - {full_url}")
 
             if not links:
-                print("No streaming links found!")
-                links.append("- No live streams available currently")
+                print("⚠️ No streaming links found!")
+                links.append("- No live streams available at the moment")
 
             with open("TV_Links.md", "w", encoding="utf-8") as f:
                 f.write("# 📺 লাইভ টিভি লিংকস\n\n")
                 f.write(f"**সর্বশেষ আপডেট:** {datetime.now().strftime('%d-%m-%Y %H:%M:%S')}\n\n")
                 f.write("\n".join(links))
                 f.write("\n\n---\n\n> স্বয়ংক্রিয়ভাবে আপডেট করা হয়েছে")
-                
-            print("File updated successfully!")
+            
+            print("📄 TV_Links.md file updated successfully!")
 
         except Exception as e:
-            print(f"🚨 Error: {e}")
+            print(f"❌ Error: {str(e)}")
             with open("TV_Links.md", "w", encoding="utf-8") as f:
                 f.write("# ⚠️ ত্রুটি\n\n")
-                f.write(f"লিংক আপডেট করতে সমস্যা হয়েছে: {datetime.now().strftime('%d-%m-%Y %H:%M:%S')}\n")
-                f.write(f"```\n{e}\n```")
+                f.write(f"লিংক আপডেট করতে সমস্যা হয়েছে: {datetime.now().strftime('%d-%m-%Y %H:%M:%S')}\n\n")
+                f.write(f"ত্রুটির বিস্তারিত:\n```\n{str(e)}\n```")
         EOF
 
         python scraper.py
 
-    - name: Commit changes
+    - name: Commit and push changes
       run: |
         git config --global user.name "GitHub Actions"
         git config --global user.email "actions@github.com"
         git add TV_Links.md
-        git commit -m "Auto-update TV links [$(date +'%d-%m-%Y %H:%M')]"
-        git push
+        if ! git diff --cached --quiet; then
+          git commit -m "Auto-update TV links [$(date +'%d-%m-%Y %H:%M')]"
+          git push
+        else
+          echo "No changes to commit."
+        fi
