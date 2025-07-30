@@ -2,20 +2,20 @@ name: Auto Update TV Links
 
 on:
   schedule:
-    - cron: '*/15 * * * *'
-  workflow_dispatch:
+    - cron: '*/15 * * * *'  # প্রতি ১৫ মিনিটে আপডেট
+  workflow_dispatch:  # ম্যানুয়াল রান অপশন
+
+permissions:
+  contents: write  # রিপোতে লেখার পারমিশন
 
 jobs:
   update-links:
     runs-on: ubuntu-latest
     
-    permissions:
-      contents: write  # এই লাইনটি অত্যন্ত গুরুত্বপূর্ণ
-    
     steps:
     - uses: actions/checkout@v4
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}  # অটোমেটিক টোকেন ব্যবহার
+        token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Set up Python
       uses: actions/setup-python@v4
@@ -33,23 +33,44 @@ jobs:
         from datetime import datetime
 
         url = "https://www.bdixtv24.xyz"
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+        }
+        
         try:
-            response = requests.get(url, timeout=10)
+            print("Fetching data from:", url)
+            response = requests.get(url, headers=headers, timeout=15)
+            response.raise_for_status()
+            
             soup = BeautifulSoup(response.text, "html.parser")
             links = []
             
+            print("Finding links...")
             for a in soup.find_all("a", href=True):
                 if "stream" in a["href"].lower():
                     link = a["href"] if a["href"].startswith("http") else f"{url}{a['href']}"
                     title = a.text.strip() or f"Channel {len(links)+1}"
                     links.append(f"- [{title}]({link})")
+                    print(f"Found: {title} - {link}")
+
+            if not links:
+                print("No streaming links found!")
+                links.append("- No live streams available currently")
 
             with open("TV_Links.md", "w", encoding="utf-8") as f:
-                f.write("# লাইভ টিভি লিংকস\n\n")
-                f.write(f"**আপডেট:** {datetime.now().strftime('%d-%m-%Y %H:%M:%S')}\n\n")
+                f.write("# 📺 লাইভ টিভি লিংকস\n\n")
+                f.write(f"**সর্বশেষ আপডেট:** {datetime.now().strftime('%d-%m-%Y %H:%M:%S')}\n\n")
                 f.write("\n".join(links))
+                f.write("\n\n---\n\n> স্বয়ংক্রিয়ভাবে আপডেট করা হয়েছে")
+                
+            print("File updated successfully!")
+
         except Exception as e:
-            print(f"Error: {e}")
+            print(f"🚨 Error: {e}")
+            with open("TV_Links.md", "w", encoding="utf-8") as f:
+                f.write("# ⚠️ ত্রুটি\n\n")
+                f.write(f"লিংক আপডেট করতে সমস্যা হয়েছে: {datetime.now().strftime('%d-%m-%Y %H:%M:%S')}\n")
+                f.write(f"```\n{e}\n```")
         EOF
 
         python scraper.py
