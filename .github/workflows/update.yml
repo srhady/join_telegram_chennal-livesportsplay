@@ -2,8 +2,8 @@ name: Auto Update TV Links
 
 on:
   schedule:
-    - cron: '*/15 * * * *' # প্রতি ১৫ মিনিটে আপডেট হবে
-  workflow_dispatch: # ম্যানুয়ালি রান করার অপশন
+    - cron: '*/15 * * * *'  # প্রতি ১৫ মিনিটে আপডেট হবে
+  workflow_dispatch:  # ম্যানুয়ালি রান করার অপশন
 
 jobs:
   update-links:
@@ -22,7 +22,8 @@ jobs:
 
     - name: Scrape and update links
       run: |
-        echo 'import requests
+        cat << 'EOF' > scraper.py
+        import requests
         from bs4 import BeautifulSoup
         from datetime import datetime
 
@@ -39,12 +40,13 @@ jobs:
                     links.append(f"- [{title}]({link})")
 
             with open("TV_Links.md", "w", encoding="utf-8") as f:
-                f.write("# লাইভ টিভি লিংকস\\n\\n")
-                f.write(f"**আপডেট:** {datetime.now().strftime('%d-%m-%Y %H:%M:%S')}\\n\\n")
-                f.write("\\n".join(links))
+                f.write("# লাইভ টিভি লিংকস\n\n")
+                f.write(f"**আপডেট:** {datetime.now().strftime('%d-%m-%Y %H:%M:%S')}\n\n")
+                f.write("\n".join(links))
         except Exception as e:
-            print(f"Error: {e}")' > scraper.py
-        
+            print(f"Error: {e}")
+        EOF
+
         python scraper.py
 
     - name: Commit changes
