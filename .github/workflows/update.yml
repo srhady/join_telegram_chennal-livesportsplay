@@ -22,85 +22,28 @@ jobs:
 
     - name: Scrape and update links
       run: |
-        echo "import requests
+        echo 'import requests
         from bs4 import BeautifulSoup
         from datetime import datetime
 
-        url = 'https://www.bdixtv24.xyz'
+        url = "https://www.bdixtv24.xyz"
         try:
             response = requests.get(url, timeout=10)
-            soup = BeautifulSoup(response.text, 'html.parser')
+            soup = BeautifulSoup(response.text, "html.parser")
             links = []
             
-            for a in soup.find_all('a', href=True):
-                if 'stream' in a['href'].lower():
-                    link = a['href'] if a['href'].startswith('http') else f'{url}{a['href']}'
-                    title = a.text.strip() or f'Channel {len(links)+1}'
-                    links.append(f'- [{title}]({link})')
+            for a in soup.find_all("a", href=True):
+                if "stream" in a["href"].lower():
+                    link = a["href"] if a["href"].startswith("http") else f"{url}{a['href']}"
+                    title = a.text.strip() or f"Channel {len(links)+1}"
+                    links.append(f"- [{title}]({link})")
 
-            with open('TV_Links.md', 'w') as f:
-                f.write('# লাইভ টিভি লিংকস\\n\\n')
-                f.write(f'**আপডেট:** {datetime.now().strftime("%d-%m-%Y %H:%M:%S")}\\n\\n')
-                f.write('\\n'.join(links))
+            with open("TV_Links.md", "w", encoding="utf-8") as f:
+                f.write("# লাইভ টিভি লিংকস\\n\\n")
+                f.write(f"**আপডেট:** {datetime.now().strftime('%d-%m-%Y %H:%M:%S')}\\n\\n")
+                f.write("\\n".join(links))
         except Exception as e:
-            print(f'Error: {e}')
-        " > scraper.py
-        
-        python scraper.py
-
-    - name: Commit changes
-      run: |
-        git config --global user.name "GitHub Actions"
-        git config --global user.email "actions@github.com"
-        git add TV_Links.md
-        git commit -m "Auto-update TV links [$(date +'%d-%m-%Y %H:%M')]"
-        git pushname: Auto Update TV Links
-
-on:
-  schedule:
-    - cron: '*/15 * * * *' # প্রতি ১৫ মিনিটে আপডেট হবে
-  workflow_dispatch: # ম্যানুয়ালি রান করার অপশন
-
-jobs:
-  update-links:
-    runs-on: ubuntu-latest
-    
-    steps:
-    - uses: actions/checkout@v4
-
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
-
-    - name: Install dependencies
-      run: pip install requests beautifulsoup4
-
-    - name: Scrape and update links
-      run: |
-        echo "import requests
-        from bs4 import BeautifulSoup
-        from datetime import datetime
-
-        url = 'https://www.bdixtv24.xyz'
-        try:
-            response = requests.get(url, timeout=10)
-            soup = BeautifulSoup(response.text, 'html.parser')
-            links = []
-            
-            for a in soup.find_all('a', href=True):
-                if 'stream' in a['href'].lower():
-                    link = a['href'] if a['href'].startswith('http') else f'{url}{a['href']}'
-                    title = a.text.strip() or f'Channel {len(links)+1}'
-                    links.append(f'- [{title}]({link})')
-
-            with open('TV_Links.md', 'w') as f:
-                f.write('# লাইভ টিভি লিংকস\\n\\n')
-                f.write(f'**আপডেট:** {datetime.now().strftime("%d-%m-%Y %H:%M:%S")}\\n\\n')
-                f.write('\\n'.join(links))
-        except Exception as e:
-            print(f'Error: {e}')
-        " > scraper.py
+            print(f"Error: {e}")' > scraper.py
         
         python scraper.py
 
