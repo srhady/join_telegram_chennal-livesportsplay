@@ -2,15 +2,20 @@ name: Auto Update TV Links
 
 on:
   schedule:
-    - cron: '*/15 * * * *'  # প্রতি ১৫ মিনিটে আপডেট হবে
-  workflow_dispatch:  # ম্যানুয়ালি রান করার অপশন
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
 
 jobs:
   update-links:
     runs-on: ubuntu-latest
     
+    permissions:
+      contents: write  # এই লাইনটি অত্যন্ত গুরুত্বপূর্ণ
+    
     steps:
     - uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}  # অটোমেটিক টোকেন ব্যবহার
 
     - name: Set up Python
       uses: actions/setup-python@v4
