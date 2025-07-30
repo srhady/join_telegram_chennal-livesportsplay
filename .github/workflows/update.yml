@@ -1,72 +1,90 @@
-name: Generate BDIX M3U Playlist
+name: Generate Fancode M3U from JSON
 
 on:
-  schedule:
-    - cron: '*/30 * * * *'  # প্রতি ৩০ মিনিটে রান করবে
-  push:
-    branches:
-      - main
-    paths:
-      - '.github/workflows/bdix.yml'
+schedule:
+- cron: '*/10 * * * *' # Har 20 minute baad run karega
+push:
+branches:
+- main # Jab main branch par push hoga tab run karega
+paths:
+- 'fancode.json' # Khaas taur par jab fancode.json update ho tab trigger karega
 
 jobs:
-  generate_bdix_playlist:
-    runs-on: ubuntu-latest
+generate_playlist_from_json:
+runs-on: ubuntu-latest
 
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+steps:  
+- name: Checkout repository  
+  uses: actions/checkout@v4  
+  with:  
+    token: ${{ secrets.GITHUB_TOKEN }} # Same repository mein push karne ke liye  
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.x'
+- name: Remove existing files  
+  run: rm -f fancode-new.m3u  
 
-    - name: Install dependencies
-      run: |
-        pip install requests beautifulsoup4
+- name: Configure Git for commits  
+  run: |  
+    git config --global user.name "auto-update-bot"  
+    git config --global user.email "auto-update-bot@users.noreply.github.com"  
+    git remote set-url origin https://${{ secrets.GITHUB_TOKEN }}@github.com/abid58b/FanCodePlaylist.git  
 
-    - name: Scrape BDIX TV and Generate M3U
-      run: |
-        echo "#EXTM3U" > bdix.m3u
+- name: Ensure jq is installed  
+  run: sudo apt-get update && sudo apt-get install -y jq  
 
-        python - <<EOF
-        import requests
-        from bs4 import BeautifulSoup
+- name: Check for fancode.json existence  
+  id: check_json_file  
+  run: |  
+    if [ ! -f fancode.json ]; then  
+      echo "fancode.json not found! Skipping M3U generation."  
+      echo "file_found=false" >> $GITHUB_OUTPUT  
+    else  
+      echo "fancode.json found. Proceeding with M3U generation."  
+      echo "file_found=true" >> $GITHUB_OUTPUT  
+    fi  
 
-        url = "https://www.bdixtv24.xyz"
-        headers = {
-            "User-Agent": "Mozilla/5.0"
-        }
+- name: Generate M3U from JSON and Modify URLs  
+  if: steps.check_json_file.outputs.file_found == 'true'  
+  run: |  
+    echo "#EXTM3U" > fancode-new.m3u  
 
-        r = requests.get(url, headers=headers)
-        soup = BeautifulSoup(r.text, "html.parser")
+    # Modified jq query to filter by "status": "STARTED"  
+    jq -r '.matches[] |  
+        select(.status == "STARTED") |  
+        "#EXTINF:-1 tvg-id=\"" +   
+        ((.match_id | tostring) // "unknown_id") +   
+        "\" tvg-logo=\"" +   
+        ((.image_cdn.PLAYBACK // .image // "no_logo_available") | tostring) +   
+        "\" group-title=\"" +   
+        (.category // "Uncategorized") +   
+        "\"," +   
+        (.title // "Untitled Match") + " - " + (.short_name // "Unknown Tournament") + " - " + (.language // "Unknown Language") +   
+        "\n" +  
+        (.adfree_stream // .STREAMING_CDN.Primary_Playback_URL // .dai_stream // "http://invalid.stream.url")  
+        ' fancode.json >> fancode-new.m3u  
 
-        iframes = soup.find_all("iframe")
+    sed -i 's|https://in-mc-pdlive.fancode.com/mumbai/|https://dai.fancode.com/primary/|g' fancode-new.m3u  
+    sed -i 's|https://in-mc-fdlive.fancode.com/mumbai/|https://dai.fancode.com/primary/|g' fancode-new.m3u  
+    sed -i 's|https://in-mc-plive.fancode.com/mumbai/|https://dai.fancode.com/primary/|g' fancode-new.m3u  
+    sed -i 's|https://in-mc-flive.fancode.com/mumbai/|https://dai.fancode.com/primary/|g' fancode-new.m3u  
+    sed -i 's|https://in-mc-dlive.fancode.com/mumbai/|https://dai.fancode.com/primary/|g' fancode-new.m3u  
+    sed -i 's|https://dai.fancode.com/primary/[^ ]*|https://allinonereborn.fun/fcw/stream_proxy.php?url=\1|g' fancode-new.m3u  
+    sed -i 's|https://d[0-9a-z]*.cloudfront.net/out/v1/[0-9a-f]*/index.m3u8|https://allinonereborn.fun/fcw/stream_proxy.php?url=https://\1.cloudfront.net/\2|g' fancode-new.m3u  
+    sed -i 's|https://mls3.fancode.com/[^/]\+/index.m3u8|https://allinonereborn.fun/fcw/stream_proxy.php?url=https://mls3.fancode.com/\1/index.m3u8|g' fancode-new.m3u  
 
-        count = 1
-        with open("bdix.m3u", "a", encoding="utf-8") as f:
-            for iframe in iframes:
-                src = iframe.get("src")
-                if src and ("http" in src):
-                    name = f"BDIX Channel {count}"
-                    f.write(f'#EXTINF:-1 tvg-id="bdix{count}" group-title="BDIX TV", {name}\n')
-                    f.write(f"{src}\n")
-                    count += 1
-        EOF
+    
+- name: Commit and push generated M3U file  
+  if: steps.check_json_file.outputs.file_found == 'true'  
+  run: |  
+    git add fancode-new.m3u  
 
-    - name: Configure Git
-      run: |
-        git config --global user.name "auto-update-bot"
-        git config --global user.email "auto-update-bot@users.noreply.github.com"
-        git remote set-url origin https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+    if git diff --cached --quiet; then  
+      echo "No changes to fancode-new.m3u to commit."  
+    else  
+      git fetch origin main  
+      git reset --soft origin/main  
+      git commit -m "Auto-generated: Fancode M3U playlist from JSON data"  
+      git push origin main  
+    fi  
+  env:  
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Commit and push if changed
-      run: |
-        git add bdix.m3u
-        if git diff --cached --quiet; then
-          echo "No changes in bdix.m3u"
-        else
-          git commit -m "Auto-generated: BDIX M3U playlist from bdixtv24.xyz"
-          git push origin main
-        fi
