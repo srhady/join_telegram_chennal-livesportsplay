@@ -27,12 +27,14 @@ jobs:
       - name: Run diagnostic scraper
         run: python scraper.py
 
-      # --- নতুন ধাপ: ফাইল আপলোড করা ---
+      # --- মূল পরিবর্তন: ভার্সন v3 থেকে v4 করা হয়েছে ---
       - name: Upload diagnostic artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: diagnostic-files
           path: |
             screenshot.png
             page_source.html
+
+
 
