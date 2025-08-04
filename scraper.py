@@ -1,55 +1,134 @@
 # প্রয়োজনীয় লাইব্রেরি ইম্পোর্ট করা হচ্ছে
 import time
+import datetime
+from urllib.parse import urljoin, quote
+
+# Selenium এবং Stealth লাইব্রেরি ইম্পোর্ট করা হচ্ছে
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium_stealth import stealth
 
 # টার্গেট ওয়েবসাইটের URL
 WEBSITE_URL = "https://bingsport.watch/" 
 
-def run_diagnostics():
-    """
-    এই ফাংশনটি ওয়েবসাইট ভিজিট করে একটি স্ক্রিনশট এবং HTML সোর্স কোড সেভ করে।
-    """
-    print("Setting up Selenium Chrome driver for diagnostics...")
-    chrome_options = Options()
-    chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--no-sandbox")
-    chrome_options.add_argument("--disable-dev-shm-usage")
-    # একটি সাধারণ ব্রাউজারের মতো উইন্ডো সাইজ দেওয়া হচ্ছে
-    chrome_options.add_argument("--window-size=1920,1080") 
-    chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36")
+# প্লেলিস্ট ফাইলের নাম
+PLAYLIST_FILE = "playlist.m3u"
 
-    driver = webdriver.Chrome(options=chrome_options)
+# হেডারগুলো এখানে সংজ্ঞায়িত করা হয়েছে
+USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36'
+REFERER = WEBSITE_URL
+
+def get_stream_links():
+    """
+    এই ফাংশনটি Selenium Stealth ব্যবহার করে bingsport.watch থেকে স্ট্রিম লিঙ্ক সংগ্রহ করে।
+    এটি বট ডিটেকশন এড়ানোর জন্য ডিজাইন করা হয়েছে।
+    """
+    stream_links = set()
+    
+    # --- Selenium সেটআপ ---
+    print("Setting up Stealth-enabled Chrome driver...")
+    options = Options()
+    options.add_argument("--headless")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--window-size=1920,1080")
+    options.add_experimental_option("excludeSwitches", ["enable-automation"])
+    options.add_experimental_option('useAutomationExtension', False)
+
+    driver = webdriver.Chrome(options=options)
+
+    # --- Stealth মোড চালু করা হচ্ছে ---
+    stealth(driver,
+            languages=["en-US", "en"],
+            vendor="Google Inc.",
+            platform="Win32",
+            webgl_vendor="Intel Inc.",
+            renderer="Intel Iris OpenGL Engine",
+            fix_hairline=True,
+            )
     
     try:
-        print(f"Loading page: {WEBSITE_URL}")
+        print(f"Loading homepage with Stealth: {WEBSITE_URL}")
         driver.get(WEBSITE_URL)
         
-        # পেজটি পুরোপুরি লোড হওয়ার জন্য ৬০ সেকেন্ড অপেক্ষা করা হচ্ছে
-        print("Waiting for 60 seconds for the page to load completely...")
-        time.sleep(60)
+        wait = WebDriverWait(driver, 60)
+        # XPath ব্যবহার করে লাইভ লেখা যুক্ত লিঙ্কের জন্য অপেক্ষা
+        wait.until(EC.presence_of_element_located((By.XPATH, "//a[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'live')]")))
+        print("Homepage loaded and live matches detected.")
+        time.sleep(5)
         
-        # --- ফাইল সেভ করা হচ্ছে ---
-        screenshot_file = "screenshot.png"
-        source_file = "page_source.html"
+        from bs4 import BeautifulSoup
+        soup = BeautifulSoup(driver.page_source, 'html.parser')
+        
+        match_links = set()
+        for link_tag in soup.find_all('a', href=True):
+            href = link_tag.get('href')
+            if href and 'live-streaming' in href:
+                 match_links.add(urljoin(WEBSITE_URL, href))
 
-        print(f"Saving screenshot to {screenshot_file}...")
-        driver.save_screenshot(screenshot_file)
-        
-        print(f"Saving page source to {source_file}...")
-        with open(source_file, "w", encoding="utf-8") as f:
-            f.write(driver.page_source)
+        if not match_links:
+            print("Could not find any links with '/live-streaming/' pattern.")
+            return []
             
-        print("Diagnostic files created successfully.")
+        print(f"Found {len(match_links)} match pages. Fetching stream iframes...")
+
+        for match_link in match_links:
+            try:
+                print(f"-> Visiting match page: {match_link}")
+                driver.get(match_link)
+                wait.until(EC.presence_of_element_located((By.TAG_NAME, "iframe")))
+                iframe = driver.find_element(By.TAG_NAME, "iframe")
+                src = iframe.get_attribute('src')
+                if src and 'googletagmanager' not in src:
+                    stream_links.add(src)
+                    print(f"   Found VALID stream link: {src}")
+            except Exception as e:
+                print(f"   Could not process match page {match_link}. Error: {e}")
 
     except Exception as e:
-        print(f"An error occurred during diagnostics: {e}")
+        print(f"An error occurred during the main process: {e}")
 
     finally:
         print("Closing the driver.")
         driver.quit()
+        
+    return list(stream_links)
+
+def create_playlist(links):
+    """
+    এই ফাংশনটি লিঙ্কগুলো ব্যবহার করে একটি .m3u প্লেলিস্ট ফাইল তৈরি করে।
+    """
+    if not links:
+        with open(PLAYLIST_FILE, "w", encoding="utf-8") as f:
+            f.write("#EXTM3U\n# No live streams found at the moment.\n")
+        print("Playlist updated. No live streams found.")
+        return
+
+    with open(PLAYLIST_FILE, "w", encoding="utf-8") as f:
+        f.write("#EXTM3U\n")
+        f.write(f"# Autogenerated on: {datetime.datetime.now().isoformat()}\n")
+        f.write(f"# Total Streams: {len(links)}\n\n")
+        
+        for i, link in enumerate(links):
+            try:
+                stream_name = link.split('/')[2].replace('www.', '')
+            except:
+                stream_name = f"Stream {i+1}"
+            
+            encoded_user_agent = quote(USER_AGENT)
+            formatted_link = f"{link}|User-Agent={encoded_user_agent}&Referer={REFERER}"
+            
+            f.write(f"#EXTINF:-1 tvg-id=\"\" tvg-name=\"{stream_name}\" group-title=\"Live\",{stream_name}\n")
+            f.write(f"{formatted_link}\n")
+    
+    print(f"Playlist '{PLAYLIST_FILE}' was updated successfully with {len(links)} streams.")
 
 if __name__ == "__main__":
-    print("Starting diagnostic script...")
-    run_diagnostics()
-    print("Diagnostic script finished.")
+    print("Starting final attempt with Selenium Stealth...")
+    final_links = get_stream_links()
+    create_playlist(final_links)
+    print("Scraping process finished.")
+
