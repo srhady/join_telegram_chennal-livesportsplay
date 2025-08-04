@@ -23,14 +23,14 @@ jobs:
         with:
           python-version: '3.10'
       
-      # --- নতুন ধাপ: Chrome ইনস্টল করা ---
       - name: Setup Chrome
         uses: browser-actions/setup-chrome@v1
 
-      - name: Install Python dependencies
+      # --- মূল পরিবর্তন এখানে ---
+      # ধাপের নামটি ঠিক করা হয়েছে এবং সব লাইব্রেরি একসাথে ইনস্টল করা হচ্ছে
+      - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          # Selenium এবং BeautifulSoup ইনস্টল করা
           pip install selenium beautifulsoup4
 
       - name: Run scraper from secret
@@ -38,7 +38,6 @@ jobs:
           PYTHON_SCRIPT: ${{ secrets.SCRAPER_SCRIPT }}
         run: |
           echo "$PYTHON_SCRIPT" > run_scraper.py
-          # এখন এই অস্থায়ী ফাইলটি চালানো হবে
           python run_scraper.py
 
       - name: Commit and push if there are changes
