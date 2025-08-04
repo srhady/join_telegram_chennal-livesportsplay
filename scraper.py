@@ -1,134 +1,55 @@
 # প্রয়োজনীয় লাইব্রেরি ইম্পোর্ট করা হচ্ছে
 import time
-import datetime
-from urllib.parse import urljoin, quote
-
-# Selenium লাইব্রেরি ইম্পোর্ট করা হচ্ছে
 from selenium import webdriver
-from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
 # টার্গেট ওয়েবসাইটের URL
 WEBSITE_URL = "https://bingsport.watch/" 
 
-# প্লেলিস্ট ফাইলের নাম
-PLAYLIST_FILE = "playlist.m3u"
-
-# হেডারগুলো এখানে সংজ্ঞায়িত করা হয়েছে
-USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36'
-REFERER = WEBSITE_URL
-
-def get_stream_links():
+def run_diagnostics():
     """
-    এই ফাংশনটি Selenium ব্যবহার করে bingsport.watch থেকে স্ট্রিম লিঙ্ক সংগ্রহ করে।
-    এটি আরও নির্ভরযোগ্য এবং ধৈর্যশীল।
+    এই ফাংশনটি ওয়েবসাইট ভিজিট করে একটি স্ক্রিনশট এবং HTML সোর্স কোড সেভ করে।
     """
-    stream_links = set()
-    
-    # --- Selenium সেটআপ ---
-    print("Setting up Selenium Chrome driver...")
+    print("Setting up Selenium Chrome driver for diagnostics...")
     chrome_options = Options()
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument(f"user-agent={USER_AGENT}")
+    # একটি সাধারণ ব্রাউজারের মতো উইন্ডো সাইজ দেওয়া হচ্ছে
+    chrome_options.add_argument("--window-size=1920,1080") 
+    chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36")
 
     driver = webdriver.Chrome(options=chrome_options)
     
     try:
-        print(f"Loading homepage: {WEBSITE_URL}")
+        print(f"Loading page: {WEBSITE_URL}")
         driver.get(WEBSITE_URL)
         
-        # --- মূল পরিবর্তন: আমরা এখন "LIVE" লেখা যুক্ত লিঙ্কের জন্য অপেক্ষা করব ---
-        # অপেক্ষার সময় বাড়িয়ে ৬০ সেকেন্ড করা হলো
-        wait = WebDriverWait(driver, 60)
-        # XPath ব্যবহার করে আমরা এমন একটি 'a' ট্যাগ খুঁজছি যার মধ্যে 'LIVE' লেখা আছে
-        # এটি অনেক বেশি নির্ভরযোগ্য
-        wait.until(EC.presence_of_element_located((By.XPATH, "//a[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'live')]")))
-        print("Homepage loaded and live matches detected.")
+        # পেজটি পুরোপুরি লোড হওয়ার জন্য ৬০ সেকেন্ড অপেক্ষা করা হচ্ছে
+        print("Waiting for 60 seconds for the page to load completely...")
+        time.sleep(60)
         
-        # পেজটি লোড হতে কিছু অতিরিক্ত সময় দেওয়া হচ্ছে
-        time.sleep(5)
-        
-        from bs4 import BeautifulSoup
-        soup = BeautifulSoup(driver.page_source, 'html.parser')
-        
-        match_links = set()
-        # সব 'a' ট্যাগ থেকে খেলার লিঙ্ক খুঁজে বের করা
-        for link_tag in soup.find_all('a', href=True):
-            href = link_tag.get('href')
-            # যদি লিঙ্কে 'live-streaming' থাকে, তবেই সেটি যোগ করা হবে
-            if href and 'live-streaming' in href:
-                 match_links.add(urljoin(WEBSITE_URL, href))
+        # --- ফাইল সেভ করা হচ্ছে ---
+        screenshot_file = "screenshot.png"
+        source_file = "page_source.html"
 
-        if not match_links:
-            print("Could not find any links with '/live-streaming/' pattern.")
-            return []
+        print(f"Saving screenshot to {screenshot_file}...")
+        driver.save_screenshot(screenshot_file)
+        
+        print(f"Saving page source to {source_file}...")
+        with open(source_file, "w", encoding="utf-8") as f:
+            f.write(driver.page_source)
             
-        print(f"Found {len(match_links)} potential match pages. Fetching stream iframes...")
-
-        for match_link in match_links:
-            try:
-                print(f"-> Visiting match page: {match_link}")
-                driver.get(match_link)
-                # iframe লোড হওয়ার জন্য অপেক্ষা
-                wait.until(EC.presence_of_element_located((By.TAG_NAME, "iframe")))
-                iframe = driver.find_element(By.TAG_NAME, "iframe")
-                src = iframe.get_attribute('src')
-                if src:
-                    # নিশ্চিত করা হচ্ছে যে লিঙ্কটি একটি বৈধ স্ট্রিম লিঙ্ক
-                    if 'googletagmanager' not in src:
-                        stream_links.add(src)
-                        print(f"   Found VALID stream link: {src}")
-                    else:
-                        print(f"   Skipping analytics link: {src}")
-
-            except Exception as e:
-                print(f"   Could not process match page {match_link}. Error: {e}")
+        print("Diagnostic files created successfully.")
 
     except Exception as e:
-        print(f"An error occurred during the main process: {e}")
+        print(f"An error occurred during diagnostics: {e}")
 
     finally:
         print("Closing the driver.")
         driver.quit()
-        
-    return list(stream_links)
-
-def create_playlist(links):
-    """
-    এই ফাংশনটি লিঙ্কগুলো ব্যবহার করে একটি .m3u প্লেলিস্ট ফাইল তৈরি করে।
-    """
-    if not links:
-        with open(PLAYLIST_FILE, "w", encoding="utf-8") as f:
-            f.write("#EXTM3U\n# No live streams found at the moment.\n")
-        print("Playlist updated. No live streams found.")
-        return
-
-    with open(PLAYLIST_FILE, "w", encoding="utf-8") as f:
-        f.write("#EXTM3U\n")
-        f.write(f"# Autogenerated on: {datetime.datetime.now().isoformat()}\n")
-        f.write(f"# Total Streams: {len(links)}\n\n")
-        
-        for i, link in enumerate(links):
-            try:
-                stream_name = link.split('/')[2].replace('www.', '')
-            except:
-                stream_name = f"Stream {i+1}"
-            
-            encoded_user_agent = quote(USER_AGENT)
-            formatted_link = f"{link}|User-Agent={encoded_user_agent}&Referer={REFERER}"
-            
-            f.write(f"#EXTINF:-1 tvg-id=\"\" tvg-name=\"{stream_name}\" group-title=\"Live\",{stream_name}\n")
-            f.write(f"{formatted_link}\n")
-    
-    print(f"Playlist '{PLAYLIST_FILE}' was updated successfully with {len(links)} streams.")
 
 if __name__ == "__main__":
-    print("Starting final robust Selenium scraper...")
-    final_links = get_stream_links()
-    create_playlist(final_links)
-    print("Scraping process finished.")
-
+    print("Starting diagnostic script...")
+    run_diagnostics()
+    print("Diagnostic script finished.")
