@@ -1,9 +1,9 @@
 # প্রয়োজনীয় লাইব্রেরি ইম্পোর্ট করা হচ্ছে
-import os
 import requests
 from bs4 import BeautifulSoup
 import datetime
 from urllib.parse import urljoin, quote
+import json
 
 # টার্গেট ওয়েবসাইটের URL
 WEBSITE_URL = "https://bingsport.watch/" 
@@ -18,68 +18,65 @@ REFERER = WEBSITE_URL
 def get_stream_links():
     """
     এই ফাংশনটি bingsport.watch থেকে স্ট্রিম লিঙ্ক সংগ্রহ করে।
-    এটি এখন সরাসরি লাইভ ম্যাচের তালিকা থেকে লিঙ্ক খুঁজে বের করে।
+    এটি ওয়েবসাইটের内部 API ব্যবহার করে সরাসরি লাইভ ম্যাচের তালিকা সংগ্রহ করে।
     """
-    match_links = set()
     stream_links = set()
+    
+    # --- চূড়ান্ত পদ্ধতি: ওয়েবসাইটের API ব্যবহার করা ---
+    # এই ওয়েবসাইটটি একটি API এন্ডপয়েন্ট থেকে লাইভ ম্যাচের ডেটা লোড করে।
+    # আমরা সরাসরি সেই API-তে অনুরোধ পাঠাব।
+    api_url = "https://bingsport.watch/api/matches/live"
     
     headers = {
         'User-Agent': USER_AGENT,
-        'Referer': REFERER
+        'Referer': WEBSITE_URL,
+        'X-Requested-With': 'XMLHttpRequest' # এটি একটি AJAX অনুরোধ হিসেবে চিহ্নিত করে
     }
 
     try:
-        print("Fetching homepage to find live matches...")
-        response = requests.get(WEBSITE_URL, headers=headers, timeout=30)
+        print(f"Fetching live match data from API: {api_url}")
+        response = requests.get(api_url, headers=headers, timeout=30)
         response.raise_for_status()
-        soup = BeautifulSoup(response.content, "html.parser")
-
-        # --- নতুন এবং উন্নত পদ্ধতি ---
-        # আমরা "Live Matches" সেকশনের মধ্যে থাকা সব লিঙ্ক খুঁজব।
-        # ওয়েবসাইটের গঠন অনুযায়ী, লাইভ ম্যাচগুলো 'live-matches' id যুক্ত div-এর মধ্যে থাকতে পারে।
-        # আমরা একটি সাধারণ পদ্ধতি ব্যবহার করব: যে 'a' ট্যাগের মধ্যে 'live' লেখা আছে, সেগুলো খুঁজব।
         
-        # প্রথমে সব 'a' ট্যাগ খুঁজে বের করা হচ্ছে
-        all_links = soup.find_all('a', href=True)
+        # API থেকে পাওয়া ডেটা JSON ফরম্যাটে থাকে
+        data = response.json()
         
-        for link in all_links:
-            # যদি লিঙ্কের ভেতরের লেখায় 'live' (case-insensitive) থাকে
-            if 'live' in link.text.lower():
-                # এবং যদি এটি একটি খেলার লিঙ্ক হয় (সাধারণত দুটি দলের নাম থাকে)
-                if 'vs' in link.text.lower() or 'fc' in link.text.lower() or 'tour' in link.text.lower():
-                    href = link['href']
-                    # নিশ্চিত করা হচ্ছে যে এটি একটি বৈধ লিঙ্ক
-                    if href and href != '#':
-                        full_match_link = urljoin(WEBSITE_URL, href)
-                        match_links.add(full_match_link)
-
-        if not match_links:
-            print("No live match links found on the homepage using the new method.")
+        # JSON ডেটা থেকে ম্যাচের লিঙ্কগুলো বের করা হচ্ছে
+        if not data.get('matches'):
+            print("API response does not contain 'matches' key or it's empty.")
             return []
 
-        print(f"Found {len(match_links)} live match pages. Now fetching stream links...")
-
-        for match_link in match_links:
-            try:
-                print(f"-> Visiting match page: {match_link}")
-                match_page_response = requests.get(match_link, headers=headers, timeout=30)
-                match_page_soup = BeautifulSoup(match_page_response.content, "html.parser")
+        for match in data['matches']:
+            # প্রতিটি ম্যাচের জন্য একটি URL থাকে
+            match_slug = match.get('url')
+            if match_slug:
+                match_link = urljoin(WEBSITE_URL, match_slug)
+                print(f"-> Found match page from API: {match_link}")
                 
-                iframe = match_page_soup.find('iframe')
-                if iframe and iframe.get('src'):
-                    stream_src = iframe['src']
-                    full_stream_link = urljoin(WEBSITE_URL, stream_src)
-                    stream_links.add(full_stream_link)
-                    print(f"   Found stream link: {full_stream_link}")
-            except Exception as e:
-                print(f"   Could not process match page {match_link}. Error: {e}")
-                continue
+                # এখন আমরা ম্যাচের পেইজে গিয়ে iframe লিঙ্ক খুঁজব
+                try:
+                    match_page_response = requests.get(match_link, headers=headers, timeout=30)
+                    match_page_soup = BeautifulSoup(match_page_response.content, "html.parser")
+                    
+                    iframe = match_page_soup.find('iframe')
+                    if iframe and iframe.get('src'):
+                        stream_src = iframe['src']
+                        # কিছু ক্ষেত্রে src লিঙ্ক '//' দিয়ে শুরু হয়
+                        if stream_src.startswith('//'):
+                            stream_src = 'https:' + stream_src
+                            
+                        full_stream_link = urljoin(WEBSITE_URL, stream_src)
+                        stream_links.add(full_stream_link)
+                        print(f"   Found stream link: {full_stream_link}")
+                except Exception as e:
+                    print(f"   Could not process match page {match_link}. Error: {e}")
+                    continue
         
         print(f"\nTotal unique stream links found: {len(stream_links)}")
         return list(stream_links)
 
     except Exception as e:
-        print(f"An error occurred during scraping: {e}")
+        print(f"An error occurred during API scraping: {e}")
         return []
 
 def create_playlist(links):
@@ -111,7 +108,7 @@ def create_playlist(links):
     print(f"Playlist '{PLAYLIST_FILE}' was updated successfully with {len(links)} streams.")
 
 if __name__ == "__main__":
-    print("Starting updated scraper...")
+    print("Starting final API-based scraper...")
     final_links = get_stream_links()
     create_playlist(final_links)
     print("Scraping process finished.")
