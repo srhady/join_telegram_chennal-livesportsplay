@@ -23,17 +23,15 @@ REFERER = WEBSITE_URL
 def get_stream_links():
     """
     এই ফাংশনটি Selenium ব্যবহার করে bingsport.watch থেকে স্ট্রিম লিঙ্ক সংগ্রহ করে।
-    এটি জাভাস্ক্রিপ্ট রেন্ডার হওয়ার পর লিঙ্ক খুঁজে বের করে।
     """
     stream_links = set()
     
-    # --- Selenium সেটআপ ---
     print("Setting up Selenium Chrome driver...")
     chrome_options = Options()
-    chrome_options.add_argument("--headless")  # ব্রাউজার না দেখিয়ে ব্যাকগ্রাউন্ডে চলবে
+    chrome_options.add_argument("--headless")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument(f"user-agent={USER_AGENT}") # ইউজার এজেন্ট সেট করা
+    chrome_options.add_argument(f"user-agent={USER_AGENT}")
 
     driver = webdriver.Chrome(options=chrome_options)
     
@@ -41,20 +39,13 @@ def get_stream_links():
         print(f"Loading homepage: {WEBSITE_URL}")
         driver.get(WEBSITE_URL)
         
-        # পেজটি পুরোপুরি লোড হওয়ার জন্য অপেক্ষা করা হচ্ছে (সর্বোচ্চ ৩০ সেকেন্ড)
-        # আমরা লাইভ ম্যাচের কন্টেইনারটি লোড হওয়ার জন্য অপেক্ষা করব
         wait = WebDriverWait(driver, 30)
-        # ওয়েবসাইটের গঠন অনুযায়ী, লাইভ ম্যাচগুলো 'match-list-content' ক্লাসের মধ্যে থাকে
         wait.until(EC.presence_of_element_located((By.CLASS_NAME, "match-list-content")))
         print("Homepage loaded successfully.")
         
-        # এখন পেজের সোর্স থেকে লিঙ্ক খোঁজা হবে
-        page_source = driver.page_source
-        
         from bs4 import BeautifulSoup
-        soup = BeautifulSoup(page_source, 'html.parser')
+        soup = BeautifulSoup(driver.page_source, 'html.parser')
         
-        # লাইভ ম্যাচের লিঙ্কগুলো খুঁজে বের করা
         live_matches_container = soup.find('div', class_='match-list-content')
         if not live_matches_container:
             print("Could not find the live matches container.")
@@ -76,7 +67,6 @@ def get_stream_links():
             try:
                 print(f"-> Visiting match page: {match_link}")
                 driver.get(match_link)
-                # iframe লোড হওয়ার জন্য অপেক্ষা
                 wait.until(EC.presence_of_element_located((By.TAG_NAME, "iframe")))
                 iframe = driver.find_element(By.TAG_NAME, "iframe")
                 src = iframe.get_attribute('src')
