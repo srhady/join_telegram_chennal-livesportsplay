@@ -23,17 +23,17 @@ REFERER = WEBSITE_URL
 def get_stream_links():
     """
     এই ফাংশনটি Selenium ব্যবহার করে bingsport.watch থেকে স্ট্রিম লিঙ্ক সংগ্রহ করে।
-    এটি জাভাস্ক্রিপ্ট রেন্ডার হওয়ার পর লিঙ্ক খুঁজে বের করে।
+    এটি আরও নির্ভরযোগ্য এবং ধৈর্যশীল।
     """
     stream_links = set()
     
     # --- Selenium সেটআপ ---
     print("Setting up Selenium Chrome driver...")
     chrome_options = Options()
-    chrome_options.add_argument("--headless")  # ব্রাউজার না দেখিয়ে ব্যাকগ্রাউন্ডে চলবে
+    chrome_options.add_argument("--headless")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument(f"user-agent={USER_AGENT}") # ইউজার এজেন্ট সেট করা
+    chrome_options.add_argument(f"user-agent={USER_AGENT}")
 
     driver = webdriver.Chrome(options=chrome_options)
     
@@ -41,34 +41,33 @@ def get_stream_links():
         print(f"Loading homepage: {WEBSITE_URL}")
         driver.get(WEBSITE_URL)
         
-        # পেজটি পুরোপুরি লোড হওয়ার জন্য অপেক্ষা করা হচ্ছে (সর্বোচ্চ ৩০ সেকেন্ড)
-        # আমরা লাইভ ম্যাচের কন্টেইনারটি লোড হওয়ার জন্য অপেক্ষা করব
-        wait = WebDriverWait(driver, 30)
-        # ওয়েবসাইটের গঠন অনুযায়ী, লাইভ ম্যাচগুলো 'match-list-content' ক্লাসের মধ্যে থাকে
-        wait.until(EC.presence_of_element_located((By.CLASS_NAME, "match-list-content")))
-        print("Homepage loaded successfully.")
+        # --- মূল পরিবর্তন: আমরা এখন "LIVE" লেখা যুক্ত লিঙ্কের জন্য অপেক্ষা করব ---
+        # অপেক্ষার সময় বাড়িয়ে ৬০ সেকেন্ড করা হলো
+        wait = WebDriverWait(driver, 60)
+        # XPath ব্যবহার করে আমরা এমন একটি 'a' ট্যাগ খুঁজছি যার মধ্যে 'LIVE' লেখা আছে
+        # এটি অনেক বেশি নির্ভরযোগ্য
+        wait.until(EC.presence_of_element_located((By.XPATH, "//a[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'live')]")))
+        print("Homepage loaded and live matches detected.")
         
-        # এখন পেজের সোর্স থেকে লিঙ্ক খোঁজা হবে
+        # পেজটি লোড হতে কিছু অতিরিক্ত সময় দেওয়া হচ্ছে
+        time.sleep(5)
+        
         from bs4 import BeautifulSoup
         soup = BeautifulSoup(driver.page_source, 'html.parser')
         
-        # লাইভ ম্যাচের লিঙ্কগুলো খুঁজে বের করা
-        live_matches_container = soup.find('div', class_='match-list-content')
-        if not live_matches_container:
-            print("Could not find the live matches container.")
-            return []
-
         match_links = set()
-        for link_tag in live_matches_container.find_all('a', href=True):
+        # সব 'a' ট্যাগ থেকে খেলার লিঙ্ক খুঁজে বের করা
+        for link_tag in soup.find_all('a', href=True):
             href = link_tag.get('href')
+            # যদি লিঙ্কে 'live-streaming' থাকে, তবেই সেটি যোগ করা হবে
             if href and 'live-streaming' in href:
                  match_links.add(urljoin(WEBSITE_URL, href))
 
         if not match_links:
-            print("No live match links found inside the container.")
+            print("Could not find any links with '/live-streaming/' pattern.")
             return []
             
-        print(f"Found {len(match_links)} match pages. Fetching stream iframes...")
+        print(f"Found {len(match_links)} potential match pages. Fetching stream iframes...")
 
         for match_link in match_links:
             try:
@@ -79,10 +78,18 @@ def get_stream_links():
                 iframe = driver.find_element(By.TAG_NAME, "iframe")
                 src = iframe.get_attribute('src')
                 if src:
-                    stream_links.add(src)
-                    print(f"   Found stream link: {src}")
+                    # নিশ্চিত করা হচ্ছে যে লিঙ্কটি একটি বৈধ স্ট্রিম লিঙ্ক
+                    if 'googletagmanager' not in src:
+                        stream_links.add(src)
+                        print(f"   Found VALID stream link: {src}")
+                    else:
+                        print(f"   Skipping analytics link: {src}")
+
             except Exception as e:
                 print(f"   Could not process match page {match_link}. Error: {e}")
+
+    except Exception as e:
+        print(f"An error occurred during the main process: {e}")
 
     finally:
         print("Closing the driver.")
@@ -97,6 +104,7 @@ def create_playlist(links):
     if not links:
         with open(PLAYLIST_FILE, "w", encoding="utf-8") as f:
             f.write("#EXTM3U\n# No live streams found at the moment.\n")
+        print("Playlist updated. No live streams found.")
         return
 
     with open(PLAYLIST_FILE, "w", encoding="utf-8") as f:
@@ -119,7 +127,7 @@ def create_playlist(links):
     print(f"Playlist '{PLAYLIST_FILE}' was updated successfully with {len(links)} streams.")
 
 if __name__ == "__main__":
-    print("Starting Selenium-based scraper...")
+    print("Starting final robust Selenium scraper...")
     final_links = get_stream_links()
     create_playlist(final_links)
     print("Scraping process finished.")
