@@ -5,7 +5,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: '*/10 * * * *'
+    - cron: '*/15 * * * *'
   workflow_dispatch:
 
 jobs:
@@ -46,4 +46,3 @@ jobs:
           else
             echo "No changes to commit."
           fi
-
