@@ -1,9 +1,14 @@
 # প্রয়োজনীয় লাইব্রেরি ইম্পোর্ট করা হচ্ছে
-import requests
-from bs4 import BeautifulSoup
+import time
 import datetime
 from urllib.parse import urljoin, quote
-import json
+
+# Selenium লাইব্রেরি ইম্পোর্ট করা হচ্ছে
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 # টার্গেট ওয়েবসাইটের URL
 WEBSITE_URL = "https://bingsport.watch/" 
@@ -17,67 +22,75 @@ REFERER = WEBSITE_URL
 
 def get_stream_links():
     """
-    এই ফাংশনটি bingsport.watch থেকে স্ট্রিম লিঙ্ক সংগ্রহ করে।
-    এটি ওয়েবসাইটের内部 API ব্যবহার করে সরাসরি লাইভ ম্যাচের তালিকা সংগ্রহ করে।
+    এই ফাংশনটি Selenium ব্যবহার করে bingsport.watch থেকে স্ট্রিম লিঙ্ক সংগ্রহ করে।
+    এটি জাভাস্ক্রিপ্ট রেন্ডার হওয়ার পর লিঙ্ক খুঁজে বের করে।
     """
     stream_links = set()
     
-    # --- চূড়ান্ত পদ্ধতি: ওয়েবসাইটের API ব্যবহার করা ---
-    # এই ওয়েবসাইটটি একটি API এন্ডপয়েন্ট থেকে লাইভ ম্যাচের ডেটা লোড করে।
-    # আমরা সরাসরি সেই API-তে অনুরোধ পাঠাব।
-    api_url = "https://bingsport.watch/api/matches/live"
-    
-    headers = {
-        'User-Agent': USER_AGENT,
-        'Referer': WEBSITE_URL,
-        'X-Requested-With': 'XMLHttpRequest' # এটি একটি AJAX অনুরোধ হিসেবে চিহ্নিত করে
-    }
+    # --- Selenium সেটআপ ---
+    print("Setting up Selenium Chrome driver...")
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")  # ব্রাউজার না দেখিয়ে ব্যাকগ্রাউন্ডে চলবে
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument(f"user-agent={USER_AGENT}") # ইউজার এজেন্ট সেট করা
 
+    driver = webdriver.Chrome(options=chrome_options)
+    
     try:
-        print(f"Fetching live match data from API: {api_url}")
-        response = requests.get(api_url, headers=headers, timeout=30)
-        response.raise_for_status()
+        print(f"Loading homepage: {WEBSITE_URL}")
+        driver.get(WEBSITE_URL)
         
-        # API থেকে পাওয়া ডেটা JSON ফরম্যাটে থাকে
-        data = response.json()
+        # পেজটি পুরোপুরি লোড হওয়ার জন্য অপেক্ষা করা হচ্ছে (সর্বোচ্চ ৩০ সেকেন্ড)
+        # আমরা লাইভ ম্যাচের কন্টেইনারটি লোড হওয়ার জন্য অপেক্ষা করব
+        wait = WebDriverWait(driver, 30)
+        # ওয়েবসাইটের গঠন অনুযায়ী, লাইভ ম্যাচগুলো 'match-list-content' ক্লাসের মধ্যে থাকে
+        wait.until(EC.presence_of_element_located((By.CLASS_NAME, "match-list-content")))
+        print("Homepage loaded successfully.")
         
-        # JSON ডেটা থেকে ম্যাচের লিঙ্কগুলো বের করা হচ্ছে
-        if not data.get('matches'):
-            print("API response does not contain 'matches' key or it's empty.")
+        # এখন পেজের সোর্স থেকে লিঙ্ক খোঁজা হবে
+        page_source = driver.page_source
+        
+        from bs4 import BeautifulSoup
+        soup = BeautifulSoup(page_source, 'html.parser')
+        
+        # লাইভ ম্যাচের লিঙ্কগুলো খুঁজে বের করা
+        live_matches_container = soup.find('div', class_='match-list-content')
+        if not live_matches_container:
+            print("Could not find the live matches container.")
             return []
 
-        for match in data['matches']:
-            # প্রতিটি ম্যাচের জন্য একটি URL থাকে
-            match_slug = match.get('url')
-            if match_slug:
-                match_link = urljoin(WEBSITE_URL, match_slug)
-                print(f"-> Found match page from API: {match_link}")
-                
-                # এখন আমরা ম্যাচের পেইজে গিয়ে iframe লিঙ্ক খুঁজব
-                try:
-                    match_page_response = requests.get(match_link, headers=headers, timeout=30)
-                    match_page_soup = BeautifulSoup(match_page_response.content, "html.parser")
-                    
-                    iframe = match_page_soup.find('iframe')
-                    if iframe and iframe.get('src'):
-                        stream_src = iframe['src']
-                        # কিছু ক্ষেত্রে src লিঙ্ক '//' দিয়ে শুরু হয়
-                        if stream_src.startswith('//'):
-                            stream_src = 'https:' + stream_src
-                            
-                        full_stream_link = urljoin(WEBSITE_URL, stream_src)
-                        stream_links.add(full_stream_link)
-                        print(f"   Found stream link: {full_stream_link}")
-                except Exception as e:
-                    print(f"   Could not process match page {match_link}. Error: {e}")
-                    continue
-        
-        print(f"\nTotal unique stream links found: {len(stream_links)}")
-        return list(stream_links)
+        match_links = set()
+        for link_tag in live_matches_container.find_all('a', href=True):
+            href = link_tag.get('href')
+            if href and 'live-streaming' in href:
+                 match_links.add(urljoin(WEBSITE_URL, href))
 
-    except Exception as e:
-        print(f"An error occurred during API scraping: {e}")
-        return []
+        if not match_links:
+            print("No live match links found inside the container.")
+            return []
+            
+        print(f"Found {len(match_links)} match pages. Fetching stream iframes...")
+
+        for match_link in match_links:
+            try:
+                print(f"-> Visiting match page: {match_link}")
+                driver.get(match_link)
+                # iframe লোড হওয়ার জন্য অপেক্ষা
+                wait.until(EC.presence_of_element_located((By.TAG_NAME, "iframe")))
+                iframe = driver.find_element(By.TAG_NAME, "iframe")
+                src = iframe.get_attribute('src')
+                if src:
+                    stream_links.add(src)
+                    print(f"   Found stream link: {src}")
+            except Exception as e:
+                print(f"   Could not process match page {match_link}. Error: {e}")
+
+    finally:
+        print("Closing the driver.")
+        driver.quit()
+        
+    return list(stream_links)
 
 def create_playlist(links):
     """
@@ -108,7 +121,7 @@ def create_playlist(links):
     print(f"Playlist '{PLAYLIST_FILE}' was updated successfully with {len(links)} streams.")
 
 if __name__ == "__main__":
-    print("Starting final API-based scraper...")
+    print("Starting Selenium-based scraper...")
     final_links = get_stream_links()
     create_playlist(final_links)
     print("Scraping process finished.")
