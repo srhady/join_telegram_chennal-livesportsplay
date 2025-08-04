@@ -1,8 +1,9 @@
 # প্রয়োজনীয় লাইব্রেরি ইম্পোর্ট করা হচ্ছে
+import os
 import requests
 from bs4 import BeautifulSoup
 import datetime
-from urllib.parse import urljoin
+from urllib.parse import urljoin, quote
 
 # টার্গেট ওয়েবসাইটের URL
 WEBSITE_URL = "https://bingsport.watch/" 
@@ -10,53 +11,63 @@ WEBSITE_URL = "https://bingsport.watch/"
 # প্লেলিস্ট ফাইলের নাম
 PLAYLIST_FILE = "playlist.m3u"
 
+# হেডারগুলো এখানে সংজ্ঞায়িত করা হয়েছে
+USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36'
+REFERER = WEBSITE_URL
+
 def get_stream_links():
     """
     এই ফাংশনটি bingsport.watch থেকে স্ট্রিম লিঙ্ক সংগ্রহ করে।
-    ধাপ ১: হোমপেজ থেকে প্রতিটি লাইভ ম্যাচের লিঙ্ক খুঁজে বের করে।
-    ধাপ ২: প্রতিটি ম্যাচের পেইজে গিয়ে আসল স্ট্রিম লিঙ্ক (iframe src) সংগ্রহ করে।
+    এটি এখন সরাসরি লাইভ ম্যাচের তালিকা থেকে লিঙ্ক খুঁজে বের করে।
     """
     match_links = set()
     stream_links = set()
     
     headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-        'Referer': WEBSITE_URL
+        'User-Agent': USER_AGENT,
+        'Referer': REFERER
     }
 
     try:
-        # --- ধাপ ১: হোমপেজ থেকে সব লাইভ ম্যাচের লিঙ্ক সংগ্রহ করা ---
         print("Fetching homepage to find live matches...")
-        response = requests.get(WEBSITE_URL, headers=headers, timeout=20)
+        response = requests.get(WEBSITE_URL, headers=headers, timeout=30)
         response.raise_for_status()
         soup = BeautifulSoup(response.content, "html.parser")
 
-        # সাধারণত লাইভ ম্যাচগুলো একটি নির্দিষ্ট class যুক্ত div এর মধ্যে থাকে
-        for match_item in soup.find_all('a', href=True):
-            href = match_item['href']
-            # আমরা '/live-streaming/' প্যাটার্নের লিঙ্ক খুঁজছি
-            if '/live-streaming/' in href:
-                full_match_link = urljoin(WEBSITE_URL, href)
-                match_links.add(full_match_link)
+        # --- নতুন এবং উন্নত পদ্ধতি ---
+        # আমরা "Live Matches" সেকশনের মধ্যে থাকা সব লিঙ্ক খুঁজব।
+        # ওয়েবসাইটের গঠন অনুযায়ী, লাইভ ম্যাচগুলো 'live-matches' id যুক্ত div-এর মধ্যে থাকতে পারে।
+        # আমরা একটি সাধারণ পদ্ধতি ব্যবহার করব: যে 'a' ট্যাগের মধ্যে 'live' লেখা আছে, সেগুলো খুঁজব।
         
+        # প্রথমে সব 'a' ট্যাগ খুঁজে বের করা হচ্ছে
+        all_links = soup.find_all('a', href=True)
+        
+        for link in all_links:
+            # যদি লিঙ্কের ভেতরের লেখায় 'live' (case-insensitive) থাকে
+            if 'live' in link.text.lower():
+                # এবং যদি এটি একটি খেলার লিঙ্ক হয় (সাধারণত দুটি দলের নাম থাকে)
+                if 'vs' in link.text.lower() or 'fc' in link.text.lower() or 'tour' in link.text.lower():
+                    href = link['href']
+                    # নিশ্চিত করা হচ্ছে যে এটি একটি বৈধ লিঙ্ক
+                    if href and href != '#':
+                        full_match_link = urljoin(WEBSITE_URL, href)
+                        match_links.add(full_match_link)
+
         if not match_links:
-            print("No live match links found on the homepage.")
+            print("No live match links found on the homepage using the new method.")
             return []
 
-        print(f"Found {len(match_links)} live match pages. Now fetching stream links from them...")
+        print(f"Found {len(match_links)} live match pages. Now fetching stream links...")
 
-        # --- ধাপ ২: প্রতিটি ম্যাচের পেইজ থেকে আসল স্ট্রিম লিঙ্ক বের করা ---
         for match_link in match_links:
             try:
                 print(f"-> Visiting match page: {match_link}")
-                match_page_response = requests.get(match_link, headers=headers, timeout=20)
+                match_page_response = requests.get(match_link, headers=headers, timeout=30)
                 match_page_soup = BeautifulSoup(match_page_response.content, "html.parser")
                 
-                # ম্যাচের পেইজে থাকা iframe খোঁজা হচ্ছে
                 iframe = match_page_soup.find('iframe')
                 if iframe and iframe.get('src'):
                     stream_src = iframe['src']
-                    # লিঙ্কটি সম্পূর্ণ URL কিনা তা নিশ্চিত করা
                     full_stream_link = urljoin(WEBSITE_URL, stream_src)
                     stream_links.add(full_stream_link)
                     print(f"   Found stream link: {full_stream_link}")
@@ -68,7 +79,7 @@ def get_stream_links():
         return list(stream_links)
 
     except Exception as e:
-        print(f"An error occurred: {e}")
+        print(f"An error occurred during scraping: {e}")
         return []
 
 def create_playlist(links):
@@ -76,18 +87,13 @@ def create_playlist(links):
     এই ফাংশনটি লিঙ্কগুলো ব্যবহার করে একটি .m3u প্লেলিস্ট ফাইল তৈরি করে।
     """
     if not links:
-        print("No valid stream links found to create a playlist.")
         with open(PLAYLIST_FILE, "w", encoding="utf-8") as f:
-            f.write("#EXTM3U\n")
-            f.write(f"# Autogenerated on: {datetime.datetime.now().isoformat()}\n")
-            f.write(f"# Target: {WEBSITE_URL}\n")
-            f.write("# No live streams found at the moment.\n")
+            f.write("#EXTM3U\n# No live streams found at the moment.\n")
         return
 
     with open(PLAYLIST_FILE, "w", encoding="utf-8") as f:
         f.write("#EXTM3U\n")
         f.write(f"# Autogenerated on: {datetime.datetime.now().isoformat()}\n")
-        f.write(f"# Target: {WEBSITE_URL}\n")
         f.write(f"# Total Streams: {len(links)}\n\n")
         
         for i, link in enumerate(links):
@@ -96,13 +102,16 @@ def create_playlist(links):
             except:
                 stream_name = f"Stream {i+1}"
             
+            encoded_user_agent = quote(USER_AGENT)
+            formatted_link = f"{link}|User-Agent={encoded_user_agent}&Referer={REFERER}"
+            
             f.write(f"#EXTINF:-1 tvg-id=\"\" tvg-name=\"{stream_name}\" group-title=\"Live\",{stream_name}\n")
-            f.write(f"{link}\n")
+            f.write(f"{formatted_link}\n")
     
     print(f"Playlist '{PLAYLIST_FILE}' was updated successfully with {len(links)} streams.")
 
 if __name__ == "__main__":
-    print(f"Starting advanced scraper for {WEBSITE_URL}...")
+    print("Starting updated scraper...")
     final_links = get_stream_links()
     create_playlist(final_links)
     print("Scraping process finished.")
