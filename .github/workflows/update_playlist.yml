@@ -16,6 +16,12 @@ jobs:
     # Job-টি কোন অপারেটিং সিস্টেমে চলবে
     runs-on: ubuntu-latest
 
+    # --- নতুন পরিবর্তন এখানে ---
+    # Job-টিকে কন্টেন্ট লেখার (write) অনুমতি দেওয়া হচ্ছে
+    permissions:
+      contents: write
+    # --- পরিবর্তন শেষ ---
+
     steps:
       # ১. রিপোজিটরির কোড চেকআউট করা
       - name: Checkout repository
