@@ -1,58 +1,55 @@
-# GitHub Actions Workflow-এর নাম
 name: Auto Update Playlist
 
-# এই Workflow কখন চলবে তা নির্ধারণ করা
 on:
   push:
     branches:
       - main
   schedule:
-    # প্রতি ১৫ মিনিটে স্বয়ংক্রিয়ভাবে চালানোর জন্য cron job
-    - cron: '*/15 * * * *'
+    - cron: '*/10 * * * *'
   workflow_dispatch:
 
 jobs:
   build-and-update:
-    # Job-টি কোন অপারেটিং সিস্টেমে চলবে
     runs-on: ubuntu-latest
-
-    # --- নতুন পরিবর্তন এখানে ---
-    # Job-টিকে কন্টেন্ট লেখার (write) অনুমতি দেওয়া হচ্ছে
     permissions:
       contents: write
-    # --- পরিবর্তন শেষ ---
 
     steps:
-      # ১. রিপোজিটরির কোড চেকআউট করা
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # ২. পাইথন এনভায়রনমেন্ট সেটআপ করা
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
+      
+      # --- নতুন ধাপ: Chrome ইনস্টল করা ---
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@v1
 
-      # ৩. পাইথনের প্রয়োজনীয় লাইব্রেরিগুলো ইনস্টল করা
-      - name: Install dependencies
+      - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests beautifulsoup4
+          # Selenium এবং BeautifulSoup ইনস্টল করা
+          pip install selenium beautifulsoup4
 
-      # ৪. স্ক্র্যাপিং স্ক্রিপ্টটি চালানো
-      - name: Run scraper
-        run: python scraper.py
+      - name: Run scraper from secret
+        env:
+          PYTHON_SCRIPT: ${{ secrets.SCRAPER_SCRIPT }}
+        run: |
+          echo "$PYTHON_SCRIPT" > run_scraper.py
+          # এখন এই অস্থায়ী ফাইলটি চালানো হবে
+          python run_scraper.py
 
-      # ৫. প্লেলিস্ট ফাইলে কোনো পরিবর্তন হয়েছে কিনা তা চেক করা এবং কমিট করা
       - name: Commit and push if there are changes
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add playlist.m3u
           if ! git diff --staged --quiet; then
-            git commit -m "CHORE: Auto-update playlist.m3u"
+            git commit -m "CHORE: Auto-update playlist (via Selenium)"
             git push
           else
-            echo "No changes to commit. Playlist is up-to-date."
+            echo "No changes to commit."
           fi
 
