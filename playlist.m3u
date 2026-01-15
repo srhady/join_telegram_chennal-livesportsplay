@@ -1,1 +1,6 @@
 #EXTM3U
+#EXTINF:-1 tvg-logo="https://static.vecteezy.com/system/resources/previews/016/314/808/original/transparent-live-transparent-live-icon-free-png.png" group-title="LIVE EVENT", STREAM 48
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36
+#EXTVLCOPT:http-referrer=https://xiaolin.live/
+https://livecdn.rumsport1.com/stream/48/chunks.m3u8?token=7b8b95715d5eb9a6a73328e5372ad549fcb2a3ce&is_vip=false&verify=1768498140-YcypTeLKYOCJLjcvdwSYqPnQedc%2FJSkD5YazcVQLaYU%3D
+
