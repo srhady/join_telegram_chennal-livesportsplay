@@ -1,0 +1,11 @@
+#EXTM3U
+
+#"name": "CricHD Live Auto Update",
+#"telegram": "https://t.me/livesportsplay",
+#"last update time": "12:59:54 AM 09-03-2026",
+
+#EXTINF:-1 tvg-logo="https://cdn-icons-png.freepik.com/512/6308/6308493.png" group-title="Live Match", Watch (Link 1)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
+#EXTVLCOPT:http-referrer=https://bhalocast.com
+https://ting.bhalocast.com:7059/hls/dxdwillo.m3u8?md5=t_uTZ7VOVNnZ3JfNqQSugA&expires=1773001205&ch=dxdwillo&s=5aaacfdefaee166d1debd3d9e3c1fedf
+
