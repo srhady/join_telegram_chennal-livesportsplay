@@ -1,0 +1,31 @@
+name: Auto Update CricHD m3u8
+
+on:
+   workflow_dispatch: # ম্যানুয়ালি রান করার অপশন
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Install Puppeteer
+      run: npm install puppeteer
+
+    - name: Run Scraper
+      run: node scraper.js
+
+    - name: Commit and Push M3U File
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add crichd.m3u
+        git commit -m "Auto Update: CricHD Live Links" || exit 0
+        git push
