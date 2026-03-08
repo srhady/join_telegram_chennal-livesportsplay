@@ -28,39 +28,36 @@ const getBDTime = () => {
         await p.goto('https://crichd.com.co/', { waitUntil: 'networkidle2', timeout: 90000 }).catch(e=>console.log("[!] লোড এরর:", e.message));
         await new Promise(r => setTimeout(r, 6000));
         
-        // এবার শুধু টেবিলের ভেতরের আসল ম্যাচের লিংকগুলো ধরবে (মেন্যু বাটন বাদ)
+        // একদম পারফেক্ট লজিক: শুধুমাত্র সবুজ রঙের আসল নামটা ধরবে
         const matchesData = await p.evaluate(() => {
-            let linkMap = {};
-            // 'td a' ব্যবহার করে নিশ্চিত করা হলো যেন শুধু টেবিলের ডাটা আসে
-            let links = Array.from(document.querySelectorAll('td a'));
+            let results = [];
+            let rows = Array.from(document.querySelectorAll('tr'));
             
-            for (let a of links) {
-                let text = (a.textContent || '').replace(/\s+/g, ' ').trim();
-                let href = a.href || '';
-                
-                // শর্ত: crichd এর লিংক হতে হবে এবং score বা হাবিজাবি লিংক হওয়া যাবে না
-                if (href.includes('crichd.com.co') && text.length > 3 && !/score|contact|about|privacy|dmca|home|telegram/i.test(text) && !href.includes('javascript')) {
-                    
-                    if (!linkMap[href]) {
-                        linkMap[href] = text;
-                    } else {
-                        // আসল ট্রিক: একই লিংকের ছোট নাম (PAK vs Ban) থাকলে, বড় নামটা (Pakistan vs Bangladesh) দিয়ে রিপ্লেস করবে
-                        if (text.length > linkMap[href].length) {
-                            linkMap[href] = text;
+            for (let row of rows) {
+                let tds = row.querySelectorAll('td');
+                // শিডিউল টেবিলে সাধারণত ৩টি বা তার বেশি কলাম থাকে
+                if (tds.length >= 3) {
+                    let links = Array.from(row.querySelectorAll('a'));
+                    if (links.length > 0) {
+                        // সারির একদম শেষের লিংকটাই হলো আসল ম্যাচ (সবুজ লেখা)
+                        let matchLink = links[links.length - 1]; 
+                        let text = (matchLink.textContent || '').replace(/\s+/g, ' ').trim();
+                        let href = matchLink.href || '';
+                        
+                        // স্কোর বা হাবিজাবি লিংক বাদ দেওয়া
+                        if (text.length > 4 && href.includes('crichd.com.co') && !/score/i.test(text)) {
+                            if (!results.some(r => r.url === href)) {
+                                results.push({ title: text, url: href });
+                            }
                         }
                     }
                 }
-            }
-            
-            let results = [];
-            for (let url in linkMap) {
-                results.push({ title: linkMap[url], url: url });
             }
             return results;
         });
 
         if (matchesData.length === 0) {
-            console.log('[-] হোমপেজে কোনো লাইভ ম্যাচের লিংক বা টেবিল পাওয়া যায়নি!');
+            console.log('[-] হোমপেজে কোনো লাইভ ম্যাচের লিংক পাওয়া যায়নি!');
             await b.close();
             return;
         }
@@ -72,6 +69,7 @@ const getBDTime = () => {
         m3uContent += `#"telegram": "https://t.me/livesportsplay",\n`;
         m3uContent += `#"last update time": "${getBDTime()}",\n\n`;
         
+        // আপনার দেওয়া ফিক্সড লোগো
         const logoUrl = "https://cdn-icons-png.freepik.com/512/6308/6308493.png";
 
         for (let match of matchesData) {
@@ -84,12 +82,12 @@ const getBDTime = () => {
 
             const channelLinks = await p.evaluate(() => {
                 let res = [];
-                // চ্যানেল লিস্টের টেবিল থেকেও শুধু Watch লিংকগুলো আনা হচ্ছে
-                let links = Array.from(document.querySelectorAll('td a'));
+                let links = Array.from(document.querySelectorAll('a'));
                 links.forEach(a => {
                     let text = (a.textContent || '').toLowerCase().trim();
                     let href = a.href || '';
-                    if (text.includes('watch') && href.length > 5 && !href.includes('javascript')) {
+                    // শুধুমাত্র Watch লেখা লিংকগুলোই নেবে
+                    if (text === 'watch' && href.includes('crichd.com.co') && !href.includes('javascript')) {
                          res.push(href);
                     }
                 });
@@ -97,7 +95,7 @@ const getBDTime = () => {
             });
 
             if (channelLinks.length === 0) {
-                console.log(`[-] এই ম্যাচের পেজে কোনো চ্যানেল লিংক পাওয়া যায়নি।`);
+                console.log(`[-] এই ম্যাচের পেজে কোনো চ্যানেল (Watch) লিংক পাওয়া যায়নি।`);
                 continue; 
             }
 
