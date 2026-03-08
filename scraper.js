@@ -149,7 +149,7 @@ const getBDTime = () => {
                         // চ্যানেলের নামের বদলে শুধু ম্যাচের নাম (সবুজ লেখাটা) বসানো হলো
                         m3uContent += `#EXTINF:-1 tvg-logo="${logoUrl}" group-title="Live Match", ${match.title} (Link ${linkCounter})\n`;
                         m3uContent += `#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36\n`;
-                        m3uContent += `#EXTVLCOPT:http-referrer=https://crichd.com.co/\n`;
+                        m3uContent += `#EXTVLCOPT:http-referrer=https://bhalocast.com\n`;
                         m3uContent += `${bestLink}\n\n`;
                         linkCounter++;
                     } else {
