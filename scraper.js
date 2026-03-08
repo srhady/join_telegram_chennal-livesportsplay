@@ -28,26 +28,25 @@ const getBDTime = () => {
         await p.goto('https://crichd.com.co/', { waitUntil: 'networkidle2', timeout: 90000 }).catch(e=>console.log("[!] লোড এরর:", e.message));
         await new Promise(r => setTimeout(r, 6000));
         
-        // গিটহাবের জন্য একদম বুলেটপ্রুফ লজিক (offsetParent বাদ দেওয়া হয়েছে)
+        // এবার শুধু টেবিলের ভেতরের আসল ম্যাচের লিংকগুলো ধরবে (মেন্যু বাটন বাদ)
         const matchesData = await p.evaluate(() => {
             let linkMap = {};
-            let links = Array.from(document.querySelectorAll('a'));
+            // 'td a' ব্যবহার করে নিশ্চিত করা হলো যেন শুধু টেবিলের ডাটা আসে
+            let links = Array.from(document.querySelectorAll('td a'));
             
             for (let a of links) {
                 let text = (a.textContent || '').replace(/\s+/g, ' ').trim();
                 let href = a.href || '';
                 
-                // শর্ত: crichd এর লিংক হতে হবে এবং হাবিজাবি মেন্যু লিংক হওয়া যাবে না
-                if (href.includes('crichd.com.co') && !/score|contact|about|privacy|dmca|home|android|telegram|watch|live now/i.test(text) && !href.includes('javascript')) {
-                    // শর্ত: নামে 'vs' থাকতে হবে অথবা নামটা বেশ বড় হতে হবে
-                    if (text.length > 5 && (text.toLowerCase().includes(' vs ') || text.length > 10)) {
-                        if (!linkMap[href]) {
+                // শর্ত: crichd এর লিংক হতে হবে এবং score বা হাবিজাবি লিংক হওয়া যাবে না
+                if (href.includes('crichd.com.co') && text.length > 3 && !/score|contact|about|privacy|dmca|home|telegram/i.test(text) && !href.includes('javascript')) {
+                    
+                    if (!linkMap[href]) {
+                        linkMap[href] = text;
+                    } else {
+                        // আসল ট্রিক: একই লিংকের ছোট নাম (PAK vs Ban) থাকলে, বড় নামটা (Pakistan vs Bangladesh) দিয়ে রিপ্লেস করবে
+                        if (text.length > linkMap[href].length) {
                             linkMap[href] = text;
-                        } else {
-                            // আসল ট্রিক: একই লিংকের ছোট নাম (PAK vs Ban) থাকলে, বড় নামটা (Pakistan vs Bangladesh) দিয়ে রিপ্লেস করবে
-                            if (text.length > linkMap[href].length) {
-                                linkMap[href] = text;
-                            }
                         }
                     }
                 }
@@ -61,19 +60,18 @@ const getBDTime = () => {
         });
 
         if (matchesData.length === 0) {
-            console.log('[-] হোমপেজে কোনো লাইভ ম্যাচের লিংক পাওয়া যায়নি!');
+            console.log('[-] হোমপেজে কোনো লাইভ ম্যাচের লিংক বা টেবিল পাওয়া যায়নি!');
             await b.close();
             return;
         }
 
-        console.log(`[+] মোট ${matchesData.length} টি ম্যাচ পাওয়া গেছে!`);
+        console.log(`[+] মোট ${matchesData.length} টি আসল ম্যাচ পাওয়া গেছে!`);
 
         let m3uContent = "#EXTM3U\n\n";
         m3uContent += `#"name": "CricHD Live Auto Update",\n`;
         m3uContent += `#"telegram": "https://t.me/livesportsplay",\n`;
         m3uContent += `#"last update time": "${getBDTime()}",\n\n`;
         
-        // আপনার দেওয়া ফিক্সড লোগো
         const logoUrl = "https://cdn-icons-png.freepik.com/512/6308/6308493.png";
 
         for (let match of matchesData) {
@@ -86,7 +84,8 @@ const getBDTime = () => {
 
             const channelLinks = await p.evaluate(() => {
                 let res = [];
-                let links = Array.from(document.querySelectorAll('a'));
+                // চ্যানেল লিস্টের টেবিল থেকেও শুধু Watch লিংকগুলো আনা হচ্ছে
+                let links = Array.from(document.querySelectorAll('td a'));
                 links.forEach(a => {
                     let text = (a.textContent || '').toLowerCase().trim();
                     let href = a.href || '';
@@ -102,7 +101,7 @@ const getBDTime = () => {
                 continue; 
             }
 
-            console.log(`[+] এই ম্যাচের ${channelLinks.length} টি লিংক স্ক্যান হচ্ছে...\n`);
+            console.log(`[+] এই ম্যাচের ${channelLinks.length} টি চ্যানেল স্ক্যান হচ্ছে...\n`);
 
             let linkCounter = 1;
             for (let cUrl of channelLinks) {
