@@ -17,7 +17,6 @@ const getBDTime = () => {
 (async () => {
     let b;
     try {
-        // গিটহাবের জন্য স্ট্যান্ডার্ড ব্রাউজার লঞ্চ
         b = await puppeteer.launch({ 
             headless: "new", 
             args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage', '--single-process'] 
@@ -29,23 +28,34 @@ const getBDTime = () => {
         await p.goto('https://crichd.com.co/', { waitUntil: 'networkidle2', timeout: 90000 }).catch(e=>console.log("[!] লোড এরর:", e.message));
         await new Promise(r => setTimeout(r, 6000));
         
-        // শুধুমাত্র সবুজ রঙের আসল ম্যাচের লিংক ক্যাচ করা
+        // গিটহাবের জন্য একদম বুলেটপ্রুফ লজিক (offsetParent বাদ দেওয়া হয়েছে)
         const matchesData = await p.evaluate(() => {
-            let results = [];
-            let rows = Array.from(document.querySelectorAll('tr'));
-            for (let row of rows) {
-                let links = Array.from(row.querySelectorAll('td a'));
-                if (links.length > 0) {
-                    let matchLink = links[links.length - 1]; // সবুজ রঙের লিংক
-                    let text = (matchLink.innerText || '').trim();
-                    let href = matchLink.href || '';
-                    
-                    if (text.length > 4 && href.includes('crichd.com.co') && !text.toLowerCase().includes('score')) {
-                        if (!results.some(r => r.url === href)) {
-                            results.push({ title: text, url: href });
+            let linkMap = {};
+            let links = Array.from(document.querySelectorAll('a'));
+            
+            for (let a of links) {
+                let text = (a.textContent || '').replace(/\s+/g, ' ').trim();
+                let href = a.href || '';
+                
+                // শর্ত: crichd এর লিংক হতে হবে এবং হাবিজাবি মেন্যু লিংক হওয়া যাবে না
+                if (href.includes('crichd.com.co') && !/score|contact|about|privacy|dmca|home|android|telegram|watch|live now/i.test(text) && !href.includes('javascript')) {
+                    // শর্ত: নামে 'vs' থাকতে হবে অথবা নামটা বেশ বড় হতে হবে
+                    if (text.length > 5 && (text.toLowerCase().includes(' vs ') || text.length > 10)) {
+                        if (!linkMap[href]) {
+                            linkMap[href] = text;
+                        } else {
+                            // আসল ট্রিক: একই লিংকের ছোট নাম (PAK vs Ban) থাকলে, বড় নামটা (Pakistan vs Bangladesh) দিয়ে রিপ্লেস করবে
+                            if (text.length > linkMap[href].length) {
+                                linkMap[href] = text;
+                            }
                         }
                     }
                 }
+            }
+            
+            let results = [];
+            for (let url in linkMap) {
+                results.push({ title: linkMap[url], url: url });
             }
             return results;
         });
@@ -74,20 +84,17 @@ const getBDTime = () => {
             await p.goto(match.url, { waitUntil: 'networkidle2', timeout: 90000 }).catch(()=>{});
             await new Promise(r => setTimeout(r, 6000));
 
-            // শুধু চ্যানেলের ভেতরের Watch লিংকগুলো নেওয়া (নামের আর দরকার নেই)
             const channelLinks = await p.evaluate(() => {
                 let res = [];
-                let rows = Array.from(document.querySelectorAll('tr'));
-                rows.forEach(row => {
-                    let tds = row.querySelectorAll('td');
-                    if (tds.length >= 3) {
-                        let watchLink = tds[tds.length - 1].querySelector('a'); 
-                        if (watchLink && (watchLink.innerText || '').toLowerCase().includes('watch') && watchLink.href) {
-                             res.push(watchLink.href);
-                        }
+                let links = Array.from(document.querySelectorAll('a'));
+                links.forEach(a => {
+                    let text = (a.textContent || '').toLowerCase().trim();
+                    let href = a.href || '';
+                    if (text.includes('watch') && href.length > 5 && !href.includes('javascript')) {
+                         res.push(href);
                     }
                 });
-                return res;
+                return [...new Set(res)]; 
             });
 
             if (channelLinks.length === 0) {
@@ -146,10 +153,9 @@ const getBDTime = () => {
                     if (bestLink) {
                         console.log(`    ✅ লিংক পাওয়া গেছে: ${bestLink}`);
                         
-                        // চ্যানেলের নামের বদলে শুধু ম্যাচের নাম (সবুজ লেখাটা) বসানো হলো
                         m3uContent += `#EXTINF:-1 tvg-logo="${logoUrl}" group-title="Live Match", ${match.title} (Link ${linkCounter})\n`;
                         m3uContent += `#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36\n`;
-                        m3uContent += `#EXTVLCOPT:http-referrer=https://bhalocast.com\n`;
+                        m3uContent += `#EXTVLCOPT:http-referrer=https://crichd.com.co/\n`;
                         m3uContent += `${bestLink}\n\n`;
                         linkCounter++;
                     } else {
