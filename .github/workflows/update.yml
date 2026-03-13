@@ -1,31 +1,31 @@
-name: Auto Update CricHD m3u8
+name: Generate Match Poster
 
 on:
-   workflow_dispatch: # ম্যানুয়ালি রান করার অপশন
+  workflow_dispatch: # ম্যানুয়ালি রান করার জন্য
 
 jobs:
-  build:
+  create-poster:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v3
+      - name: 📥 চেকআউট রিপোজিটরি
+        uses: actions/checkout@v4
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
+      - name: 🟢 Node.js সেটআপ
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
 
-    - name: Install Puppeteer
-      run: npm install puppeteer
+      - name: 📦 ডিপেন্ডেন্সি ইনস্টল
+        run: npm install puppeteer
 
-    - name: Run Scraper
-      run: node scraper.js
+      - name: 🚀 পোস্টার জেনারেট স্ক্রিপ্ট রান
+        run: node poster.js
 
-    - name: Commit and Push M3U File
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add crichd.m3u
-        git commit -m "Auto Update: CricHD Live Links" || exit 0
-        git push
+      - name: 💾 পোস্টার গিটহাবে পুশ করা
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add social_match_poster.png || true
+          git commit -m "Auto Generate Match Poster" || exit 0
+          git push
