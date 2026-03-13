@@ -1,12 +1,10 @@
-const puppeteer = require('puppeteer');
+ const puppeteer = require('puppeteer');
 const cheerio = require('cheerio');
-const fs = require('fs');
 
 (async () => {
     try {
         console.log("[*] হোমপেজ থেকে লাইভ ম্যাচ খোঁজা হচ্ছে...");
         
-        // ১. Cheerio দিয়ে আপনার অরিজিনাল স্ক্র্যাপিং লজিক
         const res = await fetch('https://bingstream.info/');
         const html = await res.text();
         const $ = cheerio.load(html);
@@ -75,24 +73,25 @@ const fs = require('fs');
             process.exit(0);
         }
 
-        console.log(`[+] মোট ${scrapedMatches.length} টি লাইভ ম্যাচ পাওয়া গেছে!`);
-        console.log("[*] গিটহাব অ্যাকশনস থেকে হাই-কোয়ালিটি পোস্টার তৈরি হচ্ছে...");
+        // ডিজাইন ঠিক রাখতে সর্বোচ্চ ৮টি ম্যাচ নেবো
+        const displayMatches = scrapedMatches.slice(0, 8);
+        console.log(`[+] মোট ${scrapedMatches.length} টি পাওয়া গেছে, পোস্টারে ${displayMatches.length} টি রেন্ডার করা হচ্ছে।`);
 
-        // ২. ডাইনামিক স্পোর্টস কালার প্যালেট (লুপের জন্য)
+        // ৪টার বেশি হলে ২ কলাম, নাহলে ১ কলাম
+        let layoutClass = displayMatches.length > 4 ? 'grid-2-col' : 'grid-1-col';
+
         const colorPalettes = [
-            { c1: "#f39c12", c2: "#e74c3c" }, // Orange - Red
-            { c1: "#00d2ff", c2: "#3a7bd5" }, // Neon Blue
-            { c1: "#11998e", c2: "#38ef7d" }, // Cyber Green
-            { c1: "#8E2DE2", c2: "#4A00E0" }, // Purple
-            { c1: "#fc00ff", c2: "#00dbde" }  // Pink - Cyan
+            { c1: "#f39c12", c2: "#e74c3c" }, 
+            { c1: "#00d2ff", c2: "#3a7bd5" }, 
+            { c1: "#11998e", c2: "#38ef7d" }, 
+            { c1: "#8E2DE2", c2: "#4A00E0" }, 
+            { c1: "#fc00ff", c2: "#00dbde" }  
         ];
 
-        // ৩. HTML রো (Row) জেনারেট করা
         let allMatchesHtml = '';
-        scrapedMatches.forEach((match, index) => {
-            let colors = colorPalettes[index % colorPalettes.length]; // কালার রিপিট হবে
+        displayMatches.forEach((match, index) => {
+            let colors = colorPalettes[index % colorPalettes.length]; 
             
-            // টিমের নামগুলোকে ভেঙে স্টাইল করার জন্য
             let t1Words = match.team1.split(' ');
             let t1High = t1Words.length > 1 ? t1Words.pop() : "";
             let t1Base = t1Words.join(' ');
@@ -122,21 +121,20 @@ const fs = require('fs');
                 </div>
                 <div class="match-details">
                     <span class="tournament">${match.tournament}</span> | 
-                    <span class="time">● LIVE NOW</span>
+                    <span class="time">● LIVE</span>
                 </div>
             </div>
             `;
         });
 
-        // ৪. Puppeteer দিয়ে রেন্ডার করা
         const browser = await puppeteer.launch({
             headless: "new",
             args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage', '--font-render-hinting=none']
         });
 
         const page = await browser.newPage();
-        // উচ্চতা auto অ্যাডজাস্ট হওয়ার জন্য যথেষ্ট বড় ক্যানভাস
-        await page.setViewport({ width: 1080, height: 1920, deviceScaleFactor: 2 });
+        // ফিক্সড ক্যানভাস সাইজ (Instagram Portrait)
+        await page.setViewport({ width: 1080, height: 1350, deviceScaleFactor: 2 });
 
         const htmlContent = `
         <!DOCTYPE html>
@@ -151,10 +149,11 @@ const fs = require('fs');
                 }
                 body {
                     margin: 0; padding: 0;
-                    width: 1080px; min-height: 1920px; height: auto;
+                    width: 1080px; height: 1350px;
                     background: var(--bg-dark);
                     font-family: 'Montserrat', sans-serif;
                     color: white; position: relative;
+                    overflow: hidden;
                 }
                 .bg-pattern {
                     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -167,33 +166,37 @@ const fs = require('fs');
                 .content {
                     position: relative; z-index: 10;
                     display: flex; flex-direction: column;
-                    padding: 60px; box-sizing: border-box; min-height: 100vh;
+                    justify-content: space-between;
+                    padding: 50px; box-sizing: border-box; height: 100%;
                 }
 
                 .main-title {
-                    text-align: center; font-size: 85px; font-weight: 900; color: white;
-                    text-transform: uppercase; margin: 20px 0 50px 0; letter-spacing: 3px;
+                    text-align: center; font-size: 75px; font-weight: 900; color: white;
+                    text-transform: uppercase; margin-bottom: 30px; letter-spacing: 3px;
                     font-family: 'Bebas Neue', cursive; 
                     text-shadow: 0 10px 20px rgba(0,0,0,0.5);
                 }
                 .main-title span { color: #ff004c; animation: blink 1.5s infinite;}
                 @keyframes blink { 0%, 100% {opacity: 1;} 50% {opacity: 0.3;} }
 
+                /* ডাইনামিক গ্রিড সিস্টেম */
                 .matches-list {
-                    flex-grow: 1; display: flex; flex-direction: column;
-                    gap: 35px; margin-bottom: 50px;
+                    flex-grow: 1; display: grid; align-content: center;
+                    gap: 25px; width: 100%;
                 }
+                .grid-1-col { grid-template-columns: 1fr; }
+                .grid-2-col { grid-template-columns: 1fr 1fr; }
 
                 .match-row {
                     background: rgba(15, 23, 42, 0.6);
                     border: 2px solid rgba(255,255,255,0.05);
-                    border-radius: 25px; padding: 40px;
-                    display: flex; flex-direction: column; gap: 20px;
+                    border-radius: 20px; 
+                    display: flex; flex-direction: column; justify-content: center;
                     position: relative; overflow: hidden;
-                    backdrop-filter: blur(15px); box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+                    backdrop-filter: blur(15px); box-shadow: 0 10px 30px rgba(0,0,0,0.4);
                 }
                 .match-row::before {
-                    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 8px;
+                    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 6px;
                     background: linear-gradient(90deg, var(--t1-color), var(--t2-color));
                 }
                 .match-row::after {
@@ -202,11 +205,11 @@ const fs = require('fs');
                     opacity: 0.05; z-index: -1;
                 }
 
-                .match-teams { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+                .match-teams { display: flex; justify-content: space-between; align-items: center; }
                 .team {
-                    font-size: 80px; font-weight: 900; text-transform: uppercase; line-height: 0.95;
+                    font-weight: 900; text-transform: uppercase; line-height: 0.95;
                     font-family: 'Bebas Neue', cursive; width: 42%; text-align: center;
-                    text-shadow: 5px 5px 15px rgba(0,0,0,0.8);
+                    text-shadow: 3px 3px 10px rgba(0,0,0,0.8);
                 }
                 .team-1 { color: #ffffff; }
                 .team-1 .highlight { color: var(--t1-color); }
@@ -214,31 +217,42 @@ const fs = require('fs');
                 .team-2 .highlight { color: var(--t2-color); }
 
                 .vs-badge {
-                    font-size: 45px; color: #fff; font-weight: 900; font-style: italic;
-                    background: rgba(255,255,255,0.05); padding: 15px 25px; border-radius: 15px;
+                    color: #fff; font-weight: 900; font-style: italic;
+                    background: rgba(255,255,255,0.05); border-radius: 12px;
                     border: 2px solid rgba(255,255,255,0.1);
-                    font-family: 'Montserrat', sans-serif; box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+                    font-family: 'Montserrat', sans-serif; box-shadow: 0 5px 15px rgba(0,0,0,0.5);
                 }
-
-                .match-details { font-size: 26px; color: #94a3b8; text-align: center; font-weight: bold; margin-top: 10px; }
-                .tournament { color: var(--accent-blue); text-transform: uppercase; letter-spacing: 2px;}
+                .match-details { color: #94a3b8; text-align: center; font-weight: bold; margin-top: 10px; }
+                .tournament { color: var(--accent-blue); text-transform: uppercase; letter-spacing: 1px;}
                 .time { color: #ff004c; letter-spacing: 1px;}
+
+                /* 1 কলামের স্টাইল (কম ম্যাচ হলে) */
+                .grid-1-col .match-row { padding: 35px; gap: 20px; }
+                .grid-1-col .team { font-size: 75px; }
+                .grid-1-col .vs-badge { font-size: 40px; padding: 12px 20px; }
+                .grid-1-col .match-details { font-size: 24px; }
+
+                /* 2 কলামের স্টাইল (বেশি ম্যাচ হলে) */
+                .grid-2-col .match-row { padding: 25px 15px; gap: 15px; }
+                .grid-2-col .team { font-size: 45px; }
+                .grid-2-col .vs-badge { font-size: 25px; padding: 8px 15px; }
+                .grid-2-col .match-details { font-size: 16px; }
 
                 .footer-card {
                     background: rgba(15, 23, 42, 0.8);
                     border: 2px solid rgba(255,255,255,0.1);
-                    border-radius: 20px; padding: 35px; display: flex; flex-direction: column; gap: 25px;
+                    border-radius: 20px; padding: 30px; display: flex; flex-direction: column; gap: 20px;
                     backdrop-filter: blur(20px); box-shadow: 0 -10px 50px rgba(0,0,0,0.6);
-                    margin-top: auto;
+                    margin-top: 30px;
                 }
                 .footer-row { display: flex; justify-content: space-between; align-items: center; }
-                .footer-text-block { display: flex; flex-direction: column; gap: 8px; }
-                .footer-title { font-size: 22px; color: #94a3b8; font-weight: 800; letter-spacing: 1px; }
-                .footer-link { font-size: 26px; color: var(--accent-blue); font-weight: 900; letter-spacing: 0.5px; }
-                .playlist-info { font-size: 24px; color: white; font-weight: 600; }
+                .footer-text-block { display: flex; flex-direction: column; gap: 6px; }
+                .footer-title { font-size: 20px; color: #94a3b8; font-weight: 800; letter-spacing: 1px; }
+                .footer-link { font-size: 22px; color: var(--accent-blue); font-weight: 900; letter-spacing: 0.5px; }
+                .playlist-info { font-size: 20px; color: white; font-weight: 600; }
                 .branding {
                     background: rgba(255,255,255,0.05); border: 2px solid rgba(255,255,255,0.2);
-                    padding: 15px 35px; font-size: 28px; font-weight: 900; color: #fff; letter-spacing: 3px; border-radius: 12px;
+                    padding: 12px 30px; font-size: 24px; font-weight: 900; color: #fff; letter-spacing: 3px; border-radius: 12px;
                 }
                 .branding span { color: var(--accent-blue); }
                 .divider { height: 2px; background: rgba(255,255,255,0.1); width: 100%; }
@@ -250,7 +264,7 @@ const fs = require('fs');
             <div class="content">
                 <div class="main-title"><span>●</span> TODAY'S LIVE MATCHES</div>
 
-                <div class="matches-list">
+                <div class="matches-list ${layoutClass}">
                     ${allMatchesHtml}
                 </div>
 
@@ -275,12 +289,12 @@ const fs = require('fs');
 
         await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
         
-        // fullPage: true দেওয়া হয়েছে, তাই ম্যাচ বেশি হলে ক্যানভাস নিজে থেকেই লম্বা হয়ে সব ম্যাচ ফিট করে নেবে
+        // fullPage রিমুভ করা হয়েছে, এখন ফিক্সড সাইজেই সেভ হবে
         const filename = 'social_all_matches_poster.png';
-        await page.screenshot({ path: filename, type: 'png', fullPage: true }); 
+        await page.screenshot({ path: filename, type: 'png' }); 
         await browser.close();
 
-        console.log(`\n[+] বুম! 💥 সব লাইভ ম্যাচের ডাইনামিক পোস্টার রেডি: ${filename}`);
+        console.log(`\n[+] বুম! 💥 সব লাইভ ম্যাচের ডাইনামিক পোস্টার ফিক্সড সাইজে রেডি: ${filename}`);
         
     } catch (e) {
         console.error("\n❌ গিটহাব স্ক্রিপ্টে এরর:", e.message);
