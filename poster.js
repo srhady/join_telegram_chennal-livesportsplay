@@ -1,6 +1,5 @@
 const puppeteer = require('puppeteer');
 const cheerio = require('cheerio');
-const fs = require('fs');
 
 (async () => {
     try {
@@ -84,48 +83,42 @@ const fs = require('fs');
             { c1: "#00d2ff", c2: "#3a7bd5" }, 
             { c1: "#11998e", c2: "#38ef7d" }, 
             { c1: "#8E2DE2", c2: "#4A00E0" }, 
-            { c1: "#fc00ff", c2: "#00dbde" }  
+            { c1: "#fc00ff", c2: "#00dbde" },
+            { c1: "#ffdd59", c2: "#ff5e57" }
         ];
 
         let allMatchesHtml = '';
         displayMatches.forEach((match, index) => {
             let colors = colorPalettes[index % colorPalettes.length]; 
             
-            let t1Words = match.team1.split(' ');
-            let t1High = t1Words.length > 1 ? t1Words.pop() : "";
-            let t1Base = t1Words.join(' ');
-
             let t2Html = '';
             if (match.team2) {
-                let t2Words = match.team2.split(' ');
-                let t2High = t2Words.length > 1 ? t2Words.pop() : "";
-                let t2Base = t2Words.join(' ');
                 t2Html = `
                     <div class="vs-badge">VS</div>
                     <div class="team team-2">
-                        ${t2Base} <br>
-                        <span class="highlight">${t2High}</span>
+                        ${match.team2}
                     </div>
                 `;
             }
 
+            // টুর্নামেন্টের নামে colors.c1 যোগ করা হয়েছে যাতে একেকটা একেক কালার হয়
             allMatchesHtml += `
             <div class="match-row" style="--t1-color: ${colors.c1}; --t2-color: ${colors.c2};">
                 <div class="match-teams">
                     <div class="team team-1">
-                        ${t1Base} <br>
-                        <span class="highlight">${t1High || match.team1}</span>
+                        ${match.team1}
                     </div>
                     ${t2Html}
                 </div>
                 <div class="match-details">
-                    <span class="tournament">${match.tournament}</span> | 
+                    <span class="tournament" style="color: ${colors.c1};">${match.tournament}</span> | 
                     <span class="time">● LIVE</span>
                 </div>
             </div>
             `;
         });
 
+        // বাংলাদেশ সময় বের করার লজিক (Asia/Dhaka)
         const dateOptions = { timeZone: 'Asia/Dhaka', year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true };
         const bdtDateTime = new Date().toLocaleString('en-US', dateOptions).toUpperCase();
 
@@ -142,7 +135,7 @@ const fs = require('fs');
         <html>
         <head>
             <meta charset="UTF-8">
-            <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@700&family=Montserrat:ital,wght@0,600;0,800;0,900;1,900&display=swap" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Montserrat:ital,wght@0,600;0,800;0,900;1,900&display=swap" rel="stylesheet">
             <style>
                 :root {
                     --bg-dark: #070b14;
@@ -169,9 +162,9 @@ const fs = require('fs');
                     top: 40px; right: 40px;
                     background: rgba(15, 23, 42, 0.85);
                     border: 1px solid rgba(56, 189, 248, 0.3);
-                    padding: 15px 35px;
+                    padding: 10px 25px;
                     border-radius: 50px;
-                    font-size: 24px;
+                    font-size: 18px;
                     color: #fff;
                     font-weight: 800;
                     letter-spacing: 1px;
@@ -180,7 +173,7 @@ const fs = require('fs');
                     z-index: 20;
                     display: flex;
                     align-items: center;
-                    gap: 12px;
+                    gap: 10px;
                 }
                 .datetime-badge span { color: var(--accent-blue); }
 
@@ -192,9 +185,9 @@ const fs = require('fs');
                 }
 
                 .main-title {
-                    text-align: center; font-size: 75px; font-weight: 900; color: white;
+                    text-align: center; font-size: 65px; font-weight: 900; color: white;
                     text-transform: uppercase; margin-top: 50px; margin-bottom: 25px; letter-spacing: 2px;
-                    font-family: 'Anton', sans-serif;
+                    font-family: 'Montserrat', sans-serif;
                     text-shadow: 0 10px 20px rgba(0,0,0,0.5);
                 }
                 .main-title span { color: #ff004c; animation: blink 1.5s infinite;}
@@ -215,8 +208,6 @@ const fs = require('fs');
                     position: relative; overflow: hidden;
                     backdrop-filter: blur(15px); box-shadow: 0 10px 30px rgba(0,0,0,0.4);
                 }
-                
-                .grid-2-col .match-row { width: 100%; }
                 
                 .grid-2-col .match-row:last-child:nth-child(odd) {
                     grid-column: 1 / -1;
@@ -242,9 +233,8 @@ const fs = require('fs');
                     text-shadow: 3px 3px 10px rgba(0,0,0,0.8);
                 }
                 
-                /* টিমের নাম শুধু সাদা করা হলো */
+                /* টিমের নামগুলো সম্পূর্ণ সাদা রাখার জন্য */
                 .team-1, .team-2 { color: #ffffff; }
-                .team-1 .highlight, .team-2 .highlight { color: #ffffff; }
 
                 .vs-badge {
                     color: #fff; font-weight: 900; font-style: italic;
@@ -254,19 +244,19 @@ const fs = require('fs');
                 }
                 .match-details { color: #94a3b8; text-align: center; font-weight: bold; margin-top: 10px; }
                 
-                /* টুর্নামেন্টের নাম প্রতিটি কার্ডের নিজস্ব কালার (var(--t1-color)) পাবে */
-                .tournament { color: var(--t1-color); text-transform: uppercase; letter-spacing: 1px; font-weight: 900;}
+                /* টুর্নামেন্টের কালার ইনলাইনে ডাইনামিক করা হয়েছে, তাই এখান থেকে কালার বাদ দেওয়া হলো */
+                .tournament { text-transform: uppercase; letter-spacing: 1px;}
                 .time { color: #ff004c; letter-spacing: 1px;}
 
-                .grid-1-col .match-row { padding: 45px; gap: 25px; }
-                .grid-1-col .team { font-size: 80px; }
-                .grid-1-col .vs-badge { font-size: 45px; padding: 15px 25px; }
-                .grid-1-col .match-details { font-size: 28px; }
+                .grid-1-col .match-row { padding: 35px; gap: 20px; }
+                .grid-1-col .team { font-size: 60px; }
+                .grid-1-col .vs-badge { font-size: 40px; padding: 12px 20px; }
+                .grid-1-col .match-details { font-size: 24px; }
 
-                .grid-2-col .match-row { padding: 35px 20px; gap: 20px; }
-                .grid-2-col .team { font-size: 45px; }
-                .grid-2-col .vs-badge { font-size: 30px; padding: 10px 20px; }
-                .grid-2-col .match-details { font-size: 20px; }
+                .grid-2-col .match-row { padding: 25px 15px; gap: 15px; }
+                .grid-2-col .team { font-size: 34px; }
+                .grid-2-col .vs-badge { font-size: 22px; padding: 8px 15px; }
+                .grid-2-col .match-details { font-size: 16px; }
 
                 .footer-card {
                     background: rgba(15, 23, 42, 0.8);
@@ -327,7 +317,7 @@ const fs = require('fs');
         await page.screenshot({ path: filename, type: 'png' }); 
         await browser.close();
 
-        console.log(`\n[+] বুম! 💥 ফাইনাল মাস্টারপিস পোস্টার রেডি: ${filename}`);
+        console.log(`\n[+] বুম! 💥 বাংলাদেশ টাইম এবং নতুন ফন্টসহ পোস্টার রেডি: ${filename}`);
         
     } catch (e) {
         console.error("\n❌ গিটহাব স্ক্রিপ্টে এরর:", e.message);
