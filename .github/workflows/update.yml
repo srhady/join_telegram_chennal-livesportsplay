@@ -27,5 +27,5 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add social_match_poster.png || true
-          git commit -m "Auto Generate Match Poster" || exit 0
+          git commit -m "Auto Generate Match Poster with New Links" || exit 0
           git push
