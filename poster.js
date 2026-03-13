@@ -1,4 +1,4 @@
- const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer');
 const cheerio = require('cheerio');
 
 (async () => {
@@ -73,11 +73,9 @@ const cheerio = require('cheerio');
             process.exit(0);
         }
 
-        // ডিজাইন ঠিক রাখতে সর্বোচ্চ ৮টি ম্যাচ নেবো
         const displayMatches = scrapedMatches.slice(0, 8);
         console.log(`[+] মোট ${scrapedMatches.length} টি পাওয়া গেছে, পোস্টারে ${displayMatches.length} টি রেন্ডার করা হচ্ছে।`);
 
-        // ৪টার বেশি হলে ২ কলাম, নাহলে ১ কলাম
         let layoutClass = displayMatches.length > 4 ? 'grid-2-col' : 'grid-1-col';
 
         const colorPalettes = [
@@ -133,7 +131,6 @@ const cheerio = require('cheerio');
         });
 
         const page = await browser.newPage();
-        // ফিক্সড ক্যানভাস সাইজ (Instagram Portrait)
         await page.setViewport({ width: 1080, height: 1350, deviceScaleFactor: 2 });
 
         const htmlContent = `
@@ -141,7 +138,7 @@ const cheerio = require('cheerio');
         <html>
         <head>
             <meta charset="UTF-8">
-            <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,600;0,800;1,900&display=swap" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@700&family=Montserrat:ital,wght@0,600;0,800;1,900&display=swap" rel="stylesheet">
             <style>
                 :root {
                     --bg-dark: #070b14;
@@ -171,15 +168,14 @@ const cheerio = require('cheerio');
                 }
 
                 .main-title {
-                    text-align: center; font-size: 75px; font-weight: 900; color: white;
-                    text-transform: uppercase; margin-bottom: 30px; letter-spacing: 3px;
-                    font-family: 'Bebas Neue', cursive; 
+                    text-align: center; font-size: 65px; font-weight: 900; color: white;
+                    text-transform: uppercase; margin-bottom: 25px; letter-spacing: 2px;
+                    font-family: 'Anton', sans-serif; /* নতুন চওড়া ফন্ট */
                     text-shadow: 0 10px 20px rgba(0,0,0,0.5);
                 }
                 .main-title span { color: #ff004c; animation: blink 1.5s infinite;}
                 @keyframes blink { 0%, 100% {opacity: 1;} 50% {opacity: 0.3;} }
 
-                /* ডাইনামিক গ্রিড সিস্টেম */
                 .matches-list {
                     flex-grow: 1; display: grid; align-content: center;
                     gap: 25px; width: 100%;
@@ -195,6 +191,14 @@ const cheerio = require('cheerio');
                     position: relative; overflow: hidden;
                     backdrop-filter: blur(15px); box-shadow: 0 10px 30px rgba(0,0,0,0.4);
                 }
+                
+                /* জাদুকরী কোড: বেজোড় ম্যাচকে মাঝখানে আনার জন্য */
+                .grid-2-col .match-row:last-child:nth-child(odd) {
+                    grid-column: 1 / -1;
+                    width: 48%; /* ২ কলামের সমান মাপে মাঝখানে থাকবে */
+                    margin: 0 auto;
+                }
+
                 .match-row::before {
                     content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 6px;
                     background: linear-gradient(90deg, var(--t1-color), var(--t2-color));
@@ -207,8 +211,9 @@ const cheerio = require('cheerio');
 
                 .match-teams { display: flex; justify-content: space-between; align-items: center; }
                 .team {
-                    font-weight: 900; text-transform: uppercase; line-height: 0.95;
-                    font-family: 'Bebas Neue', cursive; width: 42%; text-align: center;
+                    font-weight: 900; text-transform: uppercase; line-height: 1.1;
+                    font-family: 'Anton', sans-serif; /* নতুন চওড়া ফন্ট */
+                    width: 42%; text-align: center; letter-spacing: 1px;
                     text-shadow: 3px 3px 10px rgba(0,0,0,0.8);
                 }
                 .team-1 { color: #ffffff; }
@@ -226,15 +231,13 @@ const cheerio = require('cheerio');
                 .tournament { color: var(--accent-blue); text-transform: uppercase; letter-spacing: 1px;}
                 .time { color: #ff004c; letter-spacing: 1px;}
 
-                /* 1 কলামের স্টাইল (কম ম্যাচ হলে) */
                 .grid-1-col .match-row { padding: 35px; gap: 20px; }
-                .grid-1-col .team { font-size: 75px; }
+                .grid-1-col .team { font-size: 65px; }
                 .grid-1-col .vs-badge { font-size: 40px; padding: 12px 20px; }
                 .grid-1-col .match-details { font-size: 24px; }
 
-                /* 2 কলামের স্টাইল (বেশি ম্যাচ হলে) */
                 .grid-2-col .match-row { padding: 25px 15px; gap: 15px; }
-                .grid-2-col .team { font-size: 45px; }
+                .grid-2-col .team { font-size: 38px; } /* ফন্ট চওড়া হওয়ায় সাইজ একটু কমানো হলো */
                 .grid-2-col .vs-badge { font-size: 25px; padding: 8px 15px; }
                 .grid-2-col .match-details { font-size: 16px; }
 
@@ -243,7 +246,7 @@ const cheerio = require('cheerio');
                     border: 2px solid rgba(255,255,255,0.1);
                     border-radius: 20px; padding: 30px; display: flex; flex-direction: column; gap: 20px;
                     backdrop-filter: blur(20px); box-shadow: 0 -10px 50px rgba(0,0,0,0.6);
-                    margin-top: 30px;
+                    margin-top: 25px;
                 }
                 .footer-row { display: flex; justify-content: space-between; align-items: center; }
                 .footer-text-block { display: flex; flex-direction: column; gap: 6px; }
@@ -289,12 +292,11 @@ const cheerio = require('cheerio');
 
         await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
         
-        // fullPage রিমুভ করা হয়েছে, এখন ফিক্সড সাইজেই সেভ হবে
         const filename = 'social_all_matches_poster.png';
         await page.screenshot({ path: filename, type: 'png' }); 
         await browser.close();
 
-        console.log(`\n[+] বুম! 💥 সব লাইভ ম্যাচের ডাইনামিক পোস্টার ফিক্সড সাইজে রেডি: ${filename}`);
+        console.log(`\n[+] বুম! 💥 নতুন ফন্ট ও লেআউটে পোস্টার রেডি: ${filename}`);
         
     } catch (e) {
         console.error("\n❌ গিটহাব স্ক্রিপ্টে এরর:", e.message);
