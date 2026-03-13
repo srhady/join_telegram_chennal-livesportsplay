@@ -30,6 +30,7 @@ const fs = require('fs');
                     --team1-color: #f39c12; /* Brisbane Roar Orange */
                     --team2-color: #e74c3c; /* WSW Red */
                     --bg-dark: #0f172a;     /* প্রফেশনাল স্লেট ডার্ক */
+                    --accent-blue: #38bdf8;
                 }
                 body {
                     margin: 0; padding: 0;
@@ -121,22 +122,66 @@ const fs = require('fs');
                     border-radius: 50%; margin: 0 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.8);
                 }
 
-                /* ফুটার */
+                /* ফুটার: ব্যবহারকারীর নতুন টেক্সট এবং লিঙ্ক */
                 .footer {
-                    display: flex; justify-content: space-between; align-items: flex-end;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: flex-end;
                     border-top: 2px solid rgba(255,255,255,0.1);
-                    padding-top: 35px;
+                    padding-top: 25px;
+                    margin-top: 20px;
                 }
-                .info-text { font-size: 32px; font-weight: 900; color: #94a3b8; letter-spacing: 1px; }
-                .info-text span { color: white; border-bottom: 4px solid #38bdf8; padding-bottom: 4px; }
-                
+
+                .footer-links {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                    max-width: 70%;
+                    text-align: left;
+                }
+
+                .link-item {
+                    font-size: 20px;
+                    color: #94a3b8;
+                    display: flex;
+                    gap: 5px;
+                }
+                .link-label { font-weight: bold; }
+                .link-text { color: white; }
+
+                .info-paragraph {
+                    font-size: 18px;
+                    color: #94a3b8;
+                    line-height: 1.4;
+                }
+                .link-url { color: var(--accent-blue); text-decoration: underline; }
+
+                .telegram-call {
+                    font-size: 18px;
+                    color: white;
+                    text-align: left;
+                }
+                .telegram-label { font-weight: bold; margin-bottom: 3px; }
+                .telegram-url { color: var(--accent-blue); }
+
+                /* টিমের নাম এবং VS ব্যাজের মধ্যে স্পেসিং কমানো */
+                .team-1 { margin-bottom: 10px; }
+                .team-2 { margin-top: 10px; }
+                .vs-wrapper { margin: 20px 0; }
+
+                /* branding স্টাইল বজায় রাখা */
                 .branding {
-                    background: rgba(255,255,255,0.05); border: 2px solid rgba(255,255,255,0.1);
-                    padding: 15px 35px; font-size: 26px; font-weight: 900;
-                    color: #fff; letter-spacing: 3px; border-radius: 12px;
+                    background: rgba(255,255,255,0.05);
+                    border: 2px solid rgba(255,255,255,0.1);
+                    padding: 10px 20px;
+                    font-size: 20px;
+                    font-weight: 900;
+                    color: #fff;
+                    border-radius: 10px;
                     backdrop-filter: blur(10px);
+                    margin-bottom: 10px;
                 }
-                .branding span { color: #38bdf8; }
+                .branding span { color: var(--accent-blue); }
             </style>
         </head>
         <body>
@@ -167,7 +212,20 @@ const fs = require('fs');
                 </div>
 
                 <div class="footer">
-                    <div class="info-text">WATCH ON <span>BINGSTREAM.INFO</span></div>
+                    <div class="footer-links">
+                        <div class="link-item">
+                            <span class="link-label">STREAM SOURCE:</span>
+                            <span class="link-text">BINGSTREAM.INFO</span>
+                        </div>
+                        <div class="info-paragraph">
+                            <p>Watch on our playlists.</p>
+                            <p>To find playlist visit: <span class="link-url">https://github.com/srhady/bingstream</span></p>
+                        </div>
+                        <div class="telegram-call">
+                            <p class="telegram-label">JOIN OUR TELEGRAM CHANNEL</p>
+                            <p class="telegram-url">https://t.me/livesportsplay</p>
+                        </div>
+                    </div>
                     <div class="branding">© <span>HADY</span></div>
                 </div>
             </div>
