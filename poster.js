@@ -5,43 +5,43 @@ const fs = require('fs');
     try {
         console.log("[*] গিটহাব অ্যাকশনস থেকে হাই-কোয়ালিটি পোস্টার তৈরি হচ্ছে...");
 
-        // গিটহাবে কোনো ঝামেলা ছাড়াই সরাসরি পাপেটিয়ার লঞ্চ হবে
         const browser = await puppeteer.launch({
             headless: "new",
             args: [
                 '--no-sandbox',
                 '--disable-setuid-sandbox',
                 '--disable-dev-shm-usage',
-                '--font-render-hinting=none' // ফন্ট একদম স্মুথ রেন্ডার করার জন্য
+                '--font-render-hinting=none'
             ]
         });
 
         const page = await browser.newPage();
-        await page.setViewport({ width: 1080, height: 1080, deviceScaleFactor: 2 });
+        // ক্যানভাস সাইজ একটু লম্বা করা হলো (1080x1350 - Instagram 4:5 Portrait সাইজ) 
+        // যাতে সব লেখা সুন্দরভাবে ফিট হয়।
+        await page.setViewport({ width: 1080, height: 1350, deviceScaleFactor: 2 });
 
         const htmlContent = `
         <!DOCTYPE html>
         <html>
         <head>
             <meta charset="UTF-8">
-            <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,700;0,900;1,900&display=swap" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,600;0,800;1,900&display=swap" rel="stylesheet">
             <style>
                 :root {
-                    --team1-color: #f39c12; /* Brisbane Roar Orange */
-                    --team2-color: #e74c3c; /* WSW Red */
-                    --bg-dark: #0f172a;     /* প্রফেশনাল স্লেট ডার্ক */
+                    --team1-color: #f39c12;
+                    --team2-color: #e74c3c;
+                    --bg-dark: #0f172a;
                     --accent-blue: #38bdf8;
                 }
                 body {
                     margin: 0; padding: 0;
-                    width: 1080px; height: 1080px;
+                    width: 1080px; height: 1350px;
                     background: var(--bg-dark);
                     font-family: 'Montserrat', sans-serif;
                     overflow: hidden;
                     position: relative;
                     color: white;
                 }
-                /* ডাইনামিক স্পোর্টস গ্রিড ব্যাকগ্রাউন্ড */
                 .bg-pattern {
                     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
                     background-image: 
@@ -50,14 +50,13 @@ const fs = require('fs');
                     background-size: 60px 60px;
                     z-index: 1;
                 }
-                /* সিনেমাটিক স্পটলাইট ইফেক্ট */
                 .glow-top {
                     position: absolute; top: -300px; left: -200px; width: 1000px; height: 1000px;
                     background: radial-gradient(circle, rgba(243,156,18,0.3) 0%, transparent 60%);
                     z-index: 2; filter: blur(40px);
                 }
                 .glow-bottom {
-                    position: absolute; bottom: -300px; right: -200px; width: 1000px; height: 1000px;
+                    position: absolute; bottom: 0px; right: -200px; width: 1000px; height: 1000px;
                     background: radial-gradient(circle, rgba(231,76,60,0.3) 0%, transparent 60%);
                     z-index: 2; filter: blur(40px);
                 }
@@ -66,11 +65,10 @@ const fs = require('fs');
                     position: relative; z-index: 10;
                     width: 100%; height: 100%;
                     display: flex; flex-direction: column; justify-content: space-between;
-                    padding: 70px; box-sizing: border-box;
+                    padding: 60px; box-sizing: border-box;
                 }
 
-                /* হেডার: লিগ এবং লাইভ ব্যাজ */
-                .header { display: flex; justify-content: space-between; align-items: flex-start; }
+                .header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;}
                 .league-badge {
                     background: white; color: #0f172a;
                     padding: 12px 35px; font-size: 38px;
@@ -88,100 +86,94 @@ const fs = require('fs');
                     box-shadow: 0 0 35px rgba(255,0,76,0.6);
                     text-transform: uppercase; letter-spacing: 1px;
                 }
-                .dot { width: 16px; height: 16px; background: white; border-radius: 50%; }
+                .dot { width: 16px; height: 16px; background: white; border-radius: 50%; animation: blink 1.5s infinite; }
+                @keyframes blink { 0%, 100% {opacity: 1;} 50% {opacity: 0.3;} }
 
-                /* মেইন ম্যাচ এরিয়া */
                 .match-container {
                     flex-grow: 1; display: flex; flex-direction: column;
                     justify-content: center; align-items: center; text-align: center;
-                    margin-top: -30px;
                 }
                 .team-name {
                     font-family: 'Bebas Neue', cursive;
-                    font-size: 160px; line-height: 0.85;
+                    font-size: 150px; line-height: 0.9;
                     text-transform: uppercase; letter-spacing: 2px;
                     text-shadow: 8px 8px 0px #000, 20px 20px 40px rgba(0,0,0,0.8);
-                    width: 100%; position: relative;
+                    width: 100%;
                 }
-                .team-1 { color: #ffffff; margin-bottom: 20px; }
+                .team-1 { color: #ffffff; margin-bottom: 10px; }
                 .team-1 .highlight { color: var(--team1-color); }
                 
-                .team-2 { color: #ffffff; margin-top: 20px; }
+                .team-2 { color: #ffffff; margin-top: 10px; }
                 .team-2 .highlight { color: var(--team2-color); }
 
-                /* প্রিমিয়াম VS ডিজাইন */
                 .vs-wrapper {
                     position: relative; width: 100%; display: flex; justify-content: center; align-items: center;
-                    margin: 40px 0; z-index: 15;
+                    margin: 30px 0; z-index: 15;
                 }
                 .line { height: 3px; width: 35%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); }
                 .vs-badge {
                     background: #0f172a; border: 4px solid #334155;
-                    color: white; font-size: 55px; font-weight: 900; font-style: italic;
-                    width: 110px; height: 110px; display: flex; justify-content: center; align-items: center;
+                    color: white; font-size: 50px; font-weight: 900; font-style: italic;
+                    width: 100px; height: 100px; display: flex; justify-content: center; align-items: center;
                     border-radius: 50%; margin: 0 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.8);
                 }
 
-                /* ফুটার: ব্যবহারকারীর নতুন টেক্সট এবং লিঙ্ক */
-                .footer {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: flex-end;
-                    border-top: 2px solid rgba(255,255,255,0.1);
-                    padding-top: 25px;
-                    margin-top: 20px;
-                }
-
-                .footer-links {
+                /* নতুন ফুটার ডিজাইন (সুন্দর করে সাজানো) */
+                .footer-card {
+                    background: rgba(15, 23, 42, 0.8);
+                    border: 2px solid rgba(255,255,255,0.1);
+                    border-radius: 20px;
+                    padding: 35px;
                     display: flex;
                     flex-direction: column;
-                    gap: 10px;
-                    max-width: 70%;
-                    text-align: left;
+                    gap: 25px;
+                    backdrop-filter: blur(15px);
+                    box-shadow: 0 -10px 40px rgba(0,0,0,0.5);
                 }
 
-                .link-item {
-                    font-size: 20px;
-                    color: #94a3b8;
+                .footer-row {
                     display: flex;
-                    gap: 5px;
+                    justify-content: space-between;
+                    align-items: center;
                 }
-                .link-label { font-weight: bold; }
-                .link-text { color: white; }
 
-                .info-paragraph {
-                    font-size: 18px;
+                .footer-text-block {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 8px;
+                }
+
+                .footer-title {
+                    font-size: 22px;
                     color: #94a3b8;
-                    line-height: 1.4;
+                    font-weight: 800;
+                    letter-spacing: 1px;
                 }
-                .link-url { color: var(--accent-blue); text-decoration: underline; }
 
-                .telegram-call {
-                    font-size: 18px;
-                    color: white;
-                    text-align: left;
-                }
-                .telegram-label { font-weight: bold; margin-bottom: 3px; }
-                .telegram-url { color: var(--accent-blue); }
-
-                /* টিমের নাম এবং VS ব্যাজের মধ্যে স্পেসিং কমানো */
-                .team-1 { margin-bottom: 10px; }
-                .team-2 { margin-top: 10px; }
-                .vs-wrapper { margin: 20px 0; }
-
-                /* branding স্টাইল বজায় রাখা */
-                .branding {
-                    background: rgba(255,255,255,0.05);
-                    border: 2px solid rgba(255,255,255,0.1);
-                    padding: 10px 20px;
-                    font-size: 20px;
+                .footer-link {
+                    font-size: 26px;
+                    color: var(--accent-blue);
                     font-weight: 900;
-                    color: #fff;
-                    border-radius: 10px;
-                    backdrop-filter: blur(10px);
-                    margin-bottom: 10px;
+                    letter-spacing: 0.5px;
+                }
+
+                .playlist-info {
+                    font-size: 24px;
+                    color: white;
+                    font-weight: 600;
+                }
+
+                .branding {
+                    background: rgba(255,255,255,0.1); 
+                    border: 2px solid rgba(255,255,255,0.2);
+                    padding: 15px 30px; font-size: 28px; font-weight: 900;
+                    color: #fff; letter-spacing: 3px; border-radius: 12px;
                 }
                 .branding span { color: var(--accent-blue); }
+                
+                .divider {
+                    height: 2px; background: rgba(255,255,255,0.1); width: 100%;
+                }
             </style>
         </head>
         <body>
@@ -211,29 +203,27 @@ const fs = require('fs');
                     </div>
                 </div>
 
-                <div class="footer">
-                    <div class="footer-links">
-                        <div class="link-item">
-                            <span class="link-label">STREAM SOURCE:</span>
-                            <span class="link-text">BINGSTREAM.INFO</span>
-                        </div>
-                        <div class="info-paragraph">
-                            <p>Watch on our playlists.</p>
-                            <p>To find playlist visit: <span class="link-url">https://github.com/srhady/bingstream</span></p>
-                        </div>
-                        <div class="telegram-call">
-                            <p class="telegram-label">JOIN OUR TELEGRAM CHANNEL</p>
-                            <p class="telegram-url">https://t.me/livesportsplay</p>
-                        </div>
+                <div class="footer-card">
+                    <div class="footer-text-block">
+                        <div class="playlist-info">Watch on our playlists. To find playlist visit:</div>
+                        <div class="footer-link">https://github.com/srhady/bingstream</div>
                     </div>
-                    <div class="branding">© <span>HADY</span></div>
+                    
+                    <div class="divider"></div>
+                    
+                    <div class="footer-row">
+                        <div class="footer-text-block">
+                            <div class="footer-title">JOIN OUR TELEGRAM CHANNEL</div>
+                            <div class="footer-link">https://t.me/livesportsplay</div>
+                        </div>
+                        <div class="branding">© <span>HADY</span></div>
+                    </div>
                 </div>
             </div>
         </body>
         </html>
         `;
 
-        // ফন্ট যাতে ১০০% লোড হয়, সেজন্য networkidle0 ব্যবহার করা হয়েছে
         await page.setContent(htmlContent, { waitUntil: 'networkidle0' });
         
         const filename = 'social_match_poster.png';
