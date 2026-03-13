@@ -17,7 +17,7 @@ jobs:
           node-version: '20'
 
       - name: 📦 ডিপেন্ডেন্সি ইনস্টল
-        run: npm install puppeteer
+        run: npm install puppeteer cheerio
 
       - name: 🚀 পোস্টার জেনারেট স্ক্রিপ্ট রান
         run: node poster.js
@@ -26,6 +26,6 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add social_match_poster.png || true
-          git commit -m "Auto Generate Match Poster with New Links" || exit 0
+          git add social_all_matches_poster.png || true
+          git commit -m "Auto Generate All Matches Poster" || exit 0
           git push
