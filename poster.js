@@ -1,10 +1,12 @@
 const puppeteer = require('puppeteer');
 const cheerio = require('cheerio');
+const fs = require('fs');
 
 (async () => {
     try {
         console.log("[*] হোমপেজ থেকে লাইভ ম্যাচ খোঁজা হচ্ছে...");
         
+        // ১. Cheerio দিয়ে আপনার অরিজিনাল স্ক্র্যাপিং লজিক
         const res = await fetch('https://bingstream.info/');
         const html = await res.text();
         const $ = cheerio.load(html);
@@ -76,6 +78,7 @@ const cheerio = require('cheerio');
         const displayMatches = scrapedMatches.slice(0, 8);
         console.log(`[+] মোট ${scrapedMatches.length} টি পাওয়া গেছে, পোস্টারে ${displayMatches.length} টি রেন্ডার করা হচ্ছে।`);
 
+        // ৪টার বেশি হলে ২ কলাম, নাহলে ১ কলাম
         let layoutClass = displayMatches.length > 4 ? 'grid-2-col' : 'grid-1-col';
 
         const colorPalettes = [
@@ -86,6 +89,7 @@ const cheerio = require('cheerio');
             { c1: "#fc00ff", c2: "#00dbde" }  
         ];
 
+        // ৩. HTML রো (Row) জেনারেট করা
         let allMatchesHtml = '';
         displayMatches.forEach((match, index) => {
             let colors = colorPalettes[index % colorPalettes.length]; 
@@ -129,12 +133,14 @@ const cheerio = require('cheerio');
         const dateOptions = { timeZone: 'Asia/Dhaka', year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true };
         const bdtDateTime = new Date().toLocaleString('en-US', dateOptions).toUpperCase();
 
+        // ৪. Puppeteer দিয়ে রেন্ডার করা
         const browser = await puppeteer.launch({
             headless: "new",
             args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage', '--font-render-hinting=none']
         });
 
         const page = await browser.newPage();
+        // ফিক্সড ক্যানভাস সাইজ (Instagram Portrait)
         await page.setViewport({ width: 1080, height: 1350, deviceScaleFactor: 2 });
 
         const htmlContent = `
@@ -142,7 +148,7 @@ const cheerio = require('cheerio');
         <html>
         <head>
             <meta charset="UTF-8">
-            <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Montserrat:ital,wght@0,600;0,800;0,900;1,900&display=swap" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@700&family=Montserrat:ital,wght@0,600;0,800;0,900;1,900&display=swap" rel="stylesheet">
             <style>
                 :root {
                     --bg-dark: #070b14;
@@ -164,15 +170,15 @@ const cheerio = require('cheerio');
                     background-size: 60px 60px; z-index: 1;
                 }
                 
-                /* নতুন: বাংলাদেশ টাইমের ব্যাজ */
+                /* বাংলাদেশ টাইমের ব্যাজ - ফন্ট সাইজ এবং প্যাডিং বাড়ানো হলো */
                 .datetime-badge {
                     position: absolute;
                     top: 40px; right: 40px;
                     background: rgba(15, 23, 42, 0.85);
                     border: 1px solid rgba(56, 189, 248, 0.3);
-                    padding: 10px 25px;
+                    padding: 15px 35px;
                     border-radius: 50px;
-                    font-size: 18px;
+                    font-size: 24px;
                     color: #fff;
                     font-weight: 800;
                     letter-spacing: 1px;
@@ -181,7 +187,7 @@ const cheerio = require('cheerio');
                     z-index: 20;
                     display: flex;
                     align-items: center;
-                    gap: 10px;
+                    gap: 12px;
                 }
                 .datetime-badge span { color: var(--accent-blue); }
 
@@ -193,14 +199,15 @@ const cheerio = require('cheerio');
                 }
 
                 .main-title {
-                    text-align: center; font-size: 65px; font-weight: 900; color: white;
+                    text-align: center; font-size: 75px; font-weight: 900; color: white;
                     text-transform: uppercase; margin-top: 50px; margin-bottom: 25px; letter-spacing: 2px;
-                    font-family: 'Montserrat', sans-serif; /* অনেক চওড়া আর ক্লিন লুক */
+                    font-family: 'Anton', sans-serif; /* ক্লিন চওড়া ফন্ট */
                     text-shadow: 0 10px 20px rgba(0,0,0,0.5);
                 }
                 .main-title span { color: #ff004c; animation: blink 1.5s infinite;}
                 @keyframes blink { 0%, 100% {opacity: 1;} 50% {opacity: 0.3;} }
 
+                /* ડાનામિક গ্রিড সিস্টেম */
                 .matches-list {
                     flex-grow: 1; display: grid; align-content: center;
                     gap: 25px; width: 100%;
@@ -216,6 +223,9 @@ const cheerio = require('cheerio');
                     position: relative; overflow: hidden;
                     backdrop-filter: blur(15px); box-shadow: 0 10px 30px rgba(0,0,0,0.4);
                 }
+                
+                /* জাদুকরী কোড: বেজোড় ম্যাচকে মাঝখানে আনার জন্য এবং খালি জায়গা ভরাট করার জন্য */
+                .grid-2-col .match-row { width: 100%; } /* ২ কলামের ক্ষেত্রে সব ম্যাচই ১ কলামের সমান মাপে থাকবে */
                 
                 .grid-2-col .match-row:last-child:nth-child(odd) {
                     grid-column: 1 / -1;
@@ -236,14 +246,14 @@ const cheerio = require('cheerio');
                 .match-teams { display: flex; justify-content: space-between; align-items: center; }
                 .team {
                     font-weight: 700; text-transform: uppercase; line-height: 1.15;
-                    font-family: 'Oswald', sans-serif; /* এই ফন্টটা চওড়ায় ছড়ানো */
+                    font-family: 'Oswald', sans-serif; /* অনেক চওড়া স্পোর্টস ফন্ট */
                     width: 42%; text-align: center; letter-spacing: 1px;
                     text-shadow: 3px 3px 10px rgba(0,0,0,0.8);
                 }
                 .team-1 { color: #ffffff; }
                 .team-1 .highlight { color: var(--t1-color); }
                 .team-2 { color: #ffffff; }
-                .team-2 .highlight { color: var(--t2-color); }
+                .team-2 .highlight { color: var(--team2-color); }
 
                 .vs-badge {
                     color: #fff; font-weight: 900; font-style: italic;
@@ -255,28 +265,19 @@ const cheerio = require('cheerio');
                 .tournament { color: var(--accent-blue); text-transform: uppercase; letter-spacing: 1px;}
                 .time { color: #ff004c; letter-spacing: 1px;}
 
-                .grid-1-col .match-row { padding: 35px; gap: 20px; }
-                .grid-1-col .team { font-size: 60px; }
-                .grid-1-col .vs-badge { font-size: 40px; padding: 12px 20px; }
-                .grid-1-col .match-details { font-size: 24px; }
+                /* 1 কলামের স্টাইল (কম ম্যাচ হলে) - ফন্ট সাইজ এবং প্যাডিং বাড়ানো হলো */
+                .grid-1-col .match-row { padding: 45px; gap: 25px; }
+                .grid-1-col .team { font-size: 80px; }
+                .grid-1-col .vs-badge { font-size: 45px; padding: 15px 25px; }
+                .grid-1-col .match-details { font-size: 28px; }
 
-                .grid-2-col .match-row { padding: 25px 15px; gap: 15px; }
-                .grid-2-col .team { font-size: 34px; } /* ফন্ট চওড়া হওয়ায় সাইজ পারফেক্ট করা হলো */
-                .grid-2-col .vs-badge { font-size: 22px; padding: 8px 15px; }
-                .grid-2-col .match-details { font-size: 16px; }
+                /* 2 কলামের স্টাইল (বেশি ম্যাচ হলে) - ফন্ট সাইজ এবং প্যাডিং বাড়ানো হলো */
+                .grid-2-col .match-row { padding: 35px 20px; gap: 20px; }
+                .grid-2-col .team { font-size: 45px; }
+                .grid-2-col .vs-badge { font-size: 30px; padding: 10px 20px; }
+                .grid-2-col .match-details { font-size: 20px; }
 
-                .footer-card {
-                    background: rgba(15, 23, 42, 0.8);
-                    border: 2px solid rgba(255,255,255,0.1);
-                    border-radius: 20px; padding: 30px; display: flex; flex-direction: column; gap: 20px;
-                    backdrop-filter: blur(20px); box-shadow: 0 -10px 50px rgba(0,0,0,0.6);
-                    margin-top: 25px;
-                }
-                .footer-row { display: flex; justify-content: space-between; align-items: center; }
-                .footer-text-block { display: flex; flex-direction: column; gap: 6px; }
-                .footer-title { font-size: 20px; color: #94a3b8; font-weight: 800; letter-spacing: 1px; }
-                .footer-link { font-size: 22px; color: var(--accent-blue); font-weight: 900; letter-spacing: 0.5px; }
-                .playlist-info { font-size: 20px; color: white; font-weight: 600; }
+                /* branding স্টাইল বজায় রাখা */
                 .branding {
                     background: rgba(255,255,255,0.05); border: 2px solid rgba(255,255,255,0.2);
                     padding: 12px 30px; font-size: 24px; font-weight: 900; color: #fff; letter-spacing: 3px; border-radius: 12px;
@@ -324,7 +325,7 @@ const cheerio = require('cheerio');
         await page.screenshot({ path: filename, type: 'png' }); 
         await browser.close();
 
-        console.log(`\n[+] বুম! 💥 বাংলাদেশ টাইম এবং নতুন ফন্টসহ পোস্টার রেডি: ${filename}`);
+        console.log(`\n[+] বুম! 💥 বাংলাদেশ টাইম এবং নতুন ফন্ট ও লেআউটে পোস্টার রেডি: ${filename}`);
         
     } catch (e) {
         console.error("\n❌ গিটহাব স্ক্রিপ্টে এরর:", e.message);
