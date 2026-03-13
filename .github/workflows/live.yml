@@ -1,10 +1,10 @@
-name: FB Live Stream
+name: Telegram Live Stream
 
 on:
   workflow_dispatch:
 
 jobs:
-  start_stream:
+  restream:
     runs-on: ubuntu-latest
 
     steps:
@@ -13,6 +13,8 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y ffmpeg
 
-      - name: Run Live Stream
+      - name: Start Live Stream
         run: |
-          ffmpeg -allowed_extensions ALL -re -user_agent "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36" -analyzeduration 15M -probesize 15M -i "https://livecdn-bp-livestream.linewgen.xyz/stream/5/chunks.m3u8?x-sign=7da2bc618684e3a3954644e8181799f6&x-time=1773423060&is_vip=false&token=be9ca42d8faf29a2e29be85e9b7a53c7d27a2e5b" -filter_complex "[0:v]crop=w=iw-10:h=ih-10:x=5:y=5,scale=1280:720,eq=contrast=1.08:saturation=1.15:brightness=0.04,hue=h=4,noise=alls=4:allf=t+u,vignette=PI/5,unsharp=5:5:0.8:5:5:0.0[v];[0:a]aresample=async=1,volume=0.5,asetrate=44100*1.05,atempo=0.95,highpass=f=200,lowpass=f=3000[a]" -map "[v]" -map "[a]" -bsf:v "filter_units=remove_types=6" -map_metadata -1 -metadata title="HADY" -metadata artist="HADY" -metadata copyright="HADY" -r 24 -c:v libx264 -pix_fmt yuv420p -preset ultrafast -tune zerolatency -x264-params "nal-hrd=cbr:force-cfr=1:scenecut=0:bframes=0:no-cabac=1:aq-mode=3:aq-strength=1.5:me=dia:subme=0" -b:v 2000k -maxrate 2000k -bufsize 4000k -threads 2 -c:a aac -b:a 64k -ar 44100 -f flv -flvflags no_duration_filesize "rtmps://live-api-s.facebook.com:443/rtmp/FB-836684476031840-0-Ab7mnroOAEl1zqr_q6SyFVed"
+          ffmpeg -i "https://livecdn-bp-livestream.linewgen.xyz/stream/31/chunks.m3u8?x-sign=5364e2061cc06fc01362d6f66d742ee1&x-time=1773441960&is_vip=false&token=7d00c587c27385d843c6235bb1b64bd9f1e24259" \
+          -c:v copy -c:a copy \
+          -f flv "rtmps://dc5-1.rtmp.t.me/s/${{ secrets.TELEGRAM_STREAM_KEY }}"
