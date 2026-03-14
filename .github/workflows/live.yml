@@ -51,8 +51,8 @@ jobs:
               echo "শুধুমাত্র ইনট্রো ভিডিও পাওয়া গেছে। ইনট্রো প্লে করা হচ্ছে..."
               STREAM_URL=$(sed -n '1p' urls.txt)
               
-              # বাফারিং এবং সিঙ্ক ফিক্স করা হয়েছে
-              ffmpeg -use_wallclock_as_timestamps 1 -thread_queue_size 512 -nostdin -re -i "$STREAM_URL" \
+              # -fflags +genpts ব্যবহার করে টাইমস্ট্যাম্প জেনারেট করা হচ্ছে
+              ffmpeg -fflags +genpts -thread_queue_size 512 -nostdin -re -i "$STREAM_URL" \
               -map 0:v:0 -map 0:a:0 -c:v copy -c:a aac -b:a 128k -ar 44100 \
               -max_muxing_queue_size 1024 -f flv "rtmps://dc5-1.rtmp.t.me/s/${{ secrets.TELEGRAM_STREAM_KEY }}" &
               
@@ -84,8 +84,8 @@ jobs:
               
               BASE_URL=$(echo "$STREAM_URL" | cut -d'?' -f1)
               
-              # বাফারিং এবং সিঙ্ক ফিক্স করা হয়েছে
-              ffmpeg -use_wallclock_as_timestamps 1 -thread_queue_size 512 -nostdin -i "$STREAM_URL" \
+              # -fflags +genpts ব্যবহার করে টাইমস্ট্যাম্প জেনারেট করা হচ্ছে
+              ffmpeg -fflags +genpts -thread_queue_size 512 -nostdin -i "$STREAM_URL" \
               -map 0:v:0 -map 0:a:0 -c:v copy -c:a aac -b:a 128k -ar 44100 \
               -max_muxing_queue_size 1024 -f flv "rtmps://dc5-1.rtmp.t.me/s/${{ secrets.TELEGRAM_STREAM_KEY }}" &
               
