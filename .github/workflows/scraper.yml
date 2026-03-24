@@ -1,9 +1,9 @@
 name: HDHub Telegram Link Scraper
 
 on:
-  workflow_dispatch: # অ্যাকশনস ট্যাব থেকে ম্যানুয়ালি রান করার জন্য
+  workflow_dispatch:
   schedule:
-    - cron: '0 */6 * * *' # প্রতি ৬ ঘণ্টা পরপর অটোমেটিক রান হবে (প্রয়োজনে সময় পরিবর্তন করতে পারেন)
+    - cron: '0 */6 * * *'
 
 jobs:
   scrape-link:
@@ -18,14 +18,13 @@ jobs:
       with:
         python-version: '3.10'
 
-    - name: Install Dependencies
+    - name: Install Dependencies & Xvfb
       run: |
+        sudo apt-get update
+        sudo apt-get install -y xvfb
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+        playwright install chromium
 
-    - name: Install Playwright Browsers
-      # স্ক্র্যাপিংয়ের জন্য শুধুমাত্র ক্রোমিয়াম ব্রাউজার ইনস্টল করবে
-      run: playwright install chromium
-
-    - name: Run Scraper Script
-      run: python main.py
+    - name: Run Scraper Script with Virtual Display
+      run: xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" python main.py
