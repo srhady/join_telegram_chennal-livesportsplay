@@ -1,20 +1,34 @@
 from playwright.sync_api import sync_playwright
+from playwright_stealth import stealth_sync
 
 def get_telegram_link_only():
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True, args=['--no-sandbox', '--disable-setuid-sandbox'])
+        # ক্লাউডফ্লেয়ার বাইপাস করার জন্য কিছু এক্সট্রা আর্গুমেন্ট
+        browser = p.chromium.launch(
+            headless=True, 
+            args=[
+                '--no-sandbox', 
+                '--disable-setuid-sandbox', 
+                '--disable-blink-features=AutomationControlled'
+            ]
+        )
         context = browser.new_context(
             user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
             viewport={'width': 1920, 'height': 1080}
         )
         page = context.new_page()
+        
+        # স্ক্রিপ্টকে মানুষের মতো প্রমাণ করতে স্টিলথ মোড অন করা হলো
+        stealth_sync(page)
 
         try:
             print("১. সাইটে প্রবেশ করছি...")
             page.goto("https://new5.hdhub4u.fo/", timeout=60000)
+            
+            # ডিবাগ করার জন্য পেজের আসল টাইটেল প্রিন্ট করা হচ্ছে
+            print(f"-> বর্তমান পেজের টাইটেল: {page.title()}")
 
             print("২. লেটেস্ট মুভি খুঁজছি...")
-            # HTML সোর্স কোড অনুযায়ী একদম সঠিক সিলেক্টর
             first_movie_selector = 'ul.recent-movies li.thumb figure a'  
             page.wait_for_selector(first_movie_selector, timeout=15000)
             
@@ -24,7 +38,6 @@ def get_telegram_link_only():
             movie_page.wait_for_load_state()
 
             print("৩. 720p HEVC লিংকে ক্লিক করছি...")
-            # 720p HEVC টেক্সট ধরে বাটন খোঁজা
             hevc_selector = 'text="720p HEVC"'
             movie_page.wait_for_selector(hevc_selector, timeout=15000)
             
@@ -55,6 +68,8 @@ def get_telegram_link_only():
 
         except Exception as e:
             print(f"\n❌ [ERROR] স্ক্র্যাপ করতে ফেইল করেছে: {e}")
+            # এরর হলে স্ক্রিনশট সেভ করবে যাতে বোঝা যায় সাইট কী পেজ দিয়েছিল
+            page.screenshot(path="error_screen.png")
             return None
         finally:
             browser.close()
