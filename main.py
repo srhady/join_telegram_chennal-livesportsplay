@@ -1,10 +1,11 @@
 from playwright.sync_api import sync_playwright
-from playwright_stealth import Stealth  # <--- নতুন আপডেটের সঠিক ইমপোর্ট
+from playwright_stealth import Stealth
 
 def get_telegram_link_only():
     with sync_playwright() as p:
+        # এখানে headless=False করে দেওয়া হয়েছে ম্যাজিকের জন্য!
         browser = p.chromium.launch(
-            headless=True, 
+            headless=False, 
             args=[
                 '--no-sandbox', 
                 '--disable-setuid-sandbox', 
@@ -17,7 +18,6 @@ def get_telegram_link_only():
         )
         page = context.new_page()
         
-        # নতুন ভার্সনের নিয়ম অনুযায়ী স্টিলথ মোড অ্যাক্টিভ করা
         stealth = Stealth()
         stealth.apply_stealth_sync(page)
 
@@ -27,10 +27,9 @@ def get_telegram_link_only():
             
             print(f"-> বর্তমান পেজের টাইটেল: {page.title()}")
             
-            # ক্লাউডফ্লেয়ারের ক্যাপচা বা চেকিং পার হওয়ার জন্য সময় দেওয়া হলো
-            print("-> ক্লাউডফ্লেয়ার চেকিংয়ের জন্য ৮ সেকেন্ড অপেক্ষা করছি...")
-            page.wait_for_timeout(8000)
-            print(f"-> ৮ সেকেন্ড পর পেজের টাইটেল: {page.title()}")
+            print("-> ক্লাউডফ্লেয়ার চেকিংয়ের জন্য ১০ সেকেন্ড অপেক্ষা করছি...")
+            page.wait_for_timeout(10000) # সময় একটু বাড়িয়ে দিলাম
+            print(f"-> ১০ সেকেন্ড পর পেজের টাইটেল: {page.title()}")
 
             print("২. লেটেস্ট মুভি খুঁজছি...")
             first_movie_selector = 'ul.recent-movies li.thumb figure a'  
