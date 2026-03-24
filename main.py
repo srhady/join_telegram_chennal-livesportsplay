@@ -1,9 +1,8 @@
 from playwright.sync_api import sync_playwright
-from playwright_stealth import stealth_sync
+from playwright_stealth import stealth  # <--- ইমপোর্ট আপডেট করা হয়েছে
 
 def get_telegram_link_only():
     with sync_playwright() as p:
-        # ক্লাউডফ্লেয়ার বাইপাস করার জন্য কিছু এক্সট্রা আর্গুমেন্ট
         browser = p.chromium.launch(
             headless=True, 
             args=[
@@ -18,15 +17,19 @@ def get_telegram_link_only():
         )
         page = context.new_page()
         
-        # স্ক্রিপ্টকে মানুষের মতো প্রমাণ করতে স্টিলথ মোড অন করা হলো
-        stealth_sync(page)
+        # স্ক্রিপ্টকে মানুষের মতো প্রমাণ করতে স্টিলথ মোড অন
+        stealth(page) # <--- আপডেট করা হয়েছে
 
         try:
             print("১. সাইটে প্রবেশ করছি...")
             page.goto("https://new5.hdhub4u.fo/", timeout=60000)
             
-            # ডিবাগ করার জন্য পেজের আসল টাইটেল প্রিন্ট করা হচ্ছে
             print(f"-> বর্তমান পেজের টাইটেল: {page.title()}")
+            
+            # ক্লাউডফ্লেয়ারের ক্যাপচা বা চেকিং পার হওয়ার জন্য সময় দেওয়া হলো
+            print("-> ক্লাউডফ্লেয়ার চেকিংয়ের জন্য ৮ সেকেন্ড অপেক্ষা করছি...")
+            page.wait_for_timeout(8000)
+            print(f"-> ৮ সেকেন্ড পর পেজের টাইটেল: {page.title()}")
 
             print("২. লেটেস্ট মুভি খুঁজছি...")
             first_movie_selector = 'ul.recent-movies li.thumb figure a'  
@@ -68,8 +71,6 @@ def get_telegram_link_only():
 
         except Exception as e:
             print(f"\n❌ [ERROR] স্ক্র্যাপ করতে ফেইল করেছে: {e}")
-            # এরর হলে স্ক্রিনশট সেভ করবে যাতে বোঝা যায় সাইট কী পেজ দিয়েছিল
-            page.screenshot(path="error_screen.png")
             return None
         finally:
             browser.close()
