@@ -1,5 +1,5 @@
 from playwright.sync_api import sync_playwright
-from playwright_stealth import stealth  # <--- ইমপোর্ট আপডেট করা হয়েছে
+from playwright_stealth import Stealth  # <--- নতুন আপডেটের সঠিক ইমপোর্ট
 
 def get_telegram_link_only():
     with sync_playwright() as p:
@@ -17,8 +17,9 @@ def get_telegram_link_only():
         )
         page = context.new_page()
         
-        # স্ক্রিপ্টকে মানুষের মতো প্রমাণ করতে স্টিলথ মোড অন
-        stealth(page) # <--- আপডেট করা হয়েছে
+        # নতুন ভার্সনের নিয়ম অনুযায়ী স্টিলথ মোড অ্যাক্টিভ করা
+        stealth = Stealth()
+        stealth.apply_stealth_sync(page)
 
         try:
             print("১. সাইটে প্রবেশ করছি...")
