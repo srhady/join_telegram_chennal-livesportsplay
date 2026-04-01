@@ -25,7 +25,7 @@ jobs:
 
     - name: Run Scraper
       run: |
-        python scraper.py  # এখানে আপনার পাইথন ফাইলের নামটা ঠিক আছে কি না দেখে নেবেন
+        python -u scraper.py  # এখানে আপনার পাইথন ফাইলের নামটা ঠিক আছে কি না দেখে নেবেন
 
     - name: Commit and Push Changes
       run: |
