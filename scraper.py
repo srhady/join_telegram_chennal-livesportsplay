@@ -6,20 +6,6 @@ import concurrent.futures
 
 BASE_URL = "https://fibwatch.art"
 
-# আমাদের দুইটা আলাদা টার্গেট সেট করা হলো
-TARGETS = [
-    {
-        "cat_id": "852", 
-        "group_title": "Bengali Dubbed", 
-        "output_file": "playlist.m3u"
-    },
-    {
-        "cat_id": "1", 
-        "group_title": "Bangla Movie", 
-        "output_file": "bangla.m3u"
-    }
-]
-
 def process_movie(base_name, watch_link, quality, scraper, group_title):
     try:
         res = scraper.get(watch_link, timeout=15)
@@ -58,21 +44,16 @@ def process_movie(base_name, watch_link, quality, scraper, group_title):
         file_name = re.sub(r'\.mkv|\.mp4', '', file_name, flags=re.IGNORECASE)
         file_name = file_name.replace('.', ' ').strip()
         
-        # ডায়নামিক গ্রুপ টাইটেল বসানো হচ্ছে
+        # শুধু group-title টা ডায়নামিক করা হয়েছে
         m3u_entry = f'#EXTINF:-1 tvg-logo="{poster}" group-title="{group_title}", {file_name}\n{actual_link}\n'
         return m3u_entry
         
     except Exception as e:
         return None
 
-def scrape_category(target, scraper):
-    cat_id = target["cat_id"]
-    group_title = target["group_title"]
-    playlist_file = target["output_file"]
-    
-    print(f"\n{'='*60}")
-    print(f"🚀 Starting Extraction for Category: {group_title} (ID: {cat_id})")
-    print(f"{'='*60}\n")
+def run_scraper(cat_id, playlist_file, group_title):
+    print(f"🚀 Starting SUPER FAST & BULLETPROOF Scraper (30 Threads) for {group_title}...")
+    scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'mobile': False})
     
     best_qualities = {}
     best_links = {}
@@ -111,10 +92,11 @@ def scrape_category(target, scraper):
                 
         page += 1
 
-    print(f"\n🎬 Found {len(best_links)} UNIQUE movies for '{group_title}'. Cracking with 30 THREADS...")
+    print(f"\n🎬 Found {len(best_links)} UNIQUE movies. Starting extraction with 30 THREADS...")
     
     results = []
     
+    # আপনার নির্দেশ মতো ৩০টা থ্রেড! রকেটের বেগে ডেটা আনবে!
     with concurrent.futures.ThreadPoolExecutor(max_workers=30) as executor:
         future_to_movie = {
             executor.submit(process_movie, b_name, w_link, best_qualities[b_name], scraper, group_title): b_name 
@@ -127,34 +109,30 @@ def scrape_category(target, scraper):
                 data = future.result()
                 if data:
                     results.append(data)
-                    print(f"   ⚡ Pure Link Extracted: {b_name[:40]}...")
+                    print(f"   ⚡ Pure Link Extracted: {b_name}")
                 else:
-                    print(f"   ⚠️ Skipped (No valid link): {b_name[:40]}...")
+                    print(f"   ⚠️ Skipped (No valid link): {b_name}")
             except Exception:
                 pass
 
     print(f"\n💾 Writing perfectly clean data to {playlist_file}...")
     with open(playlist_file, "w", encoding="utf-8") as f:
         f.write('#EXTM3U x-tvg-url=""\n')
-        f.write(f'# Playlist Generated Automatically by Automation ({group_title})\n')
+        f.write('# Playlist Generated Automatically by Livesportsplay Automation\n')
         now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         f.write(f'# Last Updated: {now}\n\n')
         
         for entry in results:
             f.write(entry)
 
-    print(f"🎉 Done! Pure M3U Playlist generated for {group_title} -> {playlist_file}")
-
+    print(f"🎉 Done! Pure M3U Playlist generated without shortlinks for {group_title}.\n")
 
 def main():
-    print("🚀 Starting SUPER FAST & BULLETPROOF Scraper (Dual Engine)...")
-    scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'mobile': False})
+    # প্রথম রাউন্ড: আপনার আগের ক্যাটাগরি (852)
+    run_scraper(cat_id="852", playlist_file="playlist.m3u", group_title="Bengali Dubbed")
     
-    # দুটো ক্যাটাগরি একটার পর একটা স্ক্যান করবে
-    for target in TARGETS:
-        scrape_category(target, scraper)
-        
-    print("\n✅✅ All Categories Scraped Successfully! Your playlists are ready! ✅✅")
+    # দ্বিতীয় রাউন্ড: নতুন ক্যাটাগরি (1)
+    run_scraper(cat_id="1", playlist_file="bangla.m3u", group_title="Bangla Movie")
 
 if __name__ == "__main__":
     main()
