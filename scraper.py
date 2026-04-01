@@ -4,10 +4,23 @@ import re
 from datetime import datetime
 import concurrent.futures
 
-PLAYLIST_FILE = "playlist.m3u"
 BASE_URL = "https://fibwatch.art"
 
-def process_movie(base_name, watch_link, quality, scraper):
+# আমাদের দুইটা আলাদা টার্গেট সেট করা হলো
+TARGETS = [
+    {
+        "cat_id": "852", 
+        "group_title": "Bengali Dubbed", 
+        "output_file": "playlist.m3u"
+    },
+    {
+        "cat_id": "1", 
+        "group_title": "Bangla Movie", 
+        "output_file": "bangla.m3u"
+    }
+]
+
+def process_movie(base_name, watch_link, quality, scraper, group_title):
     try:
         res = scraper.get(watch_link, timeout=15)
         watch_soup = BeautifulSoup(res.text, 'html.parser')
@@ -45,15 +58,21 @@ def process_movie(base_name, watch_link, quality, scraper):
         file_name = re.sub(r'\.mkv|\.mp4', '', file_name, flags=re.IGNORECASE)
         file_name = file_name.replace('.', ' ').strip()
         
-        m3u_entry = f'#EXTINF:-1 tvg-logo="{poster}" group-title="Bengali Dubbed", {file_name}\n{actual_link}\n'
+        # ডায়নামিক গ্রুপ টাইটেল বসানো হচ্ছে
+        m3u_entry = f'#EXTINF:-1 tvg-logo="{poster}" group-title="{group_title}", {file_name}\n{actual_link}\n'
         return m3u_entry
         
     except Exception as e:
         return None
 
-def main():
-    print("🚀 Starting SUPER FAST & BULLETPROOF Scraper (30 Threads)...")
-    scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'mobile': False})
+def scrape_category(target, scraper):
+    cat_id = target["cat_id"]
+    group_title = target["group_title"]
+    playlist_file = target["output_file"]
+    
+    print(f"\n{'='*60}")
+    print(f"🚀 Starting Extraction for Category: {group_title} (ID: {cat_id})")
+    print(f"{'='*60}\n")
     
     best_qualities = {}
     best_links = {}
@@ -61,7 +80,7 @@ def main():
     page = 1
     while True:
         print(f"⏳ Scanning Page {page}...")
-        url = f"{BASE_URL}/videos/category/852?page_id={page}"
+        url = f"{BASE_URL}/videos/category/{cat_id}?page_id={page}"
         try:
             response = scraper.get(url, timeout=15)
             soup = BeautifulSoup(response.text, 'html.parser')
@@ -92,14 +111,13 @@ def main():
                 
         page += 1
 
-    print(f"\n🎬 Found {len(best_links)} UNIQUE movies. Starting extraction with 30 THREADS...")
+    print(f"\n🎬 Found {len(best_links)} UNIQUE movies for '{group_title}'. Cracking with 30 THREADS...")
     
     results = []
     
-    # আপনার নির্দেশ মতো ৩০টা থ্রেড! রকেটের বেগে ডেটা আনবে!
     with concurrent.futures.ThreadPoolExecutor(max_workers=30) as executor:
         future_to_movie = {
-            executor.submit(process_movie, b_name, w_link, best_qualities[b_name], scraper): b_name 
+            executor.submit(process_movie, b_name, w_link, best_qualities[b_name], scraper, group_title): b_name 
             for b_name, w_link in best_links.items()
         }
         
@@ -109,23 +127,34 @@ def main():
                 data = future.result()
                 if data:
                     results.append(data)
-                    print(f"   ⚡ Pure Link Extracted: {b_name}")
+                    print(f"   ⚡ Pure Link Extracted: {b_name[:40]}...")
                 else:
-                    print(f"   ⚠️ Skipped (No valid link): {b_name}")
+                    print(f"   ⚠️ Skipped (No valid link): {b_name[:40]}...")
             except Exception:
                 pass
 
-    print("\n💾 Writing perfectly clean data to playlist.m3u...")
-    with open(PLAYLIST_FILE, "w", encoding="utf-8") as f:
+    print(f"\n💾 Writing perfectly clean data to {playlist_file}...")
+    with open(playlist_file, "w", encoding="utf-8") as f:
         f.write('#EXTM3U x-tvg-url=""\n')
-        f.write('# Playlist Generated Automatically by Livesportsplay Automation\n')
+        f.write(f'# Playlist Generated Automatically by Automation ({group_title})\n')
         now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         f.write(f'# Last Updated: {now}\n\n')
         
         for entry in results:
             f.write(entry)
 
-    print("🎉 Done! Pure M3U Playlist generated without shortlinks.")
+    print(f"🎉 Done! Pure M3U Playlist generated for {group_title} -> {playlist_file}")
+
+
+def main():
+    print("🚀 Starting SUPER FAST & BULLETPROOF Scraper (Dual Engine)...")
+    scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'mobile': False})
+    
+    # দুটো ক্যাটাগরি একটার পর একটা স্ক্যান করবে
+    for target in TARGETS:
+        scrape_category(target, scraper)
+        
+    print("\n✅✅ All Categories Scraped Successfully! Your playlists are ready! ✅✅")
 
 if __name__ == "__main__":
     main()
