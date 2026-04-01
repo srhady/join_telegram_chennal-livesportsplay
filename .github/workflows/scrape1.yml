@@ -1,0 +1,29 @@
+name: IPTV Playlist Generator
+
+on:
+  schedule:
+    # প্রতিদিন রাত ৩টায় অটোমেটিক আপডেট হবে (UTC Time)
+    - cron: '0 3 * * *'
+  workflow_dispatch: # Actions ট্যাব থেকে ম্যানুয়ালি রান করার জন্য
+
+jobs:
+  generate-playlist:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Make Script Executable
+        run: chmod +x scraper.sh
+
+      - name: Run Playlist Generator
+        run: ./scraper1.sh
+
+      - name: Commit and Push M3U Playlist
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action Bot"
+          git add playlist.m3u
+          git commit -m "Auto-Update: Fetched latest 1080p movies and updated playlist.m3u" || echo "No changes to commit"
+          git push
