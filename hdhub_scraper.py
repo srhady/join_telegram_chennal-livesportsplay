@@ -1,4 +1,4 @@
-import cloudscraper
+from curl_cffi import requests
 from bs4 import BeautifulSoup
 import re
 from datetime import datetime
@@ -8,8 +8,6 @@ BASE_URL = "https://new5.hdhub4u.fo"
 START_CATEGORY_URL = f"{BASE_URL}/category/south-hindi-movies/page/"
 PLAYLIST_FILE = "hdhub_playlist.m3u"
 
-
-# সিন্দুকের তালা ভাঙার ফাংশন
 def unpack(p, a, c, k):
     def baseN(num, b):
         chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -26,11 +24,12 @@ def unpack(p, a, c, k):
             p = re.sub(r'\b' + word + r'\b', k[i], p)
     return p
 
-def process_movie(movie_data, scraper):
+def process_movie(movie_data):
     title, url, poster = movie_data
     try:
-        # ১. মুভির পেজে ঢোকা
-        res = scraper.get(url, timeout=15)
+        # curl_cffi দিয়ে রিয়েল ক্রোমের ভান করে ঢোকা
+        session = requests.Session(impersonate="chrome110", timeout=15)
+        res = session.get(url)
         soup = BeautifulSoup(res.text, 'html.parser')
         
         content = soup.find('div', class_='entry-content') or soup
@@ -48,11 +47,9 @@ def process_movie(movie_data, scraper):
         if not watch_link:
             return None
             
-        # ২. Watch পেজে (যেমন hdstream4u) ঢোকা
-        watch_res = scraper.get(watch_link, timeout=15)
+        watch_res = session.get(watch_link)
         html = watch_res.text
         
-        # ৩. প্যাক করা জাভাস্ক্রিপ্ট খোঁজা
         match = re.search(r"return p}\('(.*?)',\s*(\d+),\s*(\d+),\s*'(.*?)'\.split\('\|'\)", html, re.DOTALL)
         
         if match:
@@ -63,7 +60,6 @@ def process_movie(movie_data, scraper):
 
             unpacked = unpack(p, a, c, k)
             
-            # ৪. ভিডিও এবং সাবটাইটেল লিংক বের করা
             video_links = re.findall(r'https?://[^\s\'"<>\,\[\]\(\)]+?\.(?:m3u8|mp4)[^\s\'"<>\,\[\]\(\)]*', unpacked)
             sub_links = re.findall(r'https?://[^\s\'"<>\,\[\]\(\)]+?\.(?:vtt|srt)[^\s\'"<>\,\[\]\(\)]*', unpacked)
             
@@ -71,7 +67,6 @@ def process_movie(movie_data, scraper):
                 stream_url = video_links[0]
                 sub_url = sub_links[0] if sub_links else None
                 
-                # ৫. M3U প্লেলিস্ট ফরম্যাট তৈরি
                 m3u_entry = f'#EXTINF:-1 tvg-logo="{poster}" group-title="South Hindi Dubbed", {title}\n'
                 if sub_url:
                     m3u_entry += f'#EXTVLCOPT:sub-file="{sub_url}"\n'
@@ -84,17 +79,18 @@ def process_movie(movie_data, scraper):
         return None
 
 def main():
-    print("🚀 Starting Ultimate M3U Scraper for HDHub4u (30 Threads)...")
-    scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'mobile': False})
+    print("🚀 Starting Next-Gen M3U Scraper (Bypassing Cloudflare with curl_cffi)...")
+    
+    # Session তৈরি করা
+    session = requests.Session(impersonate="chrome110", timeout=15)
     
     all_movies = []
     page = 1
     
-    # সব পেজ স্ক্যান করা
     while True:
         print(f"⏳ Scanning Page {page}...")
         try:
-            res = scraper.get(f"{START_CATEGORY_URL}{page}/", timeout=15)
+            res = session.get(f"{START_CATEGORY_URL}{page}/")
             soup = BeautifulSoup(res.text, 'html.parser')
             
             movies = soup.find_all('li', class_='thumb')
@@ -113,6 +109,11 @@ def main():
                         link = f"{BASE_URL}{link}"
                     poster = img_tag.get('src', '')
                     all_movies.append((title, link, poster))
+            
+            # প্রথম ২ পেজ স্ক্যান করেই টেস্ট করুন (প্রয়োজনে এটি মুছে দেবেন সব পেজ স্ক্যান করতে)
+            if page >= 2: 
+                break
+                
             page += 1
         except Exception as e:
             print(f"⚠️ Error scanning page {page}: {e}")
@@ -121,9 +122,8 @@ def main():
     print(f"\n🎬 Found {len(all_movies)} movies. Starting Vault Cracking with 30 THREADS...")
     
     results = []
-    # ৩০ থ্রেড দিয়ে রকেটের বেগে ডিকোডিং
     with concurrent.futures.ThreadPoolExecutor(max_workers=30) as executor:
-        future_to_movie = {executor.submit(process_movie, movie, scraper): movie for movie in all_movies}
+        future_to_movie = {executor.submit(process_movie, movie): movie for movie in all_movies}
         
         for future in concurrent.futures.as_completed(future_to_movie):
             movie = future_to_movie[future]
@@ -133,11 +133,11 @@ def main():
                     results.append(data)
                     print(f"   ⚡ Success: {movie[0]}")
                 else:
-                    print(f"   ⚠️ Skipped (No stream/watch link): {movie[0]}")
+                    print(f"   ⚠️ Skipped: {movie[0]}")
             except Exception:
                 pass
 
-    print("\n💾 Generating playlist.m3u...")
+    print("\n💾 Generating hdhub_playlist.m3u...")
     with open(PLAYLIST_FILE, "w", encoding="utf-8") as f:
         f.write('#EXTM3U x-tvg-url=""\n')
         f.write('# Playlist Generated Automatically by HDHub4u Scraper\n')
