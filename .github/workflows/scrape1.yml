@@ -1,10 +1,9 @@
-name: IPTV Playlist Generator
+name: IPTV Playlist Generator (Python)
 
 on:
   schedule:
-    # প্রতিদিন রাত ৩টায় অটোমেটিক আপডেট হবে (UTC Time)
     - cron: '0 3 * * *'
-  workflow_dispatch: # Actions ট্যাব থেকে ম্যানুয়ালি রান করার জন্য
+  workflow_dispatch:
 
 jobs:
   generate-playlist:
@@ -14,16 +13,23 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Make Script Executable
-        run: chmod +x scraper.sh
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
 
-      - name: Run Playlist Generator
-        run: ./scraper.sh
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install cloudscraper beautifulsoup4
+
+      - name: Run Python Scraper
+        run: python scraper.py
 
       - name: Commit and Push M3U Playlist
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action Bot"
           git add playlist.m3u
-          git commit -m "Auto-Update: Fetched latest 1080p movies and updated playlist.m3u" || echo "No changes to commit"
+          git commit -m "Auto-Update: Fetched latest 1080p movies (Bypassed Cloudflare)" || echo "No changes to commit"
           git push
