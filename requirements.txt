@@ -1,2 +1,2 @@
-cloudscraper
+curl_cffi
 beautifulsoup4
