@@ -1,88 +1,108 @@
-#!/bin/bash
+import cloudscraper
+from bs4 import BeautifulSoup
+import re
+from datetime import datetime
 
-PLAYLIST="playlist.m3u"
+PLAYLIST_FILE = "playlist.m3u"
+BASE_URL = "https://fibwatch.art"
 
-# প্লেলিস্টের একদম শুরুতে প্রয়োজনীয় ইনফো এবং হেডার বসানো
-echo "#EXTM3U x-tvg-url=\"\"" > $PLAYLIST
-echo "# Playlist Generated Automatically by Livesportsplay Automation" >> $PLAYLIST
-echo "# Last Updated: $(date '+%Y-%m-%d %H:%M:%S')" >> $PLAYLIST
-echo "" >> $PLAYLIST
-
-# ডুপ্লিকেট রিমুভ এবং বেস্ট কোয়ালিটি বাছাই করার জন্য ডিকশনারি
-declare -A BEST_LINKS
-declare -A BEST_QUALITIES
-
-PAGE=1
-echo "🔍 Scanning all pages to find the best quality movies..."
-
-while true; do
-  echo "⏳ Scanning Page $PAGE..."
-  HTML=$(curl -sL -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" "https://fibwatch.art/videos/category/852?page_id=$PAGE")
-  
-  # পেজ থেকে সব watch লিংক বের করা
-  LINKS=$(echo "$HTML" | grep -o 'href="[^"]*"' | grep '/watch/' | grep '\.html"' | cut -d'"' -f2 | sort -u)
-
-  if [ -z "$LINKS" ]; then
-    echo "✅ Reached the end. No more movies found on page $PAGE."
-    break
-  fi
-
-  for LINK in $LINKS; do
-    # মুভির বেস নাম বের করা (যাতে ডুপ্লিকেট ধরা যায়)
-    BASE_NAME=$(echo "$LINK" | sed -E 's/-[0-9]{3,4}p_.*//' | sed -E 's/.*\/watch\///')
+def main():
+    print("🚀 Starting Cloudflare-Bypass Scraper...")
+    scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'mobile': False})
     
-    # রেজল্যুশন বের করা (যেমন: 1080, 720, 480)
-    QUALITY=$(echo "$LINK" | grep -oE '[0-9]{3,4}p' | head -n 1 | sed 's/p//')
-    if [ -z "$QUALITY" ]; then QUALITY=0; fi
+    best_qualities = {}
+    best_links = {}
+    
+    page = 1
+    while True:
+        print(f"⏳ Scanning Page {page}...")
+        url = f"{BASE_URL}/videos/category/852?page_id={page}"
+        try:
+            response = scraper.get(url, timeout=15)
+            soup = BeautifulSoup(response.text, 'html.parser')
+        except Exception as e:
+            print(f"❌ Error fetching page {page}: {e}")
+            break
+            
+        links = soup.find_all('a', href=True)
+        watch_links = [link['href'] for link in links if '/watch/' in link['href'] and link['href'].endswith('.html')]
+        
+        if not watch_links:
+            print(f"✅ Reached the end. No more movies on page {page}.")
+            break
+            
+        for link in set(watch_links):
+            full_link = link if link.startswith('http') else f"{BASE_URL}{link}"
+            
+            # বেস নাম ও কোয়ালিটি বের করা
+            base_name_match = re.search(r'/watch/(.*?)(?:-\d{3,4}p_|_)', full_link)
+            base_name = base_name_match.group(1) if base_name_match else full_link.split('/')[-1]
+            
+            quality_match = re.search(r'(\d{3,4})p', full_link)
+            quality = int(quality_match.group(1)) if quality_match else 0
+            
+            current_best = best_qualities.get(base_name, 0)
+            
+            # বেস্ট কোয়ালিটি বাছাই (1080p > 720p)
+            if quality > current_best:
+                best_qualities[base_name] = quality
+                best_links[base_name] = full_link
+                
+        page += 1
 
-    CURRENT_BEST=${BEST_QUALITIES[$BASE_NAME]:-0}
+    print(f"🎬 Found {len(best_links)} UNIQUE movies. Extracting media links...")
+    
+    with open(PLAYLIST_FILE, "w", encoding="utf-8") as f:
+        f.write('#EXTM3U x-tvg-url=""\n')
+        f.write('# Playlist Generated Automatically by Livesportsplay Automation\n')
+        now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        f.write(f'# Last Updated: {now}\n\n')
+        
+        for base_name, watch_link in best_links.items():
+            print(f"➡️ Processing: {base_name} ({best_qualities[base_name]}p)")
+            try:
+                res = scraper.get(watch_link, timeout=15)
+                watch_soup = BeautifulSoup(res.text, 'html.parser')
+                
+                # ডিরেক্ট লিংক বা শর্টলিংক খোঁজা
+                raw_link = None
+                for a in watch_soup.find_all('a', href=True):
+                    href = a['href']
+                    if '.mkv' in href or '.mp4' in href or 'urlshortlink.top' in href:
+                        raw_link = href
+                        break
+                
+                if not raw_link:
+                    continue
+                    
+                # শর্টলিংক ডিকোড করা
+                if "urlshortlink.top" in raw_link:
+                    match = re.search(r'url=(.*)', raw_link)
+                    if match:
+                        actual_link = match.group(1).replace('%3A', ':').replace('%2F', '/')
+                    else:
+                        continue
+                else:
+                    actual_link = raw_link
+                    
+                # পোস্টার বের করা
+                poster_tag = watch_soup.find('meta', property='og:image')
+                poster = poster_tag['content'] if poster_tag else ""
+                
+                # ফাইলের নাম পরিষ্কার করা
+                file_name = actual_link.split('/')[-1]
+                file_name = re.sub(r'\[Fibwatch\.Com\]', '', file_name, flags=re.IGNORECASE)
+                file_name = re.sub(r'\.mkv|\.mp4', '', file_name, flags=re.IGNORECASE)
+                file_name = file_name.replace('.', ' ').strip()
+                
+                # প্লেলিস্টে লেখা
+                f.write(f'#EXTINF:-1 tvg-logo="{poster}" group-title="Bengali Dubbed", {file_name}\n')
+                f.write(f'{actual_link}\n')
+                
+            except Exception as e:
+                print(f"Error processing {base_name}: {e}")
 
-    # যদি নতুন লিংকটার কোয়ালিটি আগেরটার চেয়ে ভালো হয়, তবে সেটা সেভ করবে (1080p > 720p)
-    if [ "$QUALITY" -gt "$CURRENT_BEST" ]; then
-      BEST_QUALITIES[$BASE_NAME]=$QUALITY
-      if [[ "$LINK" == /* ]]; then
-        BEST_LINKS[$BASE_NAME]="https://fibwatch.art$LINK"
-      else
-        BEST_LINKS[$BASE_NAME]="$LINK"
-      fi
-    fi
-  done
-  
-  PAGE=$((PAGE + 1))
-  sleep 1
-done
+    print("🎉 Success! M3U Playlist perfectly generated.")
 
-echo "🎬 Found ${#BEST_LINKS[@]} UNIQUE movies. Extracting exact media links..."
-
-for BASE_NAME in "${!BEST_LINKS[@]}"; do
-  WATCH_LINK="${BEST_LINKS[$BASE_NAME]}"
-  echo "➡️ Processing: $BASE_NAME (${BEST_QUALITIES[$BASE_NAME]}p)"
-
-  WATCH_HTML=$(curl -sL -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64)" "$WATCH_LINK")
-  
-  # ডিরেক্ট .mkv/.mp4 বা urlshortlink বের করা
-  RAW_LINK=$(echo "$WATCH_HTML" | grep -o -iE 'href="[^"]*"' | cut -d'"' -f2 | grep -iE '\.mkv|\.mp4|urlshortlink\.top.*url=' | head -n 1)
-
-  # শর্টলিংক ডিকোড করা
-  if [[ "$RAW_LINK" == *"urlshortlink.top"* ]]; then
-    ACTUAL_LINK=$(echo "$RAW_LINK" | sed 's/.*url=//' | sed 's/%3A/:/g' | sed 's/%2F/\//g')
-  else
-    ACTUAL_LINK="$RAW_LINK"
-  fi
-  
-  if [ -z "$ACTUAL_LINK" ]; then continue; fi
-
-  # পোস্টার ইমেজ বের করা
-  POSTER=$(echo "$WATCH_HTML" | grep -o 'property="og:image"[^>]*content="[^"]*"' | grep -o 'content="[^"]*"' | cut -d'"' -f2 | head -n 1)
-  
-  # মুভির নাম পরিষ্কার করা
-  FILE_NAME=$(basename "$ACTUAL_LINK" | sed -E 's/\[Fibwatch\.Com\]//gi' | sed -E 's/\.mkv|\.mp4//gi' | tr '.' ' ')
-
-  # প্লেলিস্টে ফরম্যাট অনুযায়ী বসানো
-  echo "#EXTINF:-1 tvg-logo=\"$POSTER\" group-title=\"Bengali Dubbed\", $FILE_NAME" >> $PLAYLIST
-  echo "$ACTUAL_LINK" >> $PLAYLIST
-  
-  sleep 1
-done
-
-echo "🎉 Success! M3U Playlist perfectly generated."
+if __name__ == "__main__":
+    main()
