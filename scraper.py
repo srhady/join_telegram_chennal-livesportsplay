@@ -14,42 +14,37 @@ def process_movie(base_name, watch_link, quality, scraper):
         
         actual_link = None
         
-        # লিংকের ভেতর কড়া ছাঁকনি!
         for a in watch_soup.find_all('a', href=True):
             href = a['href']
             
-            # সরাসরি .mkv বা .mp4 লিংক হলে
-            if '.mkv' in href or '.mp4' in href:
+            # ১. আগে চেক করবে এটা শর্টলিংক কি না!
+            if 'urlshortlink.top' in href and 'url=' in href:
+                match = re.search(r'url=(.*)', href)
+                if match:
+                    # হাবিজাবি অংশ কেটে শুধু মেইন লিংকটা বের করা
+                    decoded = match.group(1).replace('%3A', ':').replace('%2F', '/')
+                    if '.mkv' in decoded or '.mp4' in decoded:
+                        actual_link = decoded
+                        break
+            
+            # ২. যদি শর্টলিংক না হয়ে সরাসরি ডাইরেক্ট লিংক হয়
+            elif ('.mkv' in href or '.mp4' in href) and 'urlshortlink.top' not in href:
                 actual_link = href
                 if actual_link.startswith('/'):
                     actual_link = f"{BASE_URL}{actual_link}"
                 break
-                
-            # শর্টলিংক হলে ডিকোড করে চেক করবে ভেতরে .mkv/.mp4 আছে কিনা!
-            if 'urlshortlink.top' in href:
-                match = re.search(r'url=(.*)', href)
-                if match:
-                    decoded = match.group(1).replace('%3A', ':').replace('%2F', '/')
-                    # যদি শর্টলিংকের ভেতর .html থাকে (ফেক লিংক), তাহলে ইগনোর করবে!
-                    if '.mkv' in decoded or '.mp4' in decoded:
-                        actual_link = decoded
-                        break
         
-        # যদি কোনো আসল ভিডিও লিংক না পায়, তবে বাতিল!
         if not actual_link:
             return None
             
-        # পোস্টার বের করা
         poster_tag = watch_soup.find('meta', property='og:image')
         poster = poster_tag['content'] if poster_tag else ""
         
-        # নামটাকে সুন্দর করে সাজানো
         file_name = actual_link.split('/')[-1]
         file_name = re.sub(r'\[Fibwatch\.Com\]', '', file_name, flags=re.IGNORECASE)
         file_name = re.sub(r'\.mkv|\.mp4', '', file_name, flags=re.IGNORECASE)
         file_name = file_name.replace('.', ' ').strip()
         
-        # নিখুঁত M3U ফরম্যাট
         m3u_entry = f'#EXTINF:-1 tvg-logo="{poster}" group-title="Bengali Dubbed", {file_name}\n{actual_link}\n'
         return m3u_entry
         
@@ -57,7 +52,7 @@ def process_movie(base_name, watch_link, quality, scraper):
         return None
 
 def main():
-    print("🚀 Starting BULLETPROOF & FAST Scraper...")
+    print("🚀 Starting SUPER FAST & BULLETPROOF Scraper (30 Threads)...")
     scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'mobile': False})
     
     best_qualities = {}
@@ -91,19 +86,18 @@ def main():
             
             current_best = best_qualities.get(base_name, 0)
             
-            # 1080p ফিল্টার 
             if quality > current_best:
                 best_qualities[base_name] = quality
                 best_links[base_name] = full_link
                 
         page += 1
 
-    print(f"\n🎬 Found {len(best_links)} UNIQUE movies. Extracting real .mkv/.mp4 links using 15 Threads...")
+    print(f"\n🎬 Found {len(best_links)} UNIQUE movies. Starting extraction with 30 THREADS...")
     
     results = []
     
-    # ১৫টা থ্রেড দিয়ে একসাথে কাজ করানো হচ্ছে
-    with concurrent.futures.ThreadPoolExecutor(max_workers=15) as executor:
+    # আপনার নির্দেশ মতো ৩০টা থ্রেড! রকেটের বেগে ডেটা আনবে!
+    with concurrent.futures.ThreadPoolExecutor(max_workers=30) as executor:
         future_to_movie = {
             executor.submit(process_movie, b_name, w_link, best_qualities[b_name], scraper): b_name 
             for b_name, w_link in best_links.items()
@@ -115,13 +109,13 @@ def main():
                 data = future.result()
                 if data:
                     results.append(data)
-                    print(f"   ⚡ Extracted Real Link: {b_name}")
+                    print(f"   ⚡ Pure Link Extracted: {b_name}")
                 else:
-                    print(f"   ⚠️ Skipped (No valid .mkv/.mp4 found): {b_name}")
+                    print(f"   ⚠️ Skipped (No valid link): {b_name}")
             except Exception:
                 pass
 
-    print("\n💾 Writing pure data to playlist.m3u...")
+    print("\n💾 Writing perfectly clean data to playlist.m3u...")
     with open(PLAYLIST_FILE, "w", encoding="utf-8") as f:
         f.write('#EXTM3U x-tvg-url=""\n')
         f.write('# Playlist Generated Automatically by Livesportsplay Automation\n')
@@ -131,7 +125,7 @@ def main():
         for entry in results:
             f.write(entry)
 
-    print("🎉 Boom! Pure and perfect M3U Playlist generated.")
+    print("🎉 Done! Pure M3U Playlist generated without shortlinks.")
 
 if __name__ == "__main__":
     main()
