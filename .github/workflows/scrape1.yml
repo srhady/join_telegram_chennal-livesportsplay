@@ -18,7 +18,7 @@ jobs:
         run: chmod +x scraper.sh
 
       - name: Run Playlist Generator
-        run: ./scraper1.sh
+        run: ./scraper.sh
 
       - name: Commit and Push M3U Playlist
         run: |
