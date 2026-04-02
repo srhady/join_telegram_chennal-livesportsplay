@@ -2,22 +2,56 @@
   {
     "Match Title": "Bangladesh VS Vietnam",
     "Category": "Football",
-    "League": "Friendly",
-    "Match Poster": "https://live.inplyr.com/room/168740.m3u8", 
+    "League": "International Friendly",
+    "Team 1 Logo": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Flag_of_Bangladesh.svg",
     "Match Status": "",
     "Start Time": "06:00 PM | 26-Mar",
     "Streams": [
       {
-        "Embed_URL": "https://pull.niues.live/live/stream-9912110_lhd.m3u8?auth_key=1774529319-0-0-f09817ec0a5d649888eb971e077793f3",
+        "Embed_URL": "https://example.com/live1.m3u8",
         "Language": "Main Server",
-        "Quality": "HD"
-      },
-      {
-        "Embed_URL": "https://autumn-shape-b04a.soft-disk-1347.workers.dev/?url=http://tvn2.chowdhury-shaheb.com/tsport/index.m3u8",
-        "Language": "Backup",
         "Quality": "HD"
       }
     ]
+  },
+  {
+    "Match Title": "TNT Sports 1",
+    "Category": "Football",
+    "League": "24/7 Channels",
+    "Team 1 Logo": "https://static.wikia.nocookie.net/logopedia/images/3/30/TNT_Sports_1_Stacked.svg/revision/latest/scale-to-width-down/250?cb=20260225232947",
+    "Match Status": "Live",
+    "Start Time": ""
+  },
+  {
+    "Match Title": "TNT Sports 2",
+    "Category": "Football",
+    "League": "24/7 Channels",
+    "Team 1 Logo": "https://static.wikia.nocookie.net/logopedia/images/b/be/TNT_Sports_2_Stacked.svg/revision/latest/scale-to-width-down/250?cb=20260225233941",
+    "Match Status": "Live",
+    "Start Time": ""
+  },
+  {
+    "Match Title": "TNT Sports 3",
+    "Category": "Cricket",
+    "League": "24/7 Channels",
+    "Team 1 Logo": "https://static.wikia.nocookie.net/logopedia/images/0/07/TNT_Sports_3_Stacked.svg/revision/latest/scale-to-width-down/250?cb=20260225234939",
+    "Match Status": "Live",
+    "Start Time": ""
+  },
+{
+    "Match Title": "TNT Sports 4",
+    "Category": "Cricket",
+    "League": "24/7 Channels",
+    "Team 1 Logo": "https://static.wikia.nocookie.net/logopedia/images/1/13/TNT_Sports_4_Stacked.svg/revision/latest/scale-to-width-down/250?cb=20260225235815",
+    "Match Status": "Live",
+    "Start Time": ""
+  },
+{
+    "Match Title": "Willow Cricket",
+    "Category": "Cricket",
+    "League": "24/7 Channels",
+    "Team 1 Logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyoBxNmfDbilv_ElFg5-noVIBgH7Y1OLTFQQ&s",
+    "Match Status": "Live",
+    "Start Time": ""
   }
 ]
-
