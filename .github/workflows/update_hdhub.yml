@@ -1,8 +1,6 @@
 name: HDHub4u M3U Auto Updater
 
-on:
-  schedule:
-    - cron: '0 0 * * *' # প্রতিদিন বাংলাদেশ সময় সকাল ৬টায় রান হবে
+# প্রতিদিন বাংলাদেশ সময় সকাল ৬টায় রান হবে
   workflow_dispatch: # ম্যানুয়ালি রান করার অপশন
 
 jobs:
