@@ -2,7 +2,7 @@ name: Update Fibwatch Playlists
 
 on:
   schedule:
-    - cron: '0 0 * * *' # প্রতিদিন বাংলাদেশ সময় সকাল ৬টায় রান হবে
+    - cron: '0 */6 * * *' # প্রতি ৬ ঘণ্টা পর পর রান হবে
   workflow_dispatch: # ম্যানুয়ালি রান করার অপশন
 
 jobs:
@@ -25,13 +25,13 @@ jobs:
 
     - name: Run Scraper
       run: |
-        python -u scraper.py  # এখানে আপনার পাইথন ফাইলের নামটা ঠিক আছে কি না দেখে নেবেন
+        python -u scraper.py
 
     - name: Commit and Push Changes
       run: |
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        # *.m3u দিলে সে playlist.m3u এবং bangla.m3u দুটোই একসাথে অ্যাড করে নেবে
-        git add *.m3u
-        git commit -m "Auto-update Fibwatch Playlists (Dual Engine)" || echo "No changes to commit"
+        # .m3u এবং .json ফাইল থাকলে সেগুলো অ্যাড করবে
+        git add *.m3u *.json || echo "No files to add"
+        git commit -m "Auto-update Fibwatch Playlists (Every 6 Hours)" || echo "No changes to commit"
         git push
