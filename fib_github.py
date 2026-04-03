@@ -6,7 +6,7 @@ import concurrent.futures
 import requests
 
 BASE_URL = "https://fibwatch.art"
-MAX_PAGES_TO_SCAN = 3000  # গিটহাবের জন্য ৩০০০ পেজ স্ক্যানিং
+MAX_PAGES_TO_SCAN = 3000
 
 def process_movie(base_name, watch_link, quality, scraper, group_name):
     try:
@@ -74,25 +74,24 @@ def run_github_scraper():
     file_name = "latest_movies.m3u"
     group_name = "Fibwatch Latest"
     
-    print(f"\n🚀 GitHub Actions Mode: Scanning up to {MAX_PAGES_TO_SCAN} pages safely...")
+    print(f"\n🚀 GitHub Actions Mode: Scanning up to {MAX_PAGES_TO_SCAN} pages (STABLE MODE)...")
     
-    # গিটহাবের র‍্যাম বাঁচাতে কানেকশন পুল লিমিট করা হয়েছে
+    # গিটহাবের জন্য সেফ কানেকশন লিমিট
     scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'mobile': False})
-    adapter = requests.adapters.HTTPAdapter(pool_connections=50, pool_maxsize=50, max_retries=2)
+    adapter = requests.adapters.HTTPAdapter(pool_connections=30, pool_maxsize=30, max_retries=2)
     scraper.mount('https://', adapter)
     scraper.mount('http://', adapter)
     
     best_qualities = {}
     best_links = {}
     
-    print("💥 STAGE 1: Scanning pages (50 THREADS)...")
-    with concurrent.futures.ThreadPoolExecutor(max_workers=50) as executor:
+    print("💥 STAGE 1: Scanning pages (30 THREADS)...")
+    with concurrent.futures.ThreadPoolExecutor(max_workers=30) as executor:
         future_to_page = {executor.submit(scan_single_page_latest, p, scraper): p for p in range(1, MAX_PAGES_TO_SCAN + 1)}
         
         for count, future in enumerate(concurrent.futures.as_completed(future_to_page), 1):
             movies = future.result()
             for base_name, full_link, quality in movies:
-                # "Best Available" Quality Logic (Highest Quality, No Duplicates)
                 if quality > best_qualities.get(base_name, -1):
                     best_qualities[base_name] = quality
                     best_links[base_name] = full_link
