@@ -1,9 +1,9 @@
 name: Auto Scraper
 
 on:
-  workflow_dispatch: # ম্যানুয়ালি রান করানোর বাটন
+  workflow_dispatch: # ম্যানুয়ালি রান করার জন্য
   schedule:
-    - cron: '0 0 * * *' # প্রতিদিন রাত ১২ টায় (UTC) অটো রান করবে
+    - cron: '0 */6 * * *' # প্রতি ৬ ঘণ্টা পরপর (00:00, 06:00, 12:00, 18:00 UTC) অটো রান করবে
 
 jobs:
   build:
@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # পুরো হিস্ট্রি ফেচ করবে যাতে পুশ করতে সুবিধা হয়
 
       - name: Set up Python 3.10
         uses: actions/setup-python@v4
@@ -31,6 +33,13 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # রিমোট রিপোজিটরির সাথে সিঙ্ক করার জন্য আগে পুল করে নেওয়া হচ্ছে
+          git pull origin main --rebase
+          
           git add latest_movies.m3u
-          git commit -m "Auto-updated Fibwatch Latest Playlist" || echo "No changes to commit"
-          git push
+          
+          # যদি কোনো পরিবর্তন না থাকে তবে এরর দিবে না
+          git commit -m "Auto-updated Fibwatch Latest Playlist" || exit 0
+          
+          git push origin main
