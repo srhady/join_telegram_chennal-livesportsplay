@@ -1,13 +1,12 @@
 import cloudscraper
 from bs4 import BeautifulSoup
 import re
-from datetime import datetime
+from datetime import datetime, timedelta
 import concurrent.futures
 
 BASE_URL = "https://fibwatch.art"
 MAX_PAGES_TO_SCAN = 3000  # লেটেস্ট ক্যাটাগরির ৩০০০ পেজ
 
-# আপনার অরিজিনাল লিংক ভাঙার ফাংশন (একদম হুবহু)
 def process_movie(base_name, watch_link, quality, scraper, group_name):
     try:
         res = scraper.get(watch_link, timeout=15)
@@ -38,18 +37,24 @@ def process_movie(base_name, watch_link, quality, scraper, group_name):
         poster_tag = watch_soup.find('meta', property='og:image')
         poster = poster_tag['content'] if poster_tag else ""
         
+        # 💥 আপডেট ১: ফটোর জন্য হগিংফেস Image Proxy যুক্ত করা হলো 💥
+        if poster:
+            poster = f"https://srhady-live-stream.hf.space/image?url={poster}"
+        
         file_name = actual_link.split('/')[-1]
         file_name = re.sub(r'\[Fibwatch\.Com\]', '', file_name, flags=re.IGNORECASE)
         file_name = re.sub(r'\.mkv|\.mp4', '', file_name, flags=re.IGNORECASE)
         file_name = file_name.replace('.', ' ').strip()
         
-        m3u_entry = f'#EXTINF:-1 tvg-logo="{poster}" group-title="{group_name}", {file_name}\n{actual_link}\n'
+        # 💥 আপডেট ২: ভিডিও লিংকের শেষে Referer যুক্ত করা হলো 💥
+        final_video_link = f"{actual_link}|Referer=https://fibwatch.art/"
+        
+        m3u_entry = f'#EXTINF:-1 tvg-logo="{poster}" group-title="{group_name}", {file_name}\n{final_video_link}\n'
         return m3u_entry
         
     except Exception as e:
         return None
 
-# "Latest" পেজ স্ক্যান করার ফাংশন
 def scan_single_page_latest(page_num, scraper):
     url = f"{BASE_URL}/videos/latest?page_id={page_num}"
     found_movies = []
@@ -83,7 +88,6 @@ def run_latest_scraper(file_name, group_name):
     
     print(f"⏳ Scanning up to {MAX_PAGES_TO_SCAN} pages CONCURRENTLY... Please wait!")
     
-    # 💥 স্টেজ ১: পেজ স্ক্যানিংয়ে মাল্টি-থ্রেডিং 💥
     with concurrent.futures.ThreadPoolExecutor(max_workers=30) as executor:
         future_to_page = {executor.submit(scan_single_page_latest, p, scraper): p for p in range(1, MAX_PAGES_TO_SCAN + 1)}
         
@@ -103,7 +107,6 @@ def run_latest_scraper(file_name, group_name):
     
     results = []
     
-    # 💥 স্টেজ ২: মুভি লিংক ভাঙার মাল্টি-থ্রেডিং 💥
     with concurrent.futures.ThreadPoolExecutor(max_workers=30) as executor:
         future_to_movie = {
             executor.submit(process_movie, b_name, w_link, best_qualities[b_name], scraper, group_name): b_name 
@@ -124,7 +127,10 @@ def run_latest_scraper(file_name, group_name):
     with open(file_name, "w", encoding="utf-8") as f:
         f.write('#EXTM3U x-tvg-url=""\n')
         f.write('# Playlist Generated Automatically by Double-Threaded Automation\n')
-        now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        
+        # 💥 আপডেট ৩: বাংলাদেশ সময় (BD Time) যুক্ত করা হলো 💥
+        bd_time = datetime.utcnow() + timedelta(hours=6)
+        now = bd_time.strftime("%Y-%m-%d %I:%M:%S %p (BD Time)")
         f.write(f'# Last Updated: {now}\n\n')
         
         for entry in results:
@@ -133,7 +139,6 @@ def run_latest_scraper(file_name, group_name):
     print(f"🎉 Done! Pure M3U Playlist generated without shortlinks for {group_name}.")
 
 def main():
-    # লেটেস্ট ক্যাটাগরি স্ক্যান করবে
     run_latest_scraper(file_name="latest_movies.m3u", group_name="Fibwatch Latest")
 
 if __name__ == "__main__":
