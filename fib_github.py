@@ -13,6 +13,15 @@ FILE_NAME = "latest_movies.m3u"
 GROUP_NAME = "Fibwatch Latest"
 IMAGE_PROXY = "https://srhady-live-stream.hf.space/image?url="
 
+def get_resolution(text):
+    """Extracts resolution from the link to prioritize higher quality."""
+    match = re.search(r'(\d{3,4})p', text, re.IGNORECASE)
+    if match:
+        return int(match.group(1))
+    if '4k' in text.lower():
+        return 2160
+    return 0
+
 def get_domain(url):
     """Extracts the main domain (e.g., https://xyujkk.b-cdn.net) from a full URL."""
     parsed_uri = urlparse(url)
@@ -69,8 +78,10 @@ def scan_page(page_num, scraper):
         
         for link in set(watch_links):
             full_link = link if link.startswith('http') else f"{BASE_URL}{link}"
-            base_name_match = re.search(r'/watch/(.*?)(?:-\d{3,4}p_|_)', full_link)
-            base_name = base_name_match.group(1) if base_name_match else full_link.split('/')[-1]
+            filename = full_link.split('/')[-1]
+            # Strip resolution tags to get a clean base name for comparison
+            base_name = re.sub(r'[-_]?\d{3,4}p.*\.html$', '', filename, flags=re.IGNORECASE)
+            
             found_movies.append((base_name, full_link))
         return found_movies
     except Exception:
@@ -103,7 +114,16 @@ def main():
         futures = {executor.submit(scan_page, p, scraper): p for p in range(1, PAGES_TO_SCAN + 1)}
         for future in concurrent.futures.as_completed(futures):
             for base_name, full_link in future.result():
-                new_movies_links[base_name] = full_link
+                current_res = get_resolution(full_link)
+                
+                # Keep the link with the highest resolution
+                if base_name in new_movies_links:
+                    existing_link = new_movies_links[base_name]
+                    existing_res = get_resolution(existing_link)
+                    if current_res > existing_res:
+                        new_movies_links[base_name] = full_link
+                else:
+                    new_movies_links[base_name] = full_link
 
     # 3. Extract new movies and identify the current active CDN domain
     print("🎬 Extracting new items...")
