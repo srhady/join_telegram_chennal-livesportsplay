@@ -1,6 +1,11 @@
 #EXTM3U
 # Playlist Generated Automatically by Smart Incremental Automation
-# Last Updated: 2026-08-08 06:39:38 AM (BD Time)
+# Last Updated: 2026-08-08 12:29:17 PM (BD Time)
+
+#EXTINF:-1 tvg-logo="https://srhady-live-stream.hf.space/image?url=https://iyuhh.b-cdn.net/upload/photos/2026/08/WWE.SummerSlam.jpg" group-title="Fibwatch Latest", WWE SummerSlam Sunday (2026) Dual 720P
+https://iyuhh.b-cdn.net/s3/upload/videos/2026/08/[Fibwatch.Com]WWE.SummerSlam.Sunday.(2026).Dual.720P.mkv|Referer=https://fibwatch.art/
+#EXTINF:-1 tvg-logo="https://srhady-live-stream.hf.space/image?url=https://iyuhh.b-cdn.net/upload/photos/2026/08/Maanaadu.Double.Politics.jpg" group-title="Fibwatch Latest", Double Politics 2026 720P
+https://iyuhh.b-cdn.net/s3/upload/videos/2026/08/[Fibwatch.Com]Double.Politics.2026.720P.mkv|Referer=https://fibwatch.art/
 
 #EXTINF:-1 tvg-logo="https://srhady-live-stream.hf.space/image?url=https://iyuhh.b-cdn.net/upload/photos/2026/08/Service.Girl.jpg" group-title="Fibwatch Latest", Service Girl (2026) S01 1080P
 https://iyuhh.b-cdn.net/s3/upload/videos/2026/08/[Fibwatch.Com]Service.Girl.(2026).S01.1080P.mkv|Referer=https://fibwatch.art/
