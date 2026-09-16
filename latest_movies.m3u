@@ -1,6 +1,13 @@
 #EXTM3U
 # Playlist Generated Automatically by Smart Incremental Automation
-# Last Updated: 2026-09-16 02:31:11 AM (BD Time)
+# Last Updated: 2026-09-16 07:54:52 AM (BD Time)
+
+#EXTINF:-1 tvg-logo="https://srhady-live-stream.hf.space/image?url=https://qerth.b-cdn.net/upload/photos/2026/09/Vengeance.(2026).jpg" group-title="Fibwatch Latest", Vengeance (2026) Tamil 1080p
+https://qerth.b-cdn.net/s3/upload/videos/2026/09/[Fibwatch.Com]Vengeance.(2026).Tamil.1080p.mkv|Referer=https://fibwatch.art/
+#EXTINF:-1 tvg-logo="https://srhady-live-stream.hf.space/image?url=https://qerth.b-cdn.net/upload/photos/2026/09/Bahurup.(2025).Bengali.jpg" group-title="Fibwatch Latest", Bahurup (2025) Bengali 1080p
+https://qerth.b-cdn.net/s3/upload/videos/2026/09/[Fibwatch.Com]Bahurup.(2025).Bengali.1080p.mkv|Referer=https://fibwatch.art/
+#EXTINF:-1 tvg-logo="https://srhady-live-stream.hf.space/image?url=https://qerth.b-cdn.net/upload/photos/2026/09/Vivaah.(2026).jpg" group-title="Fibwatch Latest", Vivaah (2026) Malayalam 1080p
+https://qerth.b-cdn.net/s3/upload/videos/2026/09/[Fibwatch.Com]Vivaah.(2026).Malayalam.1080p.mkv|Referer=https://fibwatch.art/
 
 #EXTINF:-1 tvg-logo="https://srhady-live-stream.hf.space/image?url=https://qerth.b-cdn.net/upload/photos/2026/08/Bigg.Boss.(2026).S01.Bengali.jpg" group-title="Fibwatch Latest", Bigg Boss S01E16 Bengali 1080p
 https://qerth.b-cdn.net/s3/upload/videos/2026/09/[Fibwatch.Com]Bigg.Boss.S01E16.Bengali.1080p.mkv|Referer=https://fibwatch.art/
