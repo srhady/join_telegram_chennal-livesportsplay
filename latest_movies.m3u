@@ -1,6 +1,11 @@
 #EXTM3U
 # Playlist Generated Automatically by Smart Incremental Automation
-# Last Updated: 2026-09-30 03:34:16 AM (BD Time)
+# Last Updated: 2026-09-30 08:36:55 AM (BD Time)
+
+#EXTINF:-1 tvg-logo="https://srhady-live-stream.hf.space/image?url=https://vtghn.b-cdn.net/upload/photos/2026/09/Hokum.jpg" group-title="Fibwatch Latest", Hokum 2026 Dual 1080p
+https://vtghn.b-cdn.net/s3/upload/videos/2026/09/[Fibwatch.Com]Hokum.2026.Dual.1080p.mkv|Referer=https://fibwatch.art/
+#EXTINF:-1 tvg-logo="https://srhady-live-stream.hf.space/image?url=https://vtghn.b-cdn.net/upload/photos/2026/09/Love.Lottery.(2026).Hindi.jpg" group-title="Fibwatch Latest", Love Lottery (2026) Hindi HDTC 480p
+https://vtghn.b-cdn.net/s3/upload/videos/2026/09/[Fibwatch.Com]Love.Lottery.(2026).Hindi.HDTC.480p.mkv|Referer=https://fibwatch.art/
 
 #EXTINF:-1 tvg-logo="https://srhady-live-stream.hf.space/image?url=https://vtghn.b-cdn.net/upload/photos/2026/09/Seventh.Son.(2014).Hindi.Dubbed.jpg" group-title="Fibwatch Latest", Seventh Son (2014) Dual 1080p
 https://vtghn.b-cdn.net/s3/upload/videos/2026/09/[Fibwatch.Com]Seventh.Son.(2014).Dual.1080p.mkv|Referer=https://fibwatch.art/
