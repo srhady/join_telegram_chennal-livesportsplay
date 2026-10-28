@@ -1,6 +1,13 @@
 #EXTM3U
 # Playlist Generated Automatically by Smart Incremental Automation
-# Last Updated: 2026-10-28 11:29:25 PM (BD Time)
+# Last Updated: 2026-10-29 03:56:36 AM (BD Time)
+
+#EXTINF:-1 tvg-logo="https://srhady-live-stream.hf.space/image?url=https://oertb.b-cdn.net/upload/photos/2026/10/Doosra.jpg" group-title="Fibwatch Latest", Doosra 2026 Hindi HDTC 480P
+https://oertb.b-cdn.net/s3/upload/videos/2026/10/[Fibwatch.Com]Doosra.2026.Hindi.HDTC.480P.mkv|Referer=https://fibwatch.art/
+#EXTINF:-1 tvg-logo="https://srhady-live-stream.hf.space/image?url=https://oertb.b-cdn.net/upload/photos/2026/10/VisionQuest.S01.Hindi.Dubbed.jpg" group-title="Fibwatch Latest", VisionQuest S01E05 Dual 1080p
+https://oertb.b-cdn.net/s3/upload/videos/2026/10/[Fibwatch.Com]VisionQuest.S01E05.Dual.1080p.mkv|Referer=https://fibwatch.art/
+#EXTINF:-1 tvg-logo="https://srhady-live-stream.hf.space/image?url=https://oertb.b-cdn.net/upload/photos/2026/08/Bigg.Boss.(2026).S01.Bengali.jpg" group-title="Fibwatch Latest", Bigg Boss S01E60 Bengali 1080p
+https://oertb.b-cdn.net/s3/upload/videos/2026/10/[Fibwatch.Com]Bigg.Boss.S01E60.Bengali.1080p.mkv|Referer=https://fibwatch.art/
 
 #EXTINF:-1 tvg-logo="https://srhady-live-stream.hf.space/image?url=https://oertb.b-cdn.net/upload/photos/2026/09/Rise.And.Fall.S02.jpg" group-title="Fibwatch Latest", Rise And Fall S02E33 1080P
 https://oertb.b-cdn.net/s3/upload/videos/2026/10/[Fibwatch.Com]Rise.And.Fall.S02E33.1080P.mkv|Referer=https://fibwatch.art/
