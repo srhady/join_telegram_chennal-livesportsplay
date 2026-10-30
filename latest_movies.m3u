@@ -1,6 +1,11 @@
 #EXTM3U
 # Playlist Generated Automatically by Smart Incremental Automation
-# Last Updated: 2026-10-30 04:05:16 AM (BD Time)
+# Last Updated: 2026-10-30 09:08:52 AM (BD Time)
+
+#EXTINF:-1 tvg-logo="https://srhady-live-stream.hf.space/image?url=https://yfghb.b-cdn.net/upload/photos/2026/09/Mirzapur.The.Movie.(2026).Hindi.jpg" group-title="Fibwatch Latest", Mirzapur The Movie (2026) Hindi 1080p
+https://yfghb.b-cdn.net/s3/upload/videos/2026/10/[Fibwatch.Com]Mirzapur.The.Movie.(2026).Hindi.1080p.mkv|Referer=https://fibwatch.art/
+#EXTINF:-1 tvg-logo="https://srhady-live-stream.hf.space/image?url=https://yfghb.b-cdn.net/upload/photos/2026/10/Winkle.Twinkle.jpg" group-title="Fibwatch Latest", Winkle Twinkle (2026) Bengali 1080P
+https://yfghb.b-cdn.net/s3/upload/videos/2026/10/[Fibwatch.Com]Winkle.Twinkle.(2026).Bengali.1080P.mkv|Referer=https://fibwatch.art/
 
 #EXTINF:-1 tvg-logo="https://srhady-live-stream.hf.space/image?url=https://yfghb.b-cdn.net/upload/photos/2026/10/Dhindora.(2026).S01..jpg" group-title="Fibwatch Latest", Dhindora (2026) S01 Hindi 1080p
 https://yfghb.b-cdn.net/s3/upload/videos/2026/10/[Fibwatch.Com]Dhindora.(2026).S01.Hindi.1080p.mkv|Referer=https://fibwatch.art/
