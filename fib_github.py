@@ -8,7 +8,6 @@ from urllib.parse import urlparse
 
 # --- Configuration ---
 BASE_URL = "https://fibwatch.art"
-PAGES_TO_SCAN = 5
 FILE_NAME = "latest_movies.m3u"
 GROUP_NAME = "Fibwatch Latest"
 IMAGE_PROXY = "https://srhady-live-stream.hf.space/image?url="
@@ -30,7 +29,11 @@ def get_domain(url):
 def process_movie(base_name, watch_link, scraper):
     """Extracts the raw video link and poster for a single movie."""
     try:
-        res = scraper.get(watch_link, timeout=15)
+        headers = {
+            "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1",
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+        }
+        res = scraper.get(watch_link, headers=headers, timeout=15)
         watch_soup = BeautifulSoup(res.text, 'html.parser')
         
         actual_link = None
@@ -67,29 +70,9 @@ def process_movie(base_name, watch_link, scraper):
     except Exception as e:
         return None
 
-def scan_page(page_num, scraper):
-    """Scans a specific page to find movie watch links."""
-    url = f"{BASE_URL}/videos/latest?page_id={page_num}"
-    found_movies = []
-    try:
-        response = scraper.get(url, timeout=15)
-        soup = BeautifulSoup(response.text, 'html.parser')
-        watch_links = [link['href'] for link in soup.find_all('a', href=True) if '/watch/' in link['href'] and link['href'].endswith('.html')]
-        
-        for link in set(watch_links):
-            full_link = link if link.startswith('http') else f"{BASE_URL}{link}"
-            filename = full_link.split('/')[-1]
-            # Strip resolution tags to get a clean base name for comparison
-            base_name = re.sub(r'[-_]?\d{3,4}p.*\.html$', '', filename, flags=re.IGNORECASE)
-            
-            found_movies.append((base_name, full_link))
-        return found_movies
-    except Exception:
-        return []
-
 def main():
-    print("🚀 Starting Smart Incremental Scraper...")
-    scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'windows', 'mobile': False})
+    print("🚀 Starting Smart Homepage Scraper...")
+    scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'ios', 'mobile': True})
     
     # 1. Read existing playlist data
     old_entries = []
@@ -107,23 +90,33 @@ def main():
                     break
         print(f"📁 Loaded existing playlist. Old CDN Domain: {old_domain}")
 
-    # 2. Scan only the first few pages (Incremental Update)
-    print(f"⏳ Scanning first {PAGES_TO_SCAN} pages...")
+    # 2. Scan only the Homepage (Base URL)
+    print("⏳ Scanning homepage (Base URL)...")
     new_movies_links = {}
-    with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
-        futures = {executor.submit(scan_page, p, scraper): p for p in range(1, PAGES_TO_SCAN + 1)}
-        for future in concurrent.futures.as_completed(futures):
-            for base_name, full_link in future.result():
-                current_res = get_resolution(full_link)
-                
-                # Keep the link with the highest resolution
-                if base_name in new_movies_links:
-                    existing_link = new_movies_links[base_name]
-                    existing_res = get_resolution(existing_link)
-                    if current_res > existing_res:
-                        new_movies_links[base_name] = full_link
-                else:
+    try:
+        headers = {
+            "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1",
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+        }
+        response = scraper.get(BASE_URL, headers=headers, timeout=15)
+        soup = BeautifulSoup(response.text, 'html.parser')
+        watch_links = [link['href'] for link in soup.find_all('a', href=True) if '/watch/' in link['href'] and link['href'].endswith('.html')]
+        
+        for link in set(watch_links):
+            full_link = link if link.startswith('http') else f"{BASE_URL}{link}"
+            filename = full_link.split('/')[-1]
+            base_name = re.sub(r'[-_]?\d{3,4}p.*\.html$', '', filename, flags=re.IGNORECASE)
+            
+            current_res = get_resolution(full_link)
+            if base_name in new_movies_links:
+                existing_link = new_movies_links[base_name]
+                if current_res > get_resolution(existing_link):
                     new_movies_links[base_name] = full_link
+            else:
+                new_movies_links[base_name] = full_link
+        print(f"📄 Found {len(new_movies_links)} unique titles on homepage.")
+    except Exception as e:
+        print(f"⚠️ Homepage scan error: {e}")
 
     # 3. Extract new movies and identify the current active CDN domain
     print("🎬 Extracting new items...")
@@ -156,7 +149,6 @@ def main():
     now = bd_time.strftime("%Y-%m-%d %I:%M:%S %p (BD Time)")
     
     with open(FILE_NAME, "w", encoding="utf-8") as f:
-        # Clean header as requested
         f.write('#EXTM3U\n') 
         f.write('# Playlist Generated Automatically by Smart Incremental Automation\n')
         f.write(f'# Last Updated: {now}\n\n')
