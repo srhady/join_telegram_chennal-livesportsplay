@@ -1,4 +1,4 @@
-import cloudscraper
+from curl_cffi import requests as curl_requests
 from bs4 import BeautifulSoup
 import re
 import os
@@ -26,14 +26,21 @@ def get_domain(url):
     parsed_uri = urlparse(url)
     return '{uri.scheme}://{uri.netloc}'.format(uri=parsed_uri)
 
-def process_movie(base_name, watch_link, scraper):
-    """Extracts the raw video link and poster for a single movie."""
+def fetch_html(url):
+    headers = {
+        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.9"
+    }
+    return curl_requests.get(url, headers=headers, impersonate="safari_ios", timeout=25)
+
+def process_movie(base_name, watch_link):
+    """Extracts the raw video link and poster for a single movie using curl_cffi."""
     try:
-        headers = {
-            "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1",
-            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
-        }
-        res = scraper.get(watch_link, headers=headers, timeout=15)
+        res = fetch_html(watch_link)
+        if res.status_code != 200:
+            return None
+            
         watch_soup = BeautifulSoup(res.text, 'html.parser')
         
         actual_link = None
@@ -71,8 +78,7 @@ def process_movie(base_name, watch_link, scraper):
         return None
 
 def main():
-    print("🚀 Starting Smart Homepage Scraper...")
-    scraper = cloudscraper.create_scraper(browser={'browser': 'chrome', 'platform': 'ios', 'mobile': True})
+    print("🚀 Starting Smart Homepage Scraper via curl_cffi...")
     
     # 1. Read existing playlist data
     old_entries = []
@@ -80,25 +86,23 @@ def main():
     if os.path.exists(FILE_NAME):
         with open(FILE_NAME, 'r', encoding='utf-8') as f:
             lines = f.readlines()
-            # Filter out the old header lines
             old_entries = [line for line in lines if not line.startswith('#EXTM3U') and not line.startswith('# Playlist') and not line.startswith('# Last')]
             
-            # Identify the old CDN domain from the existing entries
             for line in old_entries:
                 if '.mkv' in line or '.mp4' in line:
                     old_domain = get_domain(line.split('|')[0])
                     break
         print(f"📁 Loaded existing playlist. Old CDN Domain: {old_domain}")
 
-    # 2. Scan only the Homepage (Base URL)
+    # 2. Scan only the Homepage (Base URL) using curl_cffi
     print("⏳ Scanning homepage (Base URL)...")
     new_movies_links = {}
     try:
-        headers = {
-            "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1",
-            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
-        }
-        response = scraper.get(BASE_URL, headers=headers, timeout=15)
+        response = fetch_html(BASE_URL)
+        if response.status_code != 200:
+            print(f"⚠️ Homepage returned HTTP {response.status_code}")
+            return
+            
         soup = BeautifulSoup(response.text, 'html.parser')
         watch_links = [link['href'] for link in soup.find_all('a', href=True) if '/watch/' in link['href'] and link['href'].endswith('.html')]
         
@@ -117,6 +121,7 @@ def main():
         print(f"📄 Found {len(new_movies_links)} unique titles on homepage.")
     except Exception as e:
         print(f"⚠️ Homepage scan error: {e}")
+        return
 
     # 3. Extract new movies and identify the current active CDN domain
     print("🎬 Extracting new items...")
@@ -124,12 +129,11 @@ def main():
     new_domain = None
     
     with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
-        futures = [executor.submit(process_movie, b_name, w_link, scraper) for b_name, w_link in new_movies_links.items()]
+        futures = [executor.submit(process_movie, b_name, w_link) for b_name, w_link in new_movies_links.items()]
         for future in concurrent.futures.as_completed(futures):
             result = future.result()
             if result:
                 entry, domain = result
-                # Check if the entry already exists in the old file to avoid duplicates
                 if not any(entry.split('\n')[0] in old_line for old_line in old_entries):
                     new_entries.append(entry)
                     if not new_domain:
@@ -153,11 +157,9 @@ def main():
         f.write('# Playlist Generated Automatically by Smart Incremental Automation\n')
         f.write(f'# Last Updated: {now}\n\n')
         
-        # Append new movies first
         for entry in new_entries:
             f.write(entry)
             
-        # Append updated old movies
         f.write("".join(old_entries))
 
     print("🎉 All done! Playlist updated successfully.")
