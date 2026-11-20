@@ -1,4 +1,4 @@
-Name: Auto Scraper
+name: Auto Scraper
 
 on:
   workflow_dispatch:
